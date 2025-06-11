@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CodeBlock } from "@/components/code-block"
 import { KeyDifferences } from "@/components/key-differences"
 
@@ -301,34 +302,241 @@ my-next-app/
         </TabsContent>
       </Tabs>
 
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Project Structure Comparison</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Vite + React Structure</CardTitle>
+              <CardDescription>Manual organization, explicit imports</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="bash"
+                code={`src/
+├── App.tsx                  # Main app with router setup
+├── main.tsx                 # Entry point
+├── components/
+│   ├── Header.tsx
+│   └── Footer.tsx
+├── pages/                   # Manual page organization
+│   ├── Home.tsx
+│   ├── About.tsx
+│   └── Contact.tsx
+├── hooks/                   # Custom hooks
+├── utils/                   # Utility functions
+└── styles/
+    └── globals.css
+
+# Separate backend required
+backend/
+├── server.js               # Express server
+├── routes/
+│   └── api.js
+└── models/`}
+              />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Next.js Structure</CardTitle>
+              <CardDescription>Convention-based, automatic features</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="bash"
+                code={`app/
+├── layout.tsx              # Root layout (automatic)
+├── page.tsx                # Home page (automatic route)
+├── about/
+│   └── page.tsx            # /about route (automatic)
+├── contact/
+│   └── page.tsx            # /contact route (automatic)
+├── api/                    # Built-in API (same project)
+│   ├── users/
+│   │   └── route.ts        # /api/users endpoint
+│   └── posts/
+│       └── route.ts        # /api/posts endpoint
+├── globals.css             # Global styles
+└── components/             # Shared components
+    ├── Header.tsx
+    └── Footer.tsx
+
+# Everything in one project - no separate backend needed`}
+              />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
       <KeyDifferences 
+        title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "Vite + React",
-            description: "Fast, lightweight SPA with minimal setup",
-            badges: ["Client-side", "Manual setup", "Fast dev"],
-            considerations: [
-              "Building simple to medium complexity applications",
-              "You want full control over configuration",
-              "SEO is not a primary concern",
-              "You prefer a lightweight solution",
-              "Team has experience with manual tooling setup"
+            title: "Vite + React: Manual Setup",
+            description: "Explicit configuration and manual integration of tools",
+            badges: ["Explicit", "Manual", "Granular control"],
+            codeExamples: [
+              {
+                label: "Routing Setup",
+                code: `// Manual React Router setup in App.tsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}`
+              },
+              {
+                label: "API Calls",
+                code: `// Separate backend required
+const API_BASE = 'http://localhost:3001/api'
+
+const fetchUsers = async () => {
+  const response = await fetch(\`\${API_BASE}/users\`)
+  return response.json()
+}`
+              },
+              {
+                label: "SEO Meta Tags",
+                code: `// Manual meta management with React Helmet
+import { Helmet } from 'react-helmet-async'
+
+function Page() {
+  return (
+    <>
+      <Helmet>
+        <title>Page Title</title>
+        <meta name="description" content="Description" />
+      </Helmet>
+      <div>Content</div>
+    </>
+  )
+}`
+              }
             ]
           },
           {
-            title: "Next.js",
-            description: "Full-stack framework with built-in optimizations",
-            badges: ["Full-stack", "Convention-based", "Production-ready"],
-            considerations: [
-              "SEO and performance are critical",
-              "You need server-side rendering capabilities",
-              "Building a larger, more complex application",
-              "You want built-in optimization features",
-              "API routes are needed within the same project"
+            title: "Next.js: Convention-Based",
+            description: "Built-in solutions with minimal configuration needed",
+            badges: ["Convention", "Built-in", "Zero-config"],
+            codeExamples: [
+              {
+                label: "File-Based Routing",
+                code: `// app/about/page.tsx - No router setup needed
+export default function AboutPage() {
+  return <div>About page</div>
+}
+
+// Automatically creates /about route`
+              },
+              {
+                label: "API Routes",
+                code: `// app/api/users/route.ts - Built-in backend
+export async function GET() {
+  const users = await db.users.findMany()
+  return Response.json(users)
+}
+
+// Frontend: fetch('/api/users') - same origin`
+              },
+              {
+                label: "Built-in SEO",
+                code: `// app/page.tsx - Type-safe metadata
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Page Title',
+  description: 'Description'
+}
+
+export default function Page() {
+  return <div>Content</div> // Pre-rendered for SEO
+}`
+              }
             ]
           }
         ]}
       />
+
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Development Commands Comparison</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Vite + React Commands</CardTitle>
+              <CardDescription>Multiple tools, separate backend</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">Frontend Development:</h5>
+                <CodeBlock
+                  language="bash"
+                  code={`# Start frontend (port 3000)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview`}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">Backend Development (separate):</h5>
+                <CodeBlock
+                  language="bash"
+                  code={`# Start Express server (port 3001)
+cd backend
+npm start
+
+# Or with nodemon for development
+npm run dev`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Next.js Commands</CardTitle>
+              <CardDescription>Unified full-stack development</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">Full-stack Development:</h5>
+                <CodeBlock
+                  language="bash"
+                  code={`# Start full-stack app (frontend + API)
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start`}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">Everything in one project:</h5>
+                <CodeBlock
+                  language="bash"
+                  code={`# Frontend: http://localhost:3000
+# API routes: http://localhost:3000/api/*
+# No separate backend server needed`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

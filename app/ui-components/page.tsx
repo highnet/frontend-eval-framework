@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CodeBlock } from "@/components/code-block"
 import { MuiButtonExample } from "@/components/examples/mui-button-example"
 import { BaseButtonExample } from "@/components/examples/base-ui-button-example"
@@ -288,57 +289,352 @@ function MyComponent() {
       </Tabs>
 
       <KeyDifferences 
+        title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "Material UI",
-            description: "Comprehensive component library with Google's Material Design",
-            badges: ["Comprehensive", "Material Design", "Themed"],
-            considerations: [
-              "You want a complete, ready-to-use design system",
-              "Material Design aesthetics fit your project",
-              "You need extensive component variety",
-              "Rapid prototyping is important",
-              "Your team prefers opinionated design choices"
+            title: "Material UI: Pre-built Components",
+            description: "Import and use ready-made components with built-in styling",
+            badges: ["Import & Use", "Built-in Themes", "Props-based"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `npm install @mui/material @emotion/react @emotion/styled
+
+// Theme setup in layout or _app
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+
+const theme = createTheme({
+  palette: {
+    primary: { main: '#1976d2' },
+    secondary: { main: '#dc004e' }
+  }
+})`
+              },
+              {
+                label: "Component Usage",
+                code: `import { Button, TextField, Card, CardContent } from '@mui/material'
+
+function LoginForm() {
+  return (
+    <Card sx={{ maxWidth: 400, margin: 'auto' }}>
+      <CardContent>
+        <TextField 
+          fullWidth 
+          variant="outlined" 
+          label="Email"
+          margin="normal"
+        />
+        <Button 
+          variant="contained" 
+          color="primary" 
+          fullWidth
+          sx={{ mt: 2 }}
+        >
+          Sign In
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}`
+              }
             ]
           },
           {
-            title: "Base UI",
-            description: "Headless components with full styling control",
-            badges: ["Headless", "Unstyled", "Full control"],
-            considerations: [
-              "You need complete control over component appearance",
-              "Building a custom design system from scratch",
-              "Performance and bundle size are critical",
-              "You have strong design requirements",
-              "You prefer starting with unstyled foundations"
+            title: "Base UI: Headless Components",
+            description: "Unstyled components with full control over appearance",
+            badges: ["Headless", "Unstyled", "Full Control"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `npm install @base_ui/react
+
+// No theme setup needed - you control all styling`
+              },
+              {
+                label: "Component Usage",
+                code: `import { Button } from '@base_ui/react/Button'
+
+function LoginForm() {
+  return (
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
+      <input 
+        type="email" 
+        placeholder="Email"
+        className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4"
+      />
+      <Button className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        Sign In
+      </Button>
+    </div>
+  )
+}`
+              },
+              {
+                label: "Custom Styling",
+                code: `// Complete control over styling
+const StyledButton = styled(Button)\`
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+\``
+              }
             ]
           },
           {
-            title: "Shadcn/ui",
-            description: "Copy-paste components built on Radix with Tailwind CSS",
-            badges: ["Copy-paste", "Tailwind", "Customizable"],
-            considerations: [
-              "You want to own and customize your components",
-              "Using Tailwind CSS for styling",
-              "You prefer copy-paste over npm packages",
-              "Need modern, accessible components",
-              "Want good defaults with customization flexibility"
+            title: "Shadcn/ui: Copy-Paste Components",
+            description: "Copy component code into your project for full ownership",
+            badges: ["Copy-Paste", "Tailwind CSS", "Full Ownership"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `npx shadcn-ui@latest init
+
+# Copy specific components
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add input
+npx shadcn-ui@latest add card`
+              },
+              {
+                label: "Component Usage",
+                code: `import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent } from '@/components/ui/card'
+
+function LoginForm() {
+  return (
+    <Card className="w-full max-w-md mx-auto">
+      <CardContent className="space-y-4">
+        <Input 
+          type="email" 
+          placeholder="Email"
+          className="w-full"
+        />
+        <Button className="w-full">
+          Sign In
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}`
+              }
             ]
           },
           {
-            title: "WienerMelange",
-            description: "Vienna city government's official design system",
-            badges: ["Official", "Government", "Web components"],
-            considerations: [
-              "Building applications for Vienna city government",
-              "Need to comply with official design standards",
-              "Working on municipal digital services",
-              "Framework-agnostic web components are preferred",
-              "Consistency with wien.gv.at is required"
+            title: "WienerMelange: Web Components",
+            description: "Vienna city government's official design system as web components",
+            badges: ["Web Components", "Framework Agnostic", "Government Standard"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `<!-- Include via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@wiener-melange/components"></script>
+
+<!-- Or install via npm -->
+npm install @wiener-melange/components`
+              },
+              {
+                label: "Component Usage",
+                code: `<!-- Web components work in any framework -->
+<wm-card class="wm-e-card wm-max-width-md wm-margin-auto">
+  <wm-card-content class="wm-e-card__content">
+    <wm-input 
+      type="email" 
+      placeholder="Email"
+      class="wm-e-input wm-full-width wm-margin-bottom-md"
+    ></wm-input>
+    <wm-button class="wm-e-button wm-e-button--primary wm-full-width">
+      <a href="#" class="wm-e-button__link">Anmelden</a>
+    </wm-button>
+  </wm-card-content>
+</wm-card>`
+              },
+              {
+                label: "React Integration",
+                code: `// In React (with proper JSX attributes)
+function LoginForm() {
+  return (
+    <wm-card className="wm-e-card wm-max-width-md wm-margin-auto">
+      <wm-card-content className="wm-e-card__content">
+        <wm-input 
+          type="email" 
+          placeholder="Email"
+          className="wm-e-input wm-full-width wm-margin-bottom-md"
+        />
+        <wm-button className="wm-e-button wm-e-button--primary wm-full-width">
+          Anmelden
+        </wm-button>
+      </wm-card-content>
+    </wm-card>
+  )
+}`
+              }
             ]
           }
         ]}
       />
+
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Customization Workflow Comparison</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Material UI</CardTitle>
+              <CardDescription>Theme-based and sx prop overrides</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">Global Theme Override:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+          textTransform: 'none'
+        }
+      }
+    }
+  }
+})`}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">One-off Customization:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`<Button 
+  sx={{ 
+    backgroundColor: 'red', 
+    '&:hover': { backgroundColor: 'darkred' } 
+  }}
+>
+  Custom Button
+</Button>`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Base UI</CardTitle>
+              <CardDescription>Full control with custom CSS/styled-components</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">Styled Components:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`const StyledButton = styled(Button)\`
+  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  padding: 12px 24px;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+\``}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">CSS Classes:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`<Button className="custom-button">
+  Custom Button
+</Button>
+
+/* CSS */
+.custom-button {
+  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
+  border: 0;
+  border-radius: 8px;
+}`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Shadcn/ui</CardTitle>
+              <CardDescription>Direct code modification and CSS classes</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">Edit Component File:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`// components/ui/button.tsx - Edit directly
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-lg", 
+  {
+    variants: {
+      variant: {
+        default: "bg-red-600 hover:bg-red-700"
+      }
+    }
+  }
+)`}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">Tailwind Class Override:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`<Button className="bg-red-600 hover:bg-red-700 rounded-lg">
+  Custom Button
+</Button>`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">WienerMelange</CardTitle>
+              <CardDescription>CSS custom properties and predefined classes</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h5 className="font-medium text-sm mb-2">CSS Custom Properties:</h5>
+                <CodeBlock
+                  language="css"
+                  code={`:root {
+  --wm-color-primary: #DC143C;
+  --wm-color-secondary: #B71C1C;
+  --wm-border-radius: 8px;
+}
+
+/* Affects all WM components globally */`}
+                />
+              </div>
+              <div>
+                <h5 className="font-medium text-sm mb-2">Predefined Classes:</h5>
+                <CodeBlock
+                  language="tsx"
+                  code={`<wm-button className="wm-e-button wm-e-button--secondary wm-e-button--large">
+  Vienna Style Button
+</wm-button>
+
+<!-- Limited customization - follows city design standards -->`}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

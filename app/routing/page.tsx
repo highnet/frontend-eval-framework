@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CodeBlock } from "@/components/code-block"
 import { KeyDifferences } from "@/components/key-differences"
 
@@ -519,45 +520,408 @@ export default function Navbar() {
       </Tabs>
 
       <KeyDifferences 
+        title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "React Router",
-            description: "Standard routing library with component-based configuration",
-            badges: ["Mature", "Flexible", "Component-based"],
-            considerations: [
-              "Building a traditional SPA with client-side routing",
-              "You need maximum flexibility in route configuration",
-              "Team is already familiar with React Router",
-              "Working with Create React App or Vite",
-              "You prefer declarative, component-based routing"
+            title: "React Router: Component-Based Setup",
+            description: "Manual configuration with JSX route definitions",
+            badges: ["Manual Setup", "JSX Routes", "Component-based"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `npm install react-router-dom
+
+// App.jsx - Manual router configuration
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}`
+              },
+              {
+                label: "Navigation Links",
+                code: `import { Link, useLocation } from 'react-router-dom'
+
+function Navbar() {
+  const location = useLocation()
+  
+  return (
+    <nav>
+      <Link 
+        to="/" 
+        className={location.pathname === '/' ? 'active' : ''}
+      >
+        Home
+      </Link>
+      <Link 
+        to="/about"
+        className={location.pathname === '/about' ? 'active' : ''}
+      >
+        About
+      </Link>
+    </nav>
+  )
+}`
+              },
+              {
+                label: "Dynamic Routes",
+                code: `// Route definition
+<Route path="/user/:id" element={<UserProfile />} />
+
+// Component using route params
+import { useParams } from 'react-router-dom'
+
+function UserProfile() {
+  const { id } = useParams()
+  
+  return <div>User ID: {id}</div>
+}`
+              }
             ]
           },
           {
-            title: "TanStack Router",
-            description: "Type-safe router with advanced features and validation",
-            badges: ["Type-safe", "Validation", "Modern"],
-            considerations: [
-              "TypeScript safety is a top priority",
-              "You need advanced features like route validation",
-              "Building complex applications with nested routes",
-              "Developer experience and type inference matter",
-              "You want cutting-edge routing capabilities"
+            title: "TanStack Router: File-Based + Type-Safe",
+            description: "File-system routing with TypeScript-first approach",
+            badges: ["File-Based", "Type-Safe", "Auto-Generated"],
+            codeExamples: [
+              {
+                label: "Installation & Setup",
+                code: `npm install @tanstack/react-router
+npm install -D @tanstack/router-vite-plugin
+
+// vite.config.ts
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
+
+export default defineConfig({
+  plugins: [react(), TanStackRouterVite()]
+})`
+              },
+              {
+                label: "File-Based Route Definition",
+                code: `// routes/index.tsx - Automatic / route
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({
+  component: () => <div>Home Page</div>
+})
+
+// routes/about.tsx - Automatic /about route
+export const Route = createFileRoute('/about')({
+  component: () => <div>About Page</div>
+})`
+              },
+              {
+                label: "Type-Safe Navigation",
+                code: `// Automatic type safety for routes
+import { Link } from '@tanstack/react-router'
+
+function Navbar() {
+  return (
+    <nav>
+      {/* TypeScript knows these routes exist */}
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Link to="/user/$userId" params={{ userId: '123' }}>
+        User
+      </Link>
+    </nav>
+  )
+}`
+              }
             ]
           },
           {
-            title: "Next.js App Router",
-            description: "File-system based routing with server components",
-            badges: ["File-based", "Server components", "Built-in"],
-            considerations: [
-              "You're using Next.js as your framework",
-              "SEO and server-side rendering are important",
-              "You want file-system based route organization",
-              "Building full-stack applications",
-              "You prefer convention over configuration"
+            title: "Next.js App Router: File-System Conventions",
+            description: "Zero-config routing with built-in layouts and loading states",
+            badges: ["Zero Config", "File-System", "Server Components"],
+            codeExamples: [
+              {
+                label: "File Structure = Routes",
+                code: `// No installation needed - built into Next.js
+app/
+├── page.tsx           # / route
+├── about/
+│   └── page.tsx       # /about route
+├── users/
+│   ├── page.tsx       # /users route
+│   └── [id]/
+│       └── page.tsx   # /users/[id] route
+└── layout.tsx         # Shared layout`
+              },
+              {
+                label: "Navigation with Next.js",
+                code: `import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+function Navbar() {
+  const pathname = usePathname()
+  
+  return (
+    <nav>
+      <Link 
+        href="/" 
+        className={pathname === '/' ? 'active' : ''}
+      >
+        Home
+      </Link>
+      <Link 
+        href="/about"
+        className={pathname === '/about' ? 'active' : ''}
+      >
+        About
+      </Link>
+    </nav>
+  )
+}`
+              },
+              {
+                label: "Dynamic Routes",
+                code: `// app/users/[id]/page.tsx - Dynamic route
+export default function UserPage({ 
+  params 
+}: { 
+  params: { id: string } 
+}) {
+  return <div>User ID: {params.id}</div>
+}
+
+// Built-in loading and error states
+// app/users/[id]/loading.tsx
+export default function Loading() {
+  return <div>Loading user...</div>
+}`
+              }
             ]
           }
         ]}
       />
+
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Route Definition Comparison</h2>
+        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">React Router</CardTitle>
+              <CardDescription>Programmatic route definitions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="tsx"
+                code={`// All routes defined in one place
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<User />} />
+        <Route path="/blog" element={<Blog />}>
+          <Route path=":slug" element={<Post />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}`}
+              />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">TanStack Router</CardTitle>
+              <CardDescription>File-based with explicit definitions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="bash"
+                code={`routes/
+├── __root.tsx          # Root layout
+├── index.tsx           # / route
+├── about.tsx           # /about route
+├── users/
+│   ├── index.tsx       # /users route
+│   └── $userId.tsx     # /users/$userId route
+└── blog/
+    ├── index.tsx       # /blog route
+    └── $slug.tsx       # /blog/$slug route
+
+# Auto-generates routeTree.gen.ts with types`}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Next.js App Router</CardTitle>
+              <CardDescription>Pure file-system conventions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="bash"
+                code={`app/
+├── page.tsx            # / route
+├── about/
+│   └── page.tsx        # /about route
+├── users/
+│   ├── page.tsx        # /users route
+│   └── [id]/
+│       └── page.tsx    # /users/[id] route
+├── blog/
+│   ├── page.tsx        # /blog route
+│   └── [slug]/
+│       └── page.tsx    # /blog/[slug] route
+└── not-found.tsx       # 404 page
+
+# No configuration needed`}
+              />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Navigation & State Management</h2>
+        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">React Router</CardTitle>
+              <CardDescription>Hooks and imperative navigation</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="tsx"
+                code={`import { 
+  useNavigate, 
+  useLocation, 
+  useParams, 
+  useSearchParams 
+} from 'react-router-dom'
+
+function MyComponent() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const params = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+  
+  const handleLogin = () => {
+    // Programmatic navigation
+    navigate('/dashboard', { replace: true })
+  }
+  
+  const updateSearch = () => {
+    setSearchParams({ filter: 'active' })
+  }
+  
+  return (
+    <div>
+      <p>Current path: {location.pathname}</p>
+      <p>User ID: {params.id}</p>
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  )
+}`}
+              />
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">TanStack Router</CardTitle>
+              <CardDescription>Type-safe navigation and search params</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="tsx"
+                code={`import { 
+  useNavigate, 
+  useLocation, 
+  useParams, 
+  useSearch 
+} from '@tanstack/react-router'
+
+function MyComponent() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const params = useParams({ from: '/users/$userId' })
+  const search = useSearch({ from: '/users' })
+  
+  const handleLogin = () => {
+    // Type-safe navigation
+    navigate({ 
+      to: '/dashboard',
+      search: { tab: 'overview' }
+    })
+  }
+  
+  return (
+    <div>
+      <p>Current path: {location.pathname}</p>
+      <p>User ID: {params.userId}</p> {/* Type-safe */}
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  )
+}`}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Next.js App Router</CardTitle>
+              <CardDescription>Server and client navigation hooks</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                language="tsx"
+                code={`'use client'
+import { 
+  useRouter, 
+  usePathname, 
+  useSearchParams 
+} from 'next/navigation'
+
+function MyComponent() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  
+  const handleLogin = () => {
+    // Client-side navigation
+    router.push('/dashboard')
+    // Or server-side redirect in Server Component
+    // redirect('/dashboard')
+  }
+  
+  const updateSearch = () => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('filter', 'active')
+    router.push(pathname + '?' + params.toString())
+  }
+  
+  return (
+    <div>
+      <p>Current path: {pathname}</p>
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  )
+}`}
+              />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
