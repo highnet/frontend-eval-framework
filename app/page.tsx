@@ -60,8 +60,8 @@ export default function HomePage() {
 const evaluationAreas = [
   {
     title: "Core Framework",
-    description: "The foundational structure and rendering paradigm of your application",
-    options: ["Vite", "Next.js"],
+    description: "Build tools and React frameworks that determine your application's architecture and capabilities",
+    options: ["Vite + React (SPA)", "Next.js (Full-stack)"],
     href: "/core-framework",
   },
   {
