@@ -6,7 +6,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function CssStylingPage() {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">CSS & Styling</h1>
 
       <p className="mb-4">
@@ -443,12 +443,68 @@ function Card({ title, children, onPrimary, badge }) {
       </Tabs>
 
       <KeyDifferences
+        title="Code Differences You'll Actually Write"
         differences={[
           {
             title: 'Plain CSS',
             description:
               'Traditional approach with standard CSS files and string classnames',
             badges: ['Universal', 'No dependencies', 'Full control'],
+            codeExamples: [
+              {
+                label: 'Component Styling',
+                code: `/* Button.css */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Button.jsx */
+import './Button.css'
+
+function Button({ variant, children, ...props }) {
+  return (
+    <button 
+      className={\`btn \${variant ? \`btn-\${variant}\` : ''}\`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}`,
+              },
+              {
+                label: 'Dynamic Classes',
+                code: `function Card({ status, size }) {
+  const cardClasses = [
+    'card',
+    status && \`card-\${status}\`,
+    size === 'large' && 'card-lg'
+  ].filter(Boolean).join(' ')
+
+  return <div className={cardClasses}>...</div>
+}
+
+/* CSS */
+.card { /* base styles */ }
+.card-success { border-color: green; }
+.card-error { border-color: red; }
+.card-lg { padding: 2rem; }`,
+              },
+            ],
             considerations: [
               'You want zero dependencies and full control',
               'Working with a small team or simple project',
@@ -462,6 +518,53 @@ function Card({ title, children, onPrimary, badge }) {
             description:
               'CSS preprocessor with variables, nesting, and advanced features',
             badges: ['Preprocessor', 'Modular', 'Developer-friendly'],
+            codeExamples: [
+              {
+                label: 'Variables & Mixins',
+                code: `// _variables.scss
+$primary: #3b82f6;
+$border-radius: 8px;
+
+@mixin button-variant($bg-color) {
+  background-color: $bg-color;
+  color: white;
+  
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    transform: translateY(-1px);
+  }
+}
+
+// Button.module.scss
+@import 'variables';
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &.primary {
+    @include button-variant($primary);
+  }
+}`,
+              },
+              {
+                label: 'Component Usage',
+                code: `import styles from './Button.module.scss'
+
+function Button({ variant = 'primary', children }) {
+  return (
+    <button className={\`\${styles.btn} \${styles[variant]}\`}>
+      {children}
+    </button>
+  )
+}
+
+// Scoped styles - no className conflicts!`,
+              },
+            ],
             considerations: [
               'You need advanced CSS features like variables and mixins',
               'Working on medium to large projects',
@@ -474,6 +577,50 @@ function Card({ title, children, onPrimary, badge }) {
             title: 'Tailwind CSS',
             description: 'Utility-first framework for rapid UI development',
             badges: ['Utility-first', 'Rapid development', 'Consistent design'],
+            codeExamples: [
+              {
+                label: 'Component Styling',
+                code: `function Button({ variant = 'primary', size = 'md', children }) {
+  const baseClasses = 'px-4 py-2 rounded-lg font-medium transition-all duration-200'
+  
+  const variants = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5',
+    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
+    success: 'bg-green-600 text-white hover:bg-green-700'
+  }
+  
+  const sizes = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2',
+    lg: 'px-6 py-3 text-lg'
+  }
+  
+  return (
+    <button className={\`\${baseClasses} \${variants[variant]} \${sizes[size]}\`}>
+      {children}
+    </button>
+  )
+}`,
+              },
+              {
+                label: 'Responsive Layout',
+                code: `function Card({ children }) {
+  return (
+    <div className="
+      bg-white rounded-xl shadow-sm border
+      p-4 md:p-6 lg:p-8
+      hover:shadow-md hover:-translate-y-1
+      transition-all duration-200
+      w-full max-w-sm md:max-w-md lg:max-w-lg
+    ">
+      {children}
+    </div>
+  )
+}
+
+// Built-in responsive design with breakpoint prefixes`,
+              },
+            ],
             considerations: [
               'You want to build UIs quickly with consistent spacing',
               'Team values design system constraints',

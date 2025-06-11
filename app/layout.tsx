@@ -37,7 +37,7 @@ export default function RootLayout({
                   <aside className="hidden md:block md:w-64 shrink-0 border-r pr-8 pt-8 pb-12">
                     <TableOfContents />
                   </aside>
-                  <main className="flex-1 py-8 md:px-8">{children}</main>
+                  <main className="flex-1 py-8 md:px-8 min-w-0 overflow-hidden">{children}</main>
                 </div>
               </div>
               <footer className="border-t py-6 md:py-0">

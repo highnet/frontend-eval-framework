@@ -9,7 +9,7 @@ import { TanStackQueryExample } from '@/components/examples/tanstack-query-examp
 
 export default function DataFetchingPage() {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         Data Fetching & Queries
       </h1>

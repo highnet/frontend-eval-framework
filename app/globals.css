@@ -91,6 +91,24 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden; /* Prevent horizontal body overflow */
+  }
+  
+  /* Ensure all containers respect viewport width */
+  .container {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Code block specific styles for mobile */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  code {
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 }
 
@@ -98,6 +116,43 @@ body {
 .hljs {
   background: transparent !important;
   padding: 0 !important;
+}
+
+/* Mobile code block improvements */
+@media (max-width: 640px) {
+  pre {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+  }
+  
+  code {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+  }
+  
+  /* Ensure tabs don't overflow on mobile */
+  [role="tablist"] {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  [role="tablist"]::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Ensure cards don't cause overflow */
+  .card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Better responsive spacing */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* Light mode syntax highlighting */

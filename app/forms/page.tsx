@@ -17,7 +17,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function FormsPage() {
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Forms</h1>
 
       <p className="mb-4">

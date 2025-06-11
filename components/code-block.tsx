@@ -53,22 +53,27 @@ export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockP
   }
 
   return (
-    <div className="relative">
-      <pre className="rounded-md bg-muted overflow-x-auto">
-        <div className="flex">
+    <div className="relative w-full max-w-full">
+      <pre className="rounded-md bg-muted overflow-x-auto max-w-full">
+        <div className="flex min-w-0">
           {showLineNumbers && (
-            <div className="select-none px-3 py-4 text-muted-foreground text-sm border-r border-border/50 bg-muted/50">
+            <div className="select-none px-2 sm:px-3 py-4 text-muted-foreground text-xs sm:text-sm border-r border-border/50 bg-muted/50 flex-shrink-0">
               {lines.map((_, index) => (
-                <div key={index} className="text-right leading-6">
+                <div key={index} className="text-right leading-5 sm:leading-6 whitespace-nowrap">
                   {index + 1}
                 </div>
               ))}
             </div>
           )}
-          <div className="flex-1 p-4">
+          <div className="flex-1 min-w-0 p-2 sm:p-4">
             <code 
               ref={codeRef}
-              className={`language-${language}`}
+              className={`language-${language} text-xs sm:text-sm block whitespace-pre overflow-x-auto`}
+              style={{ 
+                wordBreak: 'keep-all',
+                overflowWrap: 'normal',
+                whiteSpace: 'pre'
+              }}
             >
               {code}
             </code>
@@ -77,10 +82,10 @@ export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockP
       </pre>
       <button
         onClick={copyToClipboard}
-        className="absolute top-3 right-3 p-1 rounded-md bg-background/80 hover:bg-background"
+        className="absolute top-2 sm:top-3 right-2 sm:right-3 p-1 rounded-md bg-background/80 hover:bg-background transition-colors z-10"
         aria-label="Copy code"
       >
-        {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+        {copied ? <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" /> : <Copy className="h-3 w-3 sm:h-4 sm:w-4" />}
       </button>
     </div>
   )
