@@ -29,10 +29,16 @@ export default function DataFetchingPage() {
       </div>
 
       <Tabs defaultValue="fetch" className="mb-8">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="fetch">Fetch API</TabsTrigger>
-          <TabsTrigger value="axios">Axios</TabsTrigger>
-          <TabsTrigger value="react-query">TanStack Query</TabsTrigger>
+        <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="fetch" className="flex-1">
+            Fetch API
+          </TabsTrigger>
+          <TabsTrigger value="axios" className="flex-1">
+            Axios
+          </TabsTrigger>
+          <TabsTrigger value="react-query" className="flex-1">
+            TanStack Query
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="fetch" className="space-y-4 mt-4">

@@ -30,10 +30,16 @@ export default function RoutingPage() {
       </div>
 
       <Tabs defaultValue="react-router" className="mb-8">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="react-router">React Router</TabsTrigger>
-          <TabsTrigger value="tanstack-router">TanStack Router</TabsTrigger>
-          <TabsTrigger value="next-app-router">Next.js App Router</TabsTrigger>
+        <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="react-router" className="flex-1">
+            React Router
+          </TabsTrigger>
+          <TabsTrigger value="tanstack-router" className="flex-1">
+            TanStack Router
+          </TabsTrigger>
+          <TabsTrigger value="next-app-router" className="flex-1">
+            Next.js App Router
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="react-router" className="space-y-4 mt-4">

@@ -12,12 +12,10 @@ export default function StateManagementPage() {
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         State Management
       </h1>
-
       <p className="mb-4">
         This section discusses how you will manage application-wide state that
         is shared across many components.
       </p>
-
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
         <p>
@@ -25,13 +23,18 @@ export default function StateManagementPage() {
           components, often across different parts of the component tree,
           ensuring consistency and reactivity.
         </p>
-      </div>
-
+      </div>{' '}
       <Tabs defaultValue="context" className="mb-8">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="context">Context API</TabsTrigger>
-          <TabsTrigger value="redux">Redux Toolkit</TabsTrigger>
-          <TabsTrigger value="zustand">Zustand</TabsTrigger>
+        <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="context" className="flex-1">
+            Context API
+          </TabsTrigger>
+          <TabsTrigger value="redux" className="flex-1">
+            Redux Toolkit
+          </TabsTrigger>
+          <TabsTrigger value="zustand" className="flex-1">
+            Zustand
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="context" className="space-y-4 mt-4">
@@ -202,7 +205,6 @@ function ThemeDisplay() {
           </div>
         </TabsContent>
       </Tabs>
-
       <KeyDifferences
         differences={[
           {
@@ -246,7 +248,6 @@ function ThemeDisplay() {
           },
         ]}
       />
-
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
           <Link href="/data-fetching">Previous: Data Fetching</Link>

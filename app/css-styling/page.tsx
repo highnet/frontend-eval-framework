@@ -23,10 +23,16 @@ export default function CssStylingPage() {
       </div>
 
       <Tabs defaultValue="plain-css" className="mb-8">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="plain-css">Plain CSS</TabsTrigger>
-          <TabsTrigger value="scss">SCSS (Sass)</TabsTrigger>
-          <TabsTrigger value="tailwind">Tailwind CSS</TabsTrigger>
+        <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="plain-css" className="flex-1">
+            Plain CSS
+          </TabsTrigger>
+          <TabsTrigger value="scss" className="flex-1">
+            SCSS (Sass)
+          </TabsTrigger>
+          <TabsTrigger value="tailwind" className="flex-1">
+            Tailwind CSS
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="plain-css" className="space-y-4 mt-4">

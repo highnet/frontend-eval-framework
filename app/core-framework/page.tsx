@@ -33,9 +33,13 @@ export default function CoreFrameworkPage() {
       </div>
 
       <Tabs defaultValue="vite" className="mb-8">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="vite">Vite + React</TabsTrigger>
-          <TabsTrigger value="nextjs">Next.js</TabsTrigger>
+        <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="vite" className="flex-1">
+            Vite + React
+          </TabsTrigger>
+          <TabsTrigger value="nextjs" className="flex-1">
+            Next.js
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="vite" className="space-y-4 mt-4">

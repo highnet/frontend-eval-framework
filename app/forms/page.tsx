@@ -33,15 +33,17 @@ export default function FormsPage() {
       </div>
 
       <Tabs defaultValue="formik" className="mb-8">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="formik">Formik with Yup</TabsTrigger>
-          <TabsTrigger value="react-hook-form">
+        <TabsList className="grid grid-cols-2 sm:flex sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="formik" className="sm:flex-1">
+            Formik with Yup
+          </TabsTrigger>
+          <TabsTrigger value="react-hook-form" className="sm:flex-1">
             React Hook Form with Zod
           </TabsTrigger>
-          <TabsTrigger value="react-hook-form-wiener">
+          <TabsTrigger value="react-hook-form-wiener" className="sm:flex-1">
             RHF + Zod + Wiener Melange
           </TabsTrigger>
-          <TabsTrigger value="wienermelange">
+          <TabsTrigger value="wienermelange" className="sm:flex-1">
             WienerMelange Forms ❓
           </TabsTrigger>
         </TabsList>

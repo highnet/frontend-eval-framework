@@ -36,11 +36,19 @@ export default function UIComponentsPage() {
       </div>
 
       <Tabs defaultValue="material-ui" className="mb-8">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="material-ui">Material UI</TabsTrigger>
-          <TabsTrigger value="base-ui">Base UI</TabsTrigger>
-          <TabsTrigger value="shadcn">Shadcn/ui</TabsTrigger>
-          <TabsTrigger value="wiener">WienerMelange</TabsTrigger>
+        <TabsList className="grid grid-cols-2 sm:flex sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
+          <TabsTrigger value="material-ui" className="sm:flex-1">
+            Material UI
+          </TabsTrigger>
+          <TabsTrigger value="base-ui" className="sm:flex-1">
+            Base UI
+          </TabsTrigger>
+          <TabsTrigger value="shadcn" className="sm:flex-1">
+            Shadcn/ui
+          </TabsTrigger>
+          <TabsTrigger value="wiener" className="sm:flex-1">
+            WienerMelange
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="material-ui" className="space-y-4 mt-4">
