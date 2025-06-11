@@ -6,7 +6,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function CssStylingPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
+    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">CSS & Styling</h1>
 
       <p className="mb-4">

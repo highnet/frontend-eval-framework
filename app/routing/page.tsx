@@ -1,20 +1,32 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CodeBlock } from "@/components/code-block"
-import { KeyDifferences } from "@/components/key-differences"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { CodeBlock } from '@/components/code-block';
+import { KeyDifferences } from '@/components/key-differences';
 
 export default function RoutingPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
+    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Routing</h1>
 
-      <p className="mb-4">This defines how users navigate between different pages or views within your application.</p>
+      <p className="mb-4">
+        This defines how users navigate between different pages or views within
+        your application.
+      </p>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
-        <p>Managing URLs, navigation history, and rendering the correct components based on the current path.</p>
+        <p>
+          Managing URLs, navigation history, and rendering the correct
+          components based on the current path.
+        </p>
       </div>
 
       <Tabs defaultValue="react-router" className="mb-8">
@@ -26,7 +38,10 @@ export default function RoutingPage() {
 
         <TabsContent value="react-router" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">React Router</h3>
-          <p>The standard routing library for React applications, providing declarative routing with component-based navigation.</p>
+          <p>
+            The standard routing library for React applications, providing
+            declarative routing with component-based navigation.
+          </p>
           <p className="mb-2">
             <a
               href="https://reactrouter.com/"
@@ -37,7 +52,7 @@ export default function RoutingPage() {
               React Router Official Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">Required File Structure:</h4>
             <CodeBlock
@@ -161,7 +176,8 @@ export default Contact;`}
         <TabsContent value="tanstack-router" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">TanStack Router</h3>
           <p>
-            A fully type-safe router for React applications with TypeScript-first approach and powerful runtime validation.
+            A fully type-safe router for React applications with
+            TypeScript-first approach and powerful runtime validation.
           </p>
           <p className="mb-2">
             <a
@@ -173,9 +189,11 @@ export default Contact;`}
               TanStack Router Official Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
-            <h4 className="font-medium mb-1">Required File Structure (File-based):</h4>
+            <h4 className="font-medium mb-1">
+              Required File Structure (File-based):
+            </h4>
             <CodeBlock
               language="bash"
               code={`src/
@@ -307,8 +325,9 @@ export default App`}
         <TabsContent value="next-app-router" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Next.js App Router</h3>
           <p>
-            The modern routing system in Next.js 13+ built on React Server Components, using file-system based routing 
-            with powerful conventions for layouts and pages.
+            The modern routing system in Next.js 13+ built on React Server
+            Components, using file-system based routing with powerful
+            conventions for layouts and pages.
           </p>
           <p className="mb-2">
             <a
@@ -320,7 +339,7 @@ export default App`}
               Next.js App Router Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">Required File Structure:</h4>
             <CodeBlock
@@ -519,16 +538,16 @@ export default function Navbar() {
         </TabsContent>
       </Tabs>
 
-      <KeyDifferences 
+      <KeyDifferences
         title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "React Router: Component-Based Setup",
-            description: "Manual configuration with JSX route definitions",
-            badges: ["Manual Setup", "JSX Routes", "Component-based"],
+            title: 'React Router: Component-Based Setup',
+            description: 'Manual configuration with JSX route definitions',
+            badges: ['Manual Setup', 'JSX Routes', 'Component-based'],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `npm install react-router-dom
 
 // App.jsx - Manual router configuration
@@ -546,10 +565,10 @@ function App() {
       </Routes>
     </BrowserRouter>
   )
-}`
+}`,
               },
               {
-                label: "Navigation Links",
+                label: 'Navigation Links',
                 code: `import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
@@ -571,10 +590,10 @@ function Navbar() {
       </Link>
     </nav>
   )
-}`
+}`,
               },
               {
-                label: "Dynamic Routes",
+                label: 'Dynamic Routes',
                 code: `// Route definition
 <Route path="/user/:id" element={<UserProfile />} />
 
@@ -585,17 +604,17 @@ function UserProfile() {
   const { id } = useParams()
   
   return <div>User ID: {id}</div>
-}`
-              }
-            ]
+}`,
+              },
+            ],
           },
           {
-            title: "TanStack Router: File-Based + Type-Safe",
-            description: "File-system routing with TypeScript-first approach",
-            badges: ["File-Based", "Type-Safe", "Auto-Generated"],
+            title: 'TanStack Router: File-Based + Type-Safe',
+            description: 'File-system routing with TypeScript-first approach',
+            badges: ['File-Based', 'Type-Safe', 'Auto-Generated'],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `npm install @tanstack/react-router
 npm install -D @tanstack/router-vite-plugin
 
@@ -604,10 +623,10 @@ import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 
 export default defineConfig({
   plugins: [react(), TanStackRouterVite()]
-})`
+})`,
               },
               {
-                label: "File-Based Route Definition",
+                label: 'File-Based Route Definition',
                 code: `// routes/index.tsx - Automatic / route
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -618,10 +637,10 @@ export const Route = createFileRoute('/')({
 // routes/about.tsx - Automatic /about route
 export const Route = createFileRoute('/about')({
   component: () => <div>About Page</div>
-})`
+})`,
               },
               {
-                label: "Type-Safe Navigation",
+                label: 'Type-Safe Navigation',
                 code: `// Automatic type safety for routes
 import { Link } from '@tanstack/react-router'
 
@@ -636,17 +655,18 @@ function Navbar() {
       </Link>
     </nav>
   )
-}`
-              }
-            ]
+}`,
+              },
+            ],
           },
           {
-            title: "Next.js App Router: File-System Conventions",
-            description: "Zero-config routing with built-in layouts and loading states",
-            badges: ["Zero Config", "File-System", "Server Components"],
+            title: 'Next.js App Router: File-System Conventions',
+            description:
+              'Zero-config routing with built-in layouts and loading states',
+            badges: ['Zero Config', 'File-System', 'Server Components'],
             codeExamples: [
               {
-                label: "File Structure = Routes",
+                label: 'File Structure = Routes',
                 code: `// No installation needed - built into Next.js
 app/
 ├── page.tsx           # / route
@@ -656,10 +676,10 @@ app/
 │   ├── page.tsx       # /users route
 │   └── [id]/
 │       └── page.tsx   # /users/[id] route
-└── layout.tsx         # Shared layout`
+└── layout.tsx         # Shared layout`,
               },
               {
-                label: "Navigation with Next.js",
+                label: 'Navigation with Next.js',
                 code: `import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -682,10 +702,10 @@ function Navbar() {
       </Link>
     </nav>
   )
-}`
+}`,
               },
               {
-                label: "Dynamic Routes",
+                label: 'Dynamic Routes',
                 code: `// app/users/[id]/page.tsx - Dynamic route
 export default function UserPage({ 
   params 
@@ -699,15 +719,17 @@ export default function UserPage({
 // app/users/[id]/loading.tsx
 export default function Loading() {
   return <div>Loading user...</div>
-}`
-              }
-            ]
-          }
+}`,
+              },
+            ],
+          },
         ]}
       />
 
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Route Definition Comparison</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Route Definition Comparison
+        </h2>
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
           <Card>
             <CardHeader>
@@ -737,11 +759,13 @@ function App() {
               />
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">TanStack Router</CardTitle>
-              <CardDescription>File-based with explicit definitions</CardDescription>
+              <CardDescription>
+                File-based with explicit definitions
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
@@ -792,7 +816,9 @@ function App() {
       </div>
 
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Navigation & State Management</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Navigation & State Management
+        </h2>
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
           <Card>
             <CardHeader>
@@ -835,11 +861,13 @@ function MyComponent() {
               />
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">TanStack Router</CardTitle>
-              <CardDescription>Type-safe navigation and search params</CardDescription>
+              <CardDescription>
+                Type-safe navigation and search params
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
@@ -880,7 +908,9 @@ function MyComponent() {
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Next.js App Router</CardTitle>
-              <CardDescription>Server and client navigation hooks</CardDescription>
+              <CardDescription>
+                Server and client navigation hooks
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
@@ -932,5 +962,5 @@ function MyComponent() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

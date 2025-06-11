@@ -29,7 +29,8 @@ interface KeyDifferencesProps {
 export function KeyDifferences({
   title = 'Key Differences',
   differences,
-}: KeyDifferencesProps) {  return (
+}: KeyDifferencesProps) {
+  return (
     <div className="mt-12 mb-8 w-full max-w-full">
       <h2 className="text-2xl font-semibold mb-6 text-center">{title}</h2>
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2 w-full">
@@ -52,7 +53,9 @@ export function KeyDifferences({
                 </div>
               )}
             </CardHeader>
-            <CardContent className="space-y-4">              {item.codeExamples && item.codeExamples.length > 0 && (
+            <CardContent className="space-y-4">
+              {' '}
+              {item.codeExamples && item.codeExamples.length > 0 && (
                 <div className="space-y-4 w-full min-w-0">
                   {item.codeExamples.map((example, exampleIndex) => (
                     <div key={exampleIndex} className="w-full min-w-0">

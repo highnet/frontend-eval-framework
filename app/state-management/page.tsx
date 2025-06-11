@@ -11,7 +11,7 @@ import { ZustandExample } from '@/components/examples/zustand-example';
 
 export default function StateManagementPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
+    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         State Management
       </h1>

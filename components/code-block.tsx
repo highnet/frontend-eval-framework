@@ -1,56 +1,60 @@
-"use client"
+'use client';
 
-import { Check, Copy } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
-import hljs from "highlight.js/lib/core"
-import javascript from "highlight.js/lib/languages/javascript"
-import typescript from "highlight.js/lib/languages/typescript"
-import css from "highlight.js/lib/languages/css"
-import scss from "highlight.js/lib/languages/scss"
-import xml from "highlight.js/lib/languages/xml"
-import json from "highlight.js/lib/languages/json"
-import bash from "highlight.js/lib/languages/bash"
+import { Check, Copy } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+import css from 'highlight.js/lib/languages/css';
+import scss from 'highlight.js/lib/languages/scss';
+import xml from 'highlight.js/lib/languages/xml';
+import json from 'highlight.js/lib/languages/json';
+import bash from 'highlight.js/lib/languages/bash';
 
 // Register languages
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('typescript', typescript)
-hljs.registerLanguage('css', css)
-hljs.registerLanguage('scss', scss)
-hljs.registerLanguage('xml', xml)
-hljs.registerLanguage('html', xml)
-hljs.registerLanguage('jsx', javascript)
-hljs.registerLanguage('tsx', typescript)
-hljs.registerLanguage('json', json)
-hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('scss', scss);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('jsx', javascript);
+hljs.registerLanguage('tsx', typescript);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('bash', bash);
 
 interface CodeBlockProps {
-  language: string
-  code: string
-  showLineNumbers?: boolean
+  language: string;
+  code: string;
+  showLineNumbers?: boolean;
 }
 
-export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false)
-  const codeRef = useRef<HTMLElement>(null)
+export function CodeBlock({
+  language,
+  code,
+  showLineNumbers = true,
+}: CodeBlockProps) {
+  const [copied, setCopied] = useState(false);
+  const codeRef = useRef<HTMLElement>(null);
 
   // Split code into lines for line numbering
-  const lines = code.split('\n')
+  const lines = code.split('\n');
 
   useEffect(() => {
     if (codeRef.current) {
       // Clear any existing highlighting
-      codeRef.current.removeAttribute('data-highlighted')
-      
+      codeRef.current.removeAttribute('data-highlighted');
+
       // Apply highlighting
-      hljs.highlightElement(codeRef.current)
+      hljs.highlightElement(codeRef.current);
     }
-  }, [code, language])
+  }, [code, language]);
 
   const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="relative w-full max-w-full">
@@ -59,20 +63,23 @@ export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockP
           {showLineNumbers && (
             <div className="select-none px-2 sm:px-3 py-4 text-muted-foreground text-xs sm:text-sm border-r border-border/50 bg-muted/50 flex-shrink-0">
               {lines.map((_, index) => (
-                <div key={index} className="text-right leading-5 sm:leading-6 whitespace-nowrap">
+                <div
+                  key={index}
+                  className="text-right leading-5 sm:leading-6 whitespace-nowrap"
+                >
                   {index + 1}
                 </div>
               ))}
             </div>
           )}
           <div className="flex-1 min-w-0 p-2 sm:p-4">
-            <code 
+            <code
               ref={codeRef}
               className={`language-${language} text-xs sm:text-sm block whitespace-pre overflow-x-auto`}
-              style={{ 
+              style={{
                 wordBreak: 'keep-all',
                 overflowWrap: 'normal',
-                whiteSpace: 'pre'
+                whiteSpace: 'pre',
               }}
             >
               {code}
@@ -85,8 +92,12 @@ export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockP
         className="absolute top-2 sm:top-3 right-2 sm:right-3 p-1 rounded-md bg-background/80 hover:bg-background transition-colors z-10"
         aria-label="Copy code"
       >
-        {copied ? <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" /> : <Copy className="h-3 w-3 sm:h-4 sm:w-4" />}
+        {copied ? (
+          <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
+        ) : (
+          <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+        )}
       </button>
     </div>
-  )
+  );
 }
