@@ -25,15 +25,16 @@ const validationSchema = Yup.object({
     .required('Message is required'),
 })
 
-export function FormikFormExample() {
-  const [submitted, setSubmitted] = useState(false)
+export function FormikFormExample() {  const [submitted, setSubmitted] = useState(false)
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null)
   const formik = useFormik<FormValues>({
     initialValues: {
       name: '',
       message: '',
     },
-    validationSchema,    onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
+    validationSchema,
+    validateOnMount: true, // This ensures validation runs immediately on mount
+    onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
       // Simulate API call      
       setTimeout(() => {
         setSubmittedData(values)

@@ -98,6 +98,7 @@ export function FormikFormExample() {
       message: '',
     },
     validationSchema,
+    validateOnMount: true, // This ensures validation runs immediately on mount
     onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
       // Simulate API call
       setTimeout(() => {
