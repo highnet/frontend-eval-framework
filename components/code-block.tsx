@@ -26,11 +26,15 @@ hljs.registerLanguage('bash', bash)
 interface CodeBlockProps {
   language: string
   code: string
+  showLineNumbers?: boolean
 }
 
-export function CodeBlock({ language, code }: CodeBlockProps) {
+export function CodeBlock({ language, code, showLineNumbers = false }: CodeBlockProps) {
   const [copied, setCopied] = useState(false)
   const codeRef = useRef<HTMLElement>(null)
+
+  // Split code into lines for line numbering
+  const lines = code.split('\n')
 
   useEffect(() => {
     if (codeRef.current) {
@@ -50,13 +54,26 @@ export function CodeBlock({ language, code }: CodeBlockProps) {
 
   return (
     <div className="relative">
-      <pre className="rounded-md bg-muted p-4 overflow-x-auto">
-        <code 
-          ref={codeRef}
-          className={`language-${language}`}
-        >
-          {code}
-        </code>
+      <pre className="rounded-md bg-muted overflow-x-auto">
+        <div className="flex">
+          {showLineNumbers && (
+            <div className="select-none px-3 py-4 text-muted-foreground text-sm border-r border-border/50 bg-muted/50">
+              {lines.map((_, index) => (
+                <div key={index} className="text-right leading-6">
+                  {index + 1}
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="flex-1 p-4">
+            <code 
+              ref={codeRef}
+              className={`language-${language}`}
+            >
+              {code}
+            </code>
+          </div>
+        </div>
       </pre>
       <button
         onClick={copyToClipboard}
