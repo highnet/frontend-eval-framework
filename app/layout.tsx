@@ -28,12 +28,12 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="flex min-h-screen flex-col">
               <header className="sticky top-0 z-40 border-b bg-background">
-                <div className="container flex h-16 items-center justify-between py-4">
+                <div className="flex h-16 items-center justify-between py-4">
                   <MainNav />
                   <MobileNav />
                 </div>
               </header>
-              <div className="container flex-1">
+              <div className="flex-1">
                 <div className="flex flex-col md:flex-row">
                   <aside className="hidden md:block md:w-64 shrink-0 border-r pr-8 pt-8 pb-12">
                     <TableOfContents />
@@ -44,7 +44,7 @@ export default function RootLayout({
                 </div>
               </div>
               <footer className="border-t py-6 md:py-0">
-                <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
+                <div className="flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
                   <p className="text-sm text-muted-foreground">
                     &copy; {new Date().getFullYear()} Frontend Evaluation
                     Framework

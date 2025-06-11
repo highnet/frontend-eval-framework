@@ -1,28 +1,41 @@
-import Link from "next/link"
-import { ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Frontend Library and Tool Evaluation Framework</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">
+          Frontend Library and Tool Evaluation Framework
+        </h1>
         <p className="text-xl text-muted-foreground mb-8">
-          A structured approach to evaluating and selecting frontend technologies for your projects
+          A structured approach to evaluating and selecting frontend
+          technologies for your projects
         </p>
 
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
           <p className="mb-4">
-            Making strategic decisions about frontend libraries and tools is a paramount step in any web development
-            project. These foundational choices ripple across the entire development lifecycle, profoundly impacting
-            <strong> developer experience</strong>, <strong>application performance</strong>, and the
+            Making strategic decisions about frontend libraries and tools is a
+            paramount step in any web development project. These foundational
+            choices ripple across the entire development lifecycle, profoundly
+            impacting
+            <strong> developer experience</strong>,{' '}
+            <strong>application performance</strong>, and the
             <strong> long-term maintainability</strong> of the codebase.
           </p>
           <p className="mb-6">
-            This framework establishes a structured approach for evaluating diverse options across critical areas of
-            frontend development, ensuring a well-informed and strategic selection process.
+            This framework establishes a structured approach for evaluating
+            diverse options across critical areas of frontend development,
+            ensuring a well-informed and strategic selection process.
           </p>
           <Button asChild>
             <Link href="/introduction" className="flex items-center">
@@ -33,7 +46,7 @@ export default function HomePage() {
 
         <h2 className="text-2xl font-semibold mb-6">Key Evaluation Areas</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          {evaluationAreas.map((area) => (
+          {evaluationAreas.map(area => (
             <Card key={area.title} className="transition-all hover:shadow-md">
               <CardHeader>
                 <CardTitle>{area.title}</CardTitle>
@@ -41,7 +54,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-1">
-                  {area.options.map((option) => (
+                  {area.options.map(option => (
                     <li key={option}>{option}</li>
                   ))}
                 </ul>
@@ -54,50 +67,57 @@ export default function HomePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 const evaluationAreas = [
   {
-    title: "Core Framework",
-    description: "Build tools and React frameworks that determine your application's architecture and capabilities",
-    options: ["Vite + React (SPA)", "Next.js (Full-stack)"],
-    href: "/core-framework",
+    title: 'Core Framework',
+    description:
+      "Build tools and React frameworks that determine your application's architecture and capabilities",
+    options: ['Vite + React (SPA)', 'Next.js (Full-stack)'],
+    href: '/core-framework',
   },
   {
-    title: "UI Components & Design System",
-    description: "Pre-built UI elements and visual language of your application",
-    options: ["Material UI", "Base UI", "Shadcn/ui", "WienerMelange"],
-    href: "/ui-components",
+    title: 'UI Components & Design System',
+    description:
+      'Pre-built UI elements and visual language of your application',
+    options: ['Material UI', 'Base UI', 'Shadcn/ui', 'WienerMelange'],
+    href: '/ui-components',
   },
   {
-    title: "CSS & Styling",
-    description: "How styles are written, organized, and applied to components",
-    options: ["SCSS (Sass)", "Plain CSS", "Tailwind CSS"],
-    href: "/css-styling",
+    title: 'CSS & Styling',
+    description: 'How styles are written, organized, and applied to components',
+    options: ['SCSS (Sass)', 'Plain CSS', 'Tailwind CSS'],
+    href: '/css-styling',
   },
   {
-    title: "Routing",
-    description: "How users navigate between different pages or views",
-    options: ["React Router", "Next.js App Router", "TanStack Router"],
-    href: "/routing",
+    title: 'Routing',
+    description: 'How users navigate between different pages or views',
+    options: ['React Router', 'Next.js App Router', 'TanStack Router'],
+    href: '/routing',
   },
   {
-    title: "Forms",
-    description: "Handling user input, validation, and form state",
-    options: ["Formik with Yup", "React Hook Form with Zod","React Hook Form with Zod and Wiener Melange Styling", "WienerMelange Forms"],
-    href: "/forms",
+    title: 'Forms',
+    description: 'Handling user input, validation, and form state',
+    options: [
+      'Formik with Yup',
+      'React Hook Form with Zod',
+      'React Hook Form with Zod and Wiener Melange Styling',
+      'WienerMelange Forms',
+    ],
+    href: '/forms',
   },
   {
-    title: "Data Fetching & Queries",
-    description: "How your application requests and manages data from APIs",
-    options: ["Fetch API", "Axios", "TanStack Query"],
-    href: "/data-fetching",
+    title: 'Data Fetching & Queries',
+    description: 'How your application requests and manages data from APIs',
+    options: ['Fetch API', 'Axios', 'TanStack Query'],
+    href: '/data-fetching',
   },
   {
-    title: "State Management",
-    description: "Managing application-wide state shared across components",
-    options: ["Context API (React)", "Redux Toolkit", "Zustand"],
-    href: "/state-management",
+    title: 'State Management',
+    description: 'Managing application-wide state shared across components',
+    options: ['Context API (React)', 'Redux Toolkit', 'Zustand'],
+    href: '/state-management',
   },
-]
+];

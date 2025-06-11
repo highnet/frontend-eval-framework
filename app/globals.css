@@ -97,13 +97,6 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden; /* Prevent horizontal body overflow */
-  }
-
-  /* Ensure all containers respect viewport width */
-  .container {
-    max-width: 100vw;
-    overflow-x: hidden;
   }
 
   /* Code block specific styles for mobile */
@@ -146,18 +139,6 @@ body {
 
   [role='tablist']::-webkit-scrollbar {
     display: none;
-  }
-
-  /* Ensure cards don't cause overflow */
-  .card {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  /* Better responsive spacing */
-  .container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
   }
 }
 
