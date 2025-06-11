@@ -5,6 +5,7 @@ import { CodeBlock } from "@/components/code-block"
 import { MuiButtonExample } from "@/components/examples/mui-button-example"
 import { BaseButtonExample } from "@/components/examples/base-ui-button-example"
 import { ShadcnButtonExample } from "@/components/examples/shadcn-button-example"
+import { WienerMelangeButtonExample } from "@/components/examples/wiener-melange-button-example"
 
 export default function UIComponentsPage() {
   return (
@@ -240,14 +241,47 @@ function MyComponent() {
         </TabsContent>
 
         <TabsContent value="wiener" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">WienerMelange</h3>
-          <p>A bespoke design system or a collection of internal components tailored to specific project needs.</p>
+          <h3 className="text-lg font-medium">WienerMelange Pattern Library</h3>
+          <p>
+            The official pattern library provided by MA53 (Presse- und Informationsdienst der Stadt Wien) for 
+            creating consistent and accessible websites for the City of Vienna. WienerMelange offers a collection 
+            of standardized UI components built as web components for use across wien.gv.at and related municipal websites.
+          </p>
+          <p className="mb-2">
+            <a
+              href="https://wm-handbuch2.netlify.app/pattern-library/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              WienerMelange Pattern Library Documentation
+            </a>
+          </p>
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Represents a custom design system tailored to specific project requirements, potentially combining
-              elements from other libraries with custom components.
+              WienerMelange uses web components technology to provide framework-agnostic, reusable UI elements 
+              that maintain the official Vienna city design standards. These components can be easily integrated 
+              into any web project regardless of the underlying technology stack, ensuring consistent branding 
+              and user experience across all municipal digital services.
             </p>
+          </div>
+          
+          <div className="mb-4">
+            <h4 className="font-medium mb-2">Live Example:</h4>
+            <div className="p-4 border rounded-lg bg-white">
+              <WienerMelangeButtonExample />
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-1">Code Example (Wiener Melange Button):</h4>
+            <CodeBlock
+              language="jsx"
+              code={`<wm-button>
+  <a href="#" class="wm-e-button">Wiener Melange Button</a>
+</wm-button>`}
+            />
           </div>
         </TabsContent>
       </Tabs>
