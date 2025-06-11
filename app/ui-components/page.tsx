@@ -2,6 +2,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
+import { MuiButtonExample } from "@/components/examples/mui-button-example"
+import { BaseButtonExample } from "@/components/examples/base-ui-button-example"
+import { ShadcnButtonExample } from "@/components/examples/shadcn-button-example"
 
 export default function UIComponentsPage() {
   return (
@@ -42,14 +45,26 @@ export default function UIComponentsPage() {
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>Provides ready-to-use, customizable components adhering to a specific design language.</p>
           </div>
+          
+          <div className="mb-4">
+            <h4 className="font-medium mb-2">Live Example:</h4>
+            <div className="p-4 border rounded-lg bg-white">
+              <MuiButtonExample />
+            </div>
+          </div>
+
           <div>
-            <h4 className="font-medium mb-1">Example (Basic Button):</h4>
+            <h4 className="font-medium mb-1">Code Example (Basic Button):</h4>
             <CodeBlock
               language="jsx"
               code={`import Button from '@mui/material/Button';
 
 function MyComponent() {
-  return <Button variant="contained">Click Me</Button>;
+  return (
+    <Button variant="contained" color="primary">
+      Material UI Button
+    </Button>
+  );
 }`}
             />
           </div>
@@ -58,12 +73,12 @@ function MyComponent() {
         <TabsContent value="base-ui" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Base UI</h3>
           <p>
-            A headless UI library from MUI (the creators of Material UI) that provides low-level components with no
+            A headless UI library from MUI that provides low-level components with no
             default styles, giving full control over styling.
           </p>
           <p className="mb-2">
             <a
-              href="https://mui.com/base-ui/react-ui/"
+              href="https://base-ui.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
@@ -78,19 +93,27 @@ function MyComponent() {
               solutions like Tailwind CSS.
             </p>
           </div>
+          
+          <div className="mb-4">
+            <h4 className="font-medium mb-2">Live Example:</h4>
+            <div className="p-4 border rounded-lg bg-white">
+              <BaseButtonExample />
+            </div>
+          </div>
+
           <div>
-            <h4 className="font-medium mb-1">Example (Unstyled Button):</h4>
+            <h4 className="font-medium mb-1">Code Example (Styled Button):</h4>
             <CodeBlock
               language="jsx"
-              code={`import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
+              code={`import { clsx } from 'clsx';
+
+const baseStyles = "inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2";
+const primaryStyles = "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500";
 
 function MyButton() {
   return (
-    <button
-      // ... your custom styling here
-      type="button"
-    >
-      My Custom Button
+    <button className={clsx(baseStyles, primaryStyles)}>
+      Base UI Button
     </button>
   );
 }`}
@@ -121,32 +144,97 @@ function MyButton() {
               copied directly into your project for full customization.
             </p>
           </div>
-          <div>
-            <h4 className="font-medium mb-1">Example (Button component after copying - excerpt):</h4>
+          
+          <div className="mb-4">
+            <h4 className="font-medium mb-2">Live Example:</h4>
+            <div className="p-4 border rounded-lg">
+              <ShadcnButtonExample />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">How the button above was rendered:</h4>
             <CodeBlock
-              language="jsx"
-              code={`// components/ui/button.jsx (your copied file)
+              language="tsx"
+              code={`// components/examples/shadcn-button-example.tsx
+'use client'
+
+import { Button } from '@/components/ui/button'
+
+export function ShadcnButtonExample() {
+  return (
+    <Button variant="default">
+      Shadcn/ui Button
+    </Button>
+  )
+}`}
+            />
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-1">Code Example (Full Button Component):</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// components/ui/button.tsx
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none",
-  { /* ... variants and sizes */ }
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
 )
 
-const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "button"
-  return (
-    <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
-      ref={ref}
-      {...props}
-    />
-  )
-})
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
 Button.displayName = "Button"
-export { Button, buttonVariants }`}
+
+export { Button, buttonVariants }
+
+// Usage:
+import { Button } from "@/components/ui/button"
+
+function MyComponent() {
+  return <Button>Shadcn/ui Button</Button>;
+}`}
             />
           </div>
         </TabsContent>
