@@ -18,13 +18,13 @@ export default function RoutingPage() {
       <Tabs defaultValue="react-router" className="mb-8">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="react-router">React Router</TabsTrigger>
-          <TabsTrigger value="next-app-router">Next.js App Router</TabsTrigger>
           <TabsTrigger value="tanstack-router">TanStack Router</TabsTrigger>
+          <TabsTrigger value="next-app-router">Next.js App Router</TabsTrigger>
         </TabsList>
 
         <TabsContent value="react-router" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">React Router</h3>
-          <p>The standard routing library for React applications, providing declarative routing.</p>
+          <p>The standard routing library for React applications, providing declarative routing with component-based navigation.</p>
           <p className="mb-2">
             <a
               href="https://reactrouter.com/"
@@ -35,67 +35,123 @@ export default function RoutingPage() {
               React Router Official Documentation
             </a>
           </p>
+          
           <div className="mb-4">
-            <h4 className="font-medium mb-1">Concept:</h4>
-            <p>Uses React components to define routes and provides hooks for navigation.</p>
+            <h4 className="font-medium mb-1">Required File Structure:</h4>
+            <CodeBlock
+              language="bash"
+              code={`src/
+├── App.jsx                 # Main app with router setup
+├── index.js               # Entry point
+├── pages/
+│   ├── Home.jsx          # Home page component
+│   ├── About.jsx         # About page component
+│   ├── Contact.jsx       # Contact page component
+│   └── NotFound.jsx      # 404 page component
+└── components/
+    └── Navbar.jsx        # Navigation component`}
+            />
           </div>
-          <div>
-            <h4 className="font-medium mb-1">Example (Route Definition):</h4>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Basic Setup & Navigation:</h4>
             <CodeBlock
               language="jsx"
-              code={`import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+              code={`// App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <Router>
-      <nav><Link to="/">Home</Link> | <Link to="/about">About</Link></nav>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-      </Routes>
+      <div className="app">
+        <Navbar />
+        <main className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
-}`}
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="next-app-router" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">Next.js App Router</h3>
-          <p>
-            The new routing paradigm introduced in Next.js 13, built on React Server Components, offering powerful
-            features like shared layouts, streaming, and nested routing.
-          </p>
-          <p className="mb-2">
-            <a
-              href="https://nextjs.org/docs/app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Next.js App Router Documentation
-            </a>
-          </p>
-          <div className="mb-4">
-            <h4 className="font-medium mb-1">Concept:</h4>
-            <p>
-              File-system based routing where folders define routes and `page.js` files render UI. Optimized for
-              server-side rendering and client-side navigation.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-medium mb-1">Example (Nested Route in `app` directory):</h4>
-            <CodeBlock
-              language="jsx"
-              code={`// app/dashboard/page.js
-export default function DashboardPage() {
-  return <h1>Dashboard Overview</h1>;
 }
 
-// app/dashboard/settings/page.js
-export default function DashboardSettingsPage() {
-  return <h2>Dashboard Settings</h2>;
-}`}
+export default App;`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Navigation Component:</h4>
+            <CodeBlock
+              language="jsx"
+              code={`// components/Navbar.jsx
+import { Link } from 'react-router-dom';
+
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <div className="nav-brand">
+        <Link to="/">My App</Link>
+      </div>
+      <ul className="nav-links">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+      </ul>
+    </nav>
+  );
+}
+
+export default Navbar;`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Page Components:</h4>
+            <CodeBlock
+              language="jsx"
+              code={`// pages/Home.jsx
+function Home() {
+  return (
+    <div className="page">
+      <h1>Welcome to Home Page</h1>
+      <p>This is the home page content.</p>
+    </div>
+  );
+}
+
+export default Home;
+
+// pages/About.jsx
+function About() {
+  return (
+    <div className="page">
+      <h1>About Us</h1>
+      <p>Learn more about our company.</p>
+    </div>
+  );
+}
+
+export default About;
+
+// pages/Contact.jsx
+function Contact() {
+  return (
+    <div className="page">
+      <h1>Contact Us</h1>
+      <p>Get in touch with us.</p>
+    </div>
+  );
+}
+
+export default Contact;`}
             />
           </div>
         </TabsContent>
@@ -103,7 +159,7 @@ export default function DashboardSettingsPage() {
         <TabsContent value="tanstack-router" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">TanStack Router</h3>
           <p>
-            A fully type-safe router for React and Solid, designed to be performant, accessible, and developer-friendly.
+            A fully type-safe router for React applications with TypeScript-first approach and powerful runtime validation.
           </p>
           <p className="mb-2">
             <a
@@ -115,23 +171,347 @@ export default function DashboardSettingsPage() {
               TanStack Router Official Documentation
             </a>
           </p>
+          
           <div className="mb-4">
-            <h4 className="font-medium mb-1">Concept:</h4>
-            <p>Emphasizes type safety and a robust API for complex routing needs.</p>
-          </div>
-          <div>
-            <h4 className="font-medium mb-1">Example (Route Definition - excerpt):</h4>
+            <h4 className="font-medium mb-1">Required File Structure (File-based):</h4>
             <CodeBlock
-              language="jsx"
-              code={`import { Router, Route, RootRoute } from '@tanstack/react-router'
+              language="bash"
+              code={`src/
+├── main.tsx               # Entry point
+├── App.tsx               # App component
+├── routes/
+│   ├── __root.tsx        # Root route (layout)
+│   ├── index.tsx         # Home page (/)
+│   ├── about.tsx         # About page (/about)
+│   └── contact.tsx       # Contact page (/contact)
+└── routeTree.gen.ts      # Generated route tree (auto-generated)`}
+            />
+          </div>
 
-const rootRoute = new RootRoute()
-const indexRoute = new Route({ getParentRoute: () => rootRoute, path: '/', component: IndexComponent })
-// ... more routes
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Root Route Setup:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// routes/__root.tsx
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
-const routeTree = rootRoute.addChildren([indexRoute])
-const router = new Router({ routeTree })
-// ... render with <RouterProvider router={router} />`}
+export const Route = createRootRoute({
+  component: () => (
+    <div className="app">
+      <nav className="navbar">
+        <div className="nav-brand">
+          <Link to="/">My App</Link>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <Link to="/" className="[&.active]:font-bold">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="[&.active]:font-bold">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="[&.active]:font-bold">
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      
+      <main className="content">
+        <Outlet />
+      </main>
+      
+      <TanStackRouterDevtools />
+    </div>
+  ),
+})`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Page Routes:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// routes/index.tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({
+  component: () => (
+    <div className="page">
+      <h1>Welcome to Home Page</h1>
+      <p>This is the home page content.</p>
+    </div>
+  ),
+})
+
+// routes/about.tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/about')({
+  component: () => (
+    <div className="page">
+      <h1>About Us</h1>
+      <p>Learn more about our company.</p>
+    </div>
+  ),
+})
+
+// routes/contact.tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/contact')({
+  component: () => (
+    <div className="page">
+      <h1>Contact Us</h1>
+      <p>Get in touch with us.</p>
+    </div>
+  ),
+})`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">App Setup:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// App.tsx
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+
+// Create a new router instance
+const router = createRouter({ routeTree })
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+function App() {
+  return <RouterProvider router={router} />
+}
+
+export default App`}
+            />
+          </div>
+        </TabsContent>
+
+        <TabsContent value="next-app-router" className="space-y-4 mt-4">
+          <h3 className="text-lg font-medium">Next.js App Router</h3>
+          <p>
+            The modern routing system in Next.js 13+ built on React Server Components, using file-system based routing 
+            with powerful conventions for layouts and pages.
+          </p>
+          <p className="mb-2">
+            <a
+              href="https://nextjs.org/docs/app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Next.js App Router Documentation
+            </a>
+          </p>
+          
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Required File Structure:</h4>
+            <CodeBlock
+              language="bash"
+              code={`app/
+├── layout.tsx          # Root layout (required)
+├── page.tsx           # Home page (/)
+├── loading.tsx        # Loading UI (optional)
+├── error.tsx          # Error UI (optional)
+├── not-found.tsx      # 404 page (optional)
+├── about/
+│   └── page.tsx       # About page (/about)
+└── contact/
+    └── page.tsx       # Contact page (/contact)
+
+components/
+└── navbar.tsx         # Shared navigation component`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Root Layout:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// app/layout.tsx - Required root layout
+import Link from 'next/link'
+import './globals.css'
+
+export const metadata = {
+  title: 'My App',
+  description: 'A simple Next.js application',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <nav className="navbar">
+          <div className="nav-brand">
+            <Link href="/">My App</Link>
+          </div>
+          <ul className="nav-links">
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
+          </ul>
+        </nav>
+        
+        <main className="content">
+          {children}
+        </main>
+      </body>
+    </html>
+  )
+}`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Page Components:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// app/page.tsx - Home page
+export default function HomePage() {
+  return (
+    <div className="page">
+      <h1>Welcome to Home Page</h1>
+      <p>This is the home page content.</p>
+    </div>
+  )
+}
+
+// app/about/page.tsx - About page
+export default function AboutPage() {
+  return (
+    <div className="page">
+      <h1>About Us</h1>
+      <p>Learn more about our company.</p>
+    </div>
+  )
+}
+
+// app/contact/page.tsx - Contact page
+export default function ContactPage() {
+  return (
+    <div className="page">
+      <h1>Contact Us</h1>
+      <p>Get in touch with us.</p>
+    </div>
+  )
+}`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Optional Special Files:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// app/loading.tsx - Loading UI
+export default function Loading() {
+  return (
+    <div className="loading">
+      <p>Loading...</p>
+    </div>
+  )
+}
+
+// app/error.tsx - Error UI
+'use client'
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  return (
+    <div className="error">
+      <h2>Something went wrong!</h2>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  )
+}
+
+// app/not-found.tsx - 404 page
+import Link from 'next/link'
+
+export default function NotFound() {
+  return (
+    <div className="not-found">
+      <h2>Not Found</h2>
+      <p>Could not find requested resource</p>
+      <Link href="/">Return Home</Link>
+    </div>
+  )
+}`}
+            />
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-medium mb-1">Navigation Component:</h4>
+            <CodeBlock
+              language="tsx"
+              code={`// components/navbar.tsx - Reusable navigation
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+export default function Navbar() {
+  const pathname = usePathname()
+  
+  const isActive = (path: string) => pathname === path
+  
+  return (
+    <nav className="navbar">
+      <div className="nav-brand">
+        <Link href="/">My App</Link>
+      </div>
+      <ul className="nav-links">
+        <li>
+          <Link 
+            href="/" 
+            className={isActive('/') ? 'active' : ''}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link 
+            href="/about" 
+            className={isActive('/about') ? 'active' : ''}
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link 
+            href="/contact" 
+            className={isActive('/contact') ? 'active' : ''}
+          >
+            Contact
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  )
+}`}
             />
           </div>
         </TabsContent>
