@@ -29,7 +29,7 @@ interface CodeBlockProps {
   showLineNumbers?: boolean
 }
 
-export function CodeBlock({ language, code, showLineNumbers = false }: CodeBlockProps) {
+export function CodeBlock({ language, code, showLineNumbers = true }: CodeBlockProps) {
   const [copied, setCopied] = useState(false)
   const codeRef = useRef<HTMLElement>(null)
 

@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Config files that shouldn't be formatted
+tsconfig.json
+next.config.mjs
+tailwind.config.ts
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# Git
+.git/
+
+# Public assets
+public/

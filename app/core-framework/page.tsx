@@ -1,9 +1,15 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CodeBlock } from "@/components/code-block"
-import { KeyDifferences } from "@/components/key-differences"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { CodeBlock } from '@/components/code-block';
+import { KeyDifferences } from '@/components/key-differences';
 
 export default function CoreFrameworkPage() {
   return (
@@ -11,13 +17,19 @@ export default function CoreFrameworkPage() {
       <h1 className="text-3xl font-bold tracking-tight mb-6">Core Framework</h1>
 
       <p className="mb-4">
-        This choice determines your application's architecture, capabilities, and complexity. Consider whether you need 
-        a simple client-side application (SPA) or a full-stack solution with server-side features.
+        This choice determines your application&apos;s architecture,
+        capabilities, and complexity. Consider whether you need a simple
+        client-side application (SPA) or a full-stack solution with server-side
+        features.
       </p>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
-        <p>Application architecture, rendering strategy, development workflow, and deployment complexity. Choose based on your project's requirements for SEO, performance, and backend integration.</p>
+        <p>
+          Application architecture, rendering strategy, development workflow,
+          and deployment complexity. Choose based on your project&apos;s
+          requirements for SEO, performance, and backend integration.
+        </p>
       </div>
 
       <Tabs defaultValue="vite" className="mb-8">
@@ -27,10 +39,13 @@ export default function CoreFrameworkPage() {
         </TabsList>
 
         <TabsContent value="vite" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">Vite + React (Single Page Application)</h3>
+          <h3 className="text-lg font-medium">
+            Vite + React (Single Page Application)
+          </h3>
           <p>
-            A fast build tool combined with React for creating client-side rendered applications. 
-            Provides minimal setup with manual configuration for routing, APIs, and SEO.
+            A fast build tool combined with React for creating client-side
+            rendered applications. Provides minimal setup with manual
+            configuration for routing, APIs, and SEO.
           </p>
           <p className="mb-2">
             <a
@@ -42,13 +57,17 @@ export default function CoreFrameworkPage() {
               Vite Official Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
-            <h4 className="font-medium mb-2">Additional setup typically needed:</h4>
-            
+            <h4 className="font-medium mb-2">
+              Additional setup typically needed:
+            </h4>
+
             <div className="space-y-4">
               <div>
-                <h5 className="text-sm font-medium mb-1">1. React Router for routing:</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  1. React Router for routing:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// Install React Router
@@ -73,7 +92,9 @@ function App() {
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">2. Separate backend/API server:</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  2. Separate backend/API server:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// Frontend API calls to separate backend
@@ -94,7 +115,9 @@ const api = axios.create({
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">3. Manual SEO optimization:</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  3. Manual SEO optimization:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// Manual meta tag management with React Helmet
@@ -120,8 +143,8 @@ function HomePage() {
           </div>
           <div>
             <h4 className="font-medium mb-1">Example (Project Structure):</h4>
-            <CodeBlock 
-              language="bash" 
+            <CodeBlock
+              language="bash"
               code={`# Create new Vite React project
 npm create vite@latest my-react-app -- --template react-ts
 cd my-react-app
@@ -141,16 +164,19 @@ my-react-app/
 
 # Start development server
 npm run dev
-`} 
+`}
             />
           </div>
         </TabsContent>
 
         <TabsContent value="nextjs" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">Next.js (Full-stack Framework)</h3>
+          <h3 className="text-lg font-medium">
+            Next.js (Full-stack Framework)
+          </h3>
           <p>
-            A comprehensive React framework with built-in solutions for routing, APIs, SEO, and optimization. 
-            Provides production-ready features out of the box with minimal configuration.
+            A comprehensive React framework with built-in solutions for routing,
+            APIs, SEO, and optimization. Provides production-ready features out
+            of the box with minimal configuration.
           </p>
           <p className="mb-2">
             <a
@@ -164,11 +190,15 @@ npm run dev
           </p>
 
           <div className="mb-4">
-            <h4 className="font-medium mb-2">Features included out of the box:</h4>
-            
+            <h4 className="font-medium mb-2">
+              Features included out of the box:
+            </h4>
+
             <div className="space-y-4">
               <div>
-                <h5 className="text-sm font-medium mb-1">1. File-based routing (no React Router needed):</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  1. File-based routing (no React Router needed):
+                </h5>
                 <CodeBlock
                   language="bash"
                   code={`# Automatic routing based on file structure
@@ -187,7 +217,9 @@ app/
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">2. API routes (built-in backend):</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  2. API routes (built-in backend):
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// app/api/users/route.ts - Built-in API endpoints
@@ -209,7 +241,9 @@ const users = await response.json()`}
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">3. SEO optimization (SSR/SSG):</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  3. SEO optimization (SSR/SSG):
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// app/page.tsx - Automatic SEO with metadata
@@ -232,7 +266,9 @@ export default function HomePage() {
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">4. Image optimization:</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  4. Image optimization:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// Automatic image optimization with next/image
@@ -254,7 +290,9 @@ function ProfilePage() {
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">5. Automatic code splitting:</h5>
+                <h5 className="text-sm font-medium mb-1">
+                  5. Automatic code splitting:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// Automatic code splitting per page/component
@@ -303,12 +341,16 @@ my-next-app/
       </Tabs>
 
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Project Structure Comparison</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Project Structure Comparison
+        </h2>
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Vite + React Structure</CardTitle>
-              <CardDescription>Manual organization, explicit imports</CardDescription>
+              <CardDescription>
+                Manual organization, explicit imports
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
@@ -337,11 +379,13 @@ backend/
               />
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Next.js Structure</CardTitle>
-              <CardDescription>Convention-based, automatic features</CardDescription>
+              <CardDescription>
+                Convention-based, automatic features
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
@@ -370,16 +414,17 @@ backend/
         </div>
       </div>
 
-      <KeyDifferences 
+      <KeyDifferences
         title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "Vite + React: Manual Setup",
-            description: "Explicit configuration and manual integration of tools",
-            badges: ["Explicit", "Manual", "Granular control"],
+            title: 'Vite + React: Manual Setup',
+            description:
+              'Explicit configuration and manual integration of tools',
+            badges: ['Explicit', 'Manual', 'Granular control'],
             codeExamples: [
               {
-                label: "Routing Setup",
+                label: 'Routing Setup',
                 code: `// Manual React Router setup in App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -392,20 +437,20 @@ function App() {
       </Routes>
     </BrowserRouter>
   )
-}`
+}`,
               },
               {
-                label: "API Calls",
+                label: 'API Calls',
                 code: `// Separate backend required
 const API_BASE = 'http://localhost:3001/api'
 
 const fetchUsers = async () => {
   const response = await fetch(\`\${API_BASE}/users\`)
   return response.json()
-}`
+}`,
               },
               {
-                label: "SEO Meta Tags",
+                label: 'SEO Meta Tags',
                 code: `// Manual meta management with React Helmet
 import { Helmet } from 'react-helmet-async'
 
@@ -419,36 +464,36 @@ function Page() {
       <div>Content</div>
     </>
   )
-}`
-              }
-            ]
+}`,
+              },
+            ],
           },
           {
-            title: "Next.js: Convention-Based",
-            description: "Built-in solutions with minimal configuration needed",
-            badges: ["Convention", "Built-in", "Zero-config"],
+            title: 'Next.js: Convention-Based',
+            description: 'Built-in solutions with minimal configuration needed',
+            badges: ['Convention', 'Built-in', 'Zero-config'],
             codeExamples: [
               {
-                label: "File-Based Routing",
+                label: 'File-Based Routing',
                 code: `// app/about/page.tsx - No router setup needed
 export default function AboutPage() {
   return <div>About page</div>
 }
 
-// Automatically creates /about route`
+// Automatically creates /about route`,
               },
               {
-                label: "API Routes",
+                label: 'API Routes',
                 code: `// app/api/users/route.ts - Built-in backend
 export async function GET() {
   const users = await db.users.findMany()
   return Response.json(users)
 }
 
-// Frontend: fetch('/api/users') - same origin`
+// Frontend: fetch('/api/users') - same origin`,
               },
               {
-                label: "Built-in SEO",
+                label: 'Built-in SEO',
                 code: `// app/page.tsx - Type-safe metadata
 import { Metadata } from 'next'
 
@@ -459,24 +504,30 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return <div>Content</div> // Pre-rendered for SEO
-}`
-              }
-            ]
-          }
+}`,
+              },
+            ],
+          },
         ]}
       />
 
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Development Commands Comparison</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Development Commands Comparison
+        </h2>
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Vite + React Commands</CardTitle>
-              <CardDescription>Multiple tools, separate backend</CardDescription>
+              <CardDescription>
+                Multiple tools, separate backend
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h5 className="font-medium text-sm mb-2">Frontend Development:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Frontend Development:
+                </h5>
                 <CodeBlock
                   language="bash"
                   code={`# Start frontend (port 3000)
@@ -490,7 +541,9 @@ npm run preview`}
                 />
               </div>
               <div>
-                <h5 className="font-medium text-sm mb-2">Backend Development (separate):</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Backend Development (separate):
+                </h5>
                 <CodeBlock
                   language="bash"
                   code={`# Start Express server (port 3001)
@@ -503,7 +556,7 @@ npm run dev`}
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Next.js Commands</CardTitle>
@@ -511,7 +564,9 @@ npm run dev`}
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h5 className="font-medium text-sm mb-2">Full-stack Development:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Full-stack Development:
+                </h5>
                 <CodeBlock
                   language="bash"
                   code={`# Start full-stack app (frontend + API)
@@ -525,7 +580,9 @@ npm start`}
                 />
               </div>
               <div>
-                <h5 className="font-medium text-sm mb-2">Everything in one project:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Everything in one project:
+                </h5>
                 <CodeBlock
                   language="bash"
                   code={`# Frontend: http://localhost:3000
@@ -547,5 +604,5 @@ npm start`}
         </Button>
       </div>
     </div>
-  )
+  );
 }

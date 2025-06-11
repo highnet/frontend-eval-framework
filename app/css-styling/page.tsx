@@ -1,8 +1,8 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CodeBlock } from "@/components/code-block"
-import { KeyDifferences } from "@/components/key-differences"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CodeBlock } from '@/components/code-block';
+import { KeyDifferences } from '@/components/key-differences';
 
 export default function CssStylingPage() {
   return (
@@ -10,13 +10,16 @@ export default function CssStylingPage() {
       <h1 className="text-3xl font-bold tracking-tight mb-6">CSS & Styling</h1>
 
       <p className="mb-4">
-        This section addresses how you will apply styles to your components and manage your application's visual
-        presentation.
+        This section addresses how you will apply styles to your components and
+        manage your application&apos;s visual presentation.
       </p>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
-        <p>How styles are written, organized, and applied to components, affecting modularity and maintainability.</p>
+        <p>
+          How styles are written, organized, and applied to components,
+          affecting modularity and maintainability.
+        </p>
       </div>
 
       <Tabs defaultValue="plain-css" className="mb-8">
@@ -29,7 +32,8 @@ export default function CssStylingPage() {
         <TabsContent value="plain-css" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Plain CSS</h3>
           <p>
-            Standard Cascading Style Sheets with string classnames. Simple, performant, and universally supported.
+            Standard Cascading Style Sheets with string classnames. Simple,
+            performant, and universally supported.
           </p>
           <p className="mb-2">
             <a
@@ -41,7 +45,7 @@ export default function CssStylingPage() {
               MDN Web Docs - CSS
             </a>
           </p>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">CSS with String Classnames:</h4>
             <CodeBlock
@@ -103,9 +107,11 @@ export default function CssStylingPage() {
 .card-success { border-left: 4px solid var(--success-color); }`}
             />
           </div>
-          
+
           <div className="mb-4">
-            <h4 className="font-medium mb-1">React Component with String Classnames:</h4>
+            <h4 className="font-medium mb-1">
+              React Component with String Classnames:
+            </h4>
             <CodeBlock
               language="jsx"
               code={`import './Card.css';
@@ -151,7 +157,8 @@ function Card({ title, children, onPrimary, badge, status }) {
         <TabsContent value="scss" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">SCSS (Sass)</h3>
           <p>
-            A powerful CSS preprocessor with variables, nesting, mixins, and functions. Perfect for modular component styling.
+            A powerful CSS preprocessor with variables, nesting, mixins, and
+            functions. Perfect for modular component styling.
           </p>
           <p className="mb-2">
             <a
@@ -163,7 +170,7 @@ function Card({ title, children, onPrimary, badge, status }) {
               Sass Official Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">SCSS Variables & Mixins:</h4>
             <CodeBlock
@@ -199,7 +206,7 @@ $shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }`}
             />
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">Card.module.scss:</h4>
             <CodeBlock
@@ -256,7 +263,7 @@ $shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }`}
             />
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">React with SCSS Modules:</h4>
             <CodeBlock
@@ -301,8 +308,9 @@ function Card({ title, children, onPrimary, badge }) {
         <TabsContent value="tailwind" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Tailwind CSS</h3>
           <p>
-            A utility-first CSS framework for rapidly building custom designs. Provides low-level utility classes
-            that can be composed to build any design directly in your markup.
+            A utility-first CSS framework for rapidly building custom designs.
+            Provides low-level utility classes that can be composed to build any
+            design directly in your markup.
           </p>
           <p className="mb-2">
             <a
@@ -314,7 +322,7 @@ function Card({ title, children, onPrimary, badge }) {
               Tailwind CSS Official Documentation
             </a>
           </p>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-1">Dashboard Component Example:</h4>
             <CodeBlock
@@ -393,9 +401,11 @@ function Card({ title, children, onPrimary, badge }) {
 }`}
             />
           </div>
-          
+
           <div className="mb-4">
-            <h4 className="font-medium mb-1">Customization (tailwind.config.js):</h4>
+            <h4 className="font-medium mb-1">
+              Customization (tailwind.config.js):
+            </h4>
             <CodeBlock
               language="javascript"
               code={`module.exports = {
@@ -432,44 +442,46 @@ function Card({ title, children, onPrimary, badge }) {
         </TabsContent>
       </Tabs>
 
-      <KeyDifferences 
+      <KeyDifferences
         differences={[
           {
-            title: "Plain CSS",
-            description: "Traditional approach with standard CSS files and string classnames",
-            badges: ["Universal", "No dependencies", "Full control"],
+            title: 'Plain CSS',
+            description:
+              'Traditional approach with standard CSS files and string classnames',
+            badges: ['Universal', 'No dependencies', 'Full control'],
             considerations: [
-              "You want zero dependencies and full control",
-              "Working with a small team or simple project",
-              "Performance is critical (no extra CSS processing)",
-              "You prefer traditional CSS methodology",
-              "Browser compatibility is a major concern"
-            ]
+              'You want zero dependencies and full control',
+              'Working with a small team or simple project',
+              'Performance is critical (no extra CSS processing)',
+              'You prefer traditional CSS methodology',
+              'Browser compatibility is a major concern',
+            ],
           },
           {
-            title: "SCSS (Sass)",
-            description: "CSS preprocessor with variables, nesting, and advanced features",
-            badges: ["Preprocessor", "Modular", "Developer-friendly"],
+            title: 'SCSS (Sass)',
+            description:
+              'CSS preprocessor with variables, nesting, and advanced features',
+            badges: ['Preprocessor', 'Modular', 'Developer-friendly'],
             considerations: [
-              "You need advanced CSS features like variables and mixins",
-              "Working on medium to large projects",
-              "Team prefers organized, nested CSS structure",
-              "You want better maintainability than plain CSS",
-              "Component-based styling is important"
-            ]
+              'You need advanced CSS features like variables and mixins',
+              'Working on medium to large projects',
+              'Team prefers organized, nested CSS structure',
+              'You want better maintainability than plain CSS',
+              'Component-based styling is important',
+            ],
           },
           {
-            title: "Tailwind CSS",
-            description: "Utility-first framework for rapid UI development",
-            badges: ["Utility-first", "Rapid development", "Consistent design"],
+            title: 'Tailwind CSS',
+            description: 'Utility-first framework for rapid UI development',
+            badges: ['Utility-first', 'Rapid development', 'Consistent design'],
             considerations: [
-              "You want to build UIs quickly with consistent spacing",
-              "Team values design system constraints",
-              "You prefer component-focused development",
-              "Prototyping speed is important",
-              "You want built-in responsive design utilities"
-            ]
-          }
+              'You want to build UIs quickly with consistent spacing',
+              'Team values design system constraints',
+              'You prefer component-focused development',
+              'Prototyping speed is important',
+              'You want built-in responsive design utilities',
+            ],
+          },
         ]}
       />
 
@@ -482,5 +494,5 @@ function Card({ title, children, onPrimary, badge }) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

@@ -1,26 +1,38 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CodeBlock } from "@/components/code-block"
-import { MuiButtonExample } from "@/components/examples/mui-button-example"
-import { BaseButtonExample } from "@/components/examples/base-ui-button-example"
-import { ShadcnButtonExample } from "@/components/examples/shadcn-button-example"
-import { WienerMelangeButtonExample } from "@/components/examples/wiener-melange-button-example"
-import { KeyDifferences } from "@/components/key-differences"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { CodeBlock } from '@/components/code-block';
+import { MuiButtonExample } from '@/components/examples/mui-button-example';
+import { BaseButtonExample } from '@/components/examples/base-ui-button-example';
+import { ShadcnButtonExample } from '@/components/examples/shadcn-button-example';
+import { WienerMelangeButtonExample } from '@/components/examples/wiener-melange-button-example';
+import { KeyDifferences } from '@/components/key-differences';
 
 export default function UIComponentsPage() {
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold tracking-tight mb-6">UI Components & Design System</h1>
+      <h1 className="text-3xl font-bold tracking-tight mb-6">
+        UI Components & Design System
+      </h1>
 
       <p className="mb-4">
-        This category focuses on pre-built UI elements and the overall visual language of your application.
+        This category focuses on pre-built UI elements and the overall visual
+        language of your application.
       </p>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
-        <p>The look and feel of the application, consistency, and acceleration of UI development.</p>
+        <p>
+          The look and feel of the application, consistency, and acceleration of
+          UI development.
+        </p>
       </div>
 
       <Tabs defaultValue="material-ui" className="mb-8">
@@ -33,7 +45,10 @@ export default function UIComponentsPage() {
 
         <TabsContent value="material-ui" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Material UI</h3>
-          <p>A comprehensive library of React components that implements Google's Material Design.</p>
+          <p>
+            A comprehensive library of React components that implements
+            Google&apos;s Material Design.
+          </p>
           <p className="mb-2">
             <a
               href="https://mui.com/"
@@ -46,9 +61,12 @@ export default function UIComponentsPage() {
           </p>
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
-            <p>Provides ready-to-use, customizable components adhering to a specific design language.</p>
+            <p>
+              Provides ready-to-use, customizable components adhering to a
+              specific design language.
+            </p>
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-2">Live Example:</h4>
             <div className="p-4 border rounded-lg bg-white">
@@ -76,8 +94,8 @@ function MyComponent() {
         <TabsContent value="base-ui" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Base UI</h3>
           <p>
-            A headless UI library from MUI that provides low-level components with no
-            default styles, giving full control over styling.
+            A headless UI library from MUI that provides low-level components
+            with no default styles, giving full control over styling.
           </p>
           <p className="mb-2">
             <a
@@ -92,11 +110,11 @@ function MyComponent() {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Offers unstyled components, perfect for building custom design systems or integrating with styling
-              solutions like Tailwind CSS.
+              Offers unstyled components, perfect for building custom design
+              systems or integrating with styling solutions like Tailwind CSS.
             </p>
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-2">Live Example:</h4>
             <div className="p-4 border rounded-lg bg-white">
@@ -127,8 +145,9 @@ function MyButton() {
         <TabsContent value="shadcn" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Shadcn/ui</h3>
           <p>
-            A collection of re-usable components that you can copy and paste into your apps. Not a traditional component
-            library, but a set of recipes.
+            A collection of re-usable components that you can copy and paste
+            into your apps. Not a traditional component library, but a set of
+            recipes.
           </p>
           <p className="mb-2">
             <a
@@ -143,11 +162,12 @@ function MyButton() {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              "You own the code." It provides pre-styled (often using Tailwind CSS) and accessible components that are
-              copied directly into your project for full customization.
+              &quot;You own the code.&quot; It provides pre-styled (often using
+              Tailwind CSS) and accessible components that are copied directly
+              into your project for full customization.
             </p>
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-2">Live Example:</h4>
             <div className="p-4 border rounded-lg">
@@ -156,7 +176,9 @@ function MyButton() {
           </div>
 
           <div className="mb-4">
-            <h4 className="font-medium mb-1">How the button above was rendered:</h4>
+            <h4 className="font-medium mb-1">
+              How the button above was rendered:
+            </h4>
             <CodeBlock
               language="tsx"
               code={`// components/examples/shadcn-button-example.tsx
@@ -175,7 +197,9 @@ export function ShadcnButtonExample() {
           </div>
 
           <div>
-            <h4 className="font-medium mb-1">Code Example (Full Button Component):</h4>
+            <h4 className="font-medium mb-1">
+              Code Example (Full Button Component):
+            </h4>
             <CodeBlock
               language="tsx"
               code={`// components/ui/button.tsx
@@ -245,9 +269,11 @@ function MyComponent() {
         <TabsContent value="wiener" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">WienerMelange Pattern Library</h3>
           <p>
-            The official pattern library provided by MA53 (Presse- und Informationsdienst der Stadt Wien) for 
-            creating consistent and accessible websites for the City of Vienna. WienerMelange offers a collection 
-            of standardized UI components built as web components for use across wien.gv.at and related municipal websites.
+            The official pattern library provided by MA53 (Presse- und
+            Informationsdienst der Stadt Wien) for creating consistent and
+            accessible websites for the City of Vienna. WienerMelange offers a
+            collection of standardized UI components built as web components for
+            use across wien.gv.at and related municipal websites.
           </p>
           <p className="mb-2">
             <a
@@ -262,13 +288,15 @@ function MyComponent() {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              WienerMelange uses web components technology to provide framework-agnostic, reusable UI elements 
-              that maintain the official Vienna city design standards. These components can be easily integrated 
-              into any web project regardless of the underlying technology stack, ensuring consistent branding 
-              and user experience across all municipal digital services.
+              WienerMelange uses web components technology to provide
+              framework-agnostic, reusable UI elements that maintain the
+              official Vienna city design standards. These components can be
+              easily integrated into any web project regardless of the
+              underlying technology stack, ensuring consistent branding and user
+              experience across all municipal digital services.
             </p>
           </div>
-          
+
           <div className="mb-4">
             <h4 className="font-medium mb-2">Live Example:</h4>
             <div className="p-4 border rounded-lg bg-white">
@@ -277,7 +305,9 @@ function MyComponent() {
           </div>
 
           <div>
-            <h4 className="font-medium mb-1">Code Example (Wiener Melange Button):</h4>
+            <h4 className="font-medium mb-1">
+              Code Example (Wiener Melange Button):
+            </h4>
             <CodeBlock
               language="jsx"
               code={`<wm-button>
@@ -288,16 +318,17 @@ function MyComponent() {
         </TabsContent>
       </Tabs>
 
-      <KeyDifferences 
+      <KeyDifferences
         title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "Material UI: Pre-built Components",
-            description: "Import and use ready-made components with built-in styling",
-            badges: ["Import & Use", "Built-in Themes", "Props-based"],
+            title: 'Material UI: Pre-built Components',
+            description:
+              'Import and use ready-made components with built-in styling',
+            badges: ['Import & Use', 'Built-in Themes', 'Props-based'],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `npm install @mui/material @emotion/react @emotion/styled
 
 // Theme setup in layout or _app
@@ -308,10 +339,10 @@ const theme = createTheme({
     primary: { main: '#1976d2' },
     secondary: { main: '#dc004e' }
   }
-})`
+})`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `import { Button, TextField, Card, CardContent } from '@mui/material'
 
 function LoginForm() {
@@ -335,23 +366,24 @@ function LoginForm() {
       </CardContent>
     </Card>
   )
-}`
-              }
-            ]
+}`,
+              },
+            ],
           },
           {
-            title: "Base UI: Headless Components",
-            description: "Unstyled components with full control over appearance",
-            badges: ["Headless", "Unstyled", "Full Control"],
+            title: 'Base UI: Headless Components',
+            description:
+              'Unstyled components with full control over appearance',
+            badges: ['Headless', 'Unstyled', 'Full Control'],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `npm install @base_ui/react
 
-// No theme setup needed - you control all styling`
+// No theme setup needed - you control all styling`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `import { Button } from '@base_ui/react/Button'
 
 function LoginForm() {
@@ -367,10 +399,10 @@ function LoginForm() {
       </Button>
     </div>
   )
-}`
+}`,
               },
               {
-                label: "Custom Styling",
+                label: 'Custom Styling',
                 code: `// Complete control over styling
 const StyledButton = styled(Button)\`
   background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
@@ -383,26 +415,27 @@ const StyledButton = styled(Button)\`
   &:hover {
     opacity: 0.8;
   }
-\``
-              }
-            ]
+\``,
+              },
+            ],
           },
           {
-            title: "Shadcn/ui: Copy-Paste Components",
-            description: "Copy component code into your project for full ownership",
-            badges: ["Copy-Paste", "Tailwind CSS", "Full Ownership"],
+            title: 'Shadcn/ui: Copy-Paste Components',
+            description:
+              'Copy component code into your project for full ownership',
+            badges: ['Copy-Paste', 'Tailwind CSS', 'Full Ownership'],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `npx shadcn-ui@latest init
 
 # Copy specific components
 npx shadcn-ui@latest add button
 npx shadcn-ui@latest add input
-npx shadcn-ui@latest add card`
+npx shadcn-ui@latest add card`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
@@ -422,25 +455,30 @@ function LoginForm() {
       </CardContent>
     </Card>
   )
-}`
-              }
-            ]
+}`,
+              },
+            ],
           },
           {
-            title: "WienerMelange: Web Components",
-            description: "Vienna city government's official design system as web components",
-            badges: ["Web Components", "Framework Agnostic", "Government Standard"],
+            title: 'WienerMelange: Web Components',
+            description:
+              "Vienna city government's official design system as web components",
+            badges: [
+              'Web Components',
+              'Framework Agnostic',
+              'Government Standard',
+            ],
             codeExamples: [
               {
-                label: "Installation & Setup",
+                label: 'Installation & Setup',
                 code: `<!-- Include via CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@wiener-melange/components"></script>
 
 <!-- Or install via npm -->
-npm install @wiener-melange/components`
+npm install @wiener-melange/components`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `<!-- Web components work in any framework -->
 <wm-card class="wm-e-card wm-max-width-md wm-margin-auto">
   <wm-card-content class="wm-e-card__content">
@@ -453,10 +491,10 @@ npm install @wiener-melange/components`
       <a href="#" class="wm-e-button__link">Anmelden</a>
     </wm-button>
   </wm-card-content>
-</wm-card>`
+</wm-card>`,
               },
               {
-                label: "React Integration",
+                label: 'React Integration',
                 code: `// In React (with proper JSX attributes)
 function LoginForm() {
   return (
@@ -473,24 +511,30 @@ function LoginForm() {
       </wm-card-content>
     </wm-card>
   )
-}`
-              }
-            ]
-          }
+}`,
+              },
+            ],
+          },
         ]}
       />
 
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Customization Workflow Comparison</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Customization Workflow Comparison
+        </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Material UI</CardTitle>
-              <CardDescription>Theme-based and sx prop overrides</CardDescription>
+              <CardDescription>
+                Theme-based and sx prop overrides
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h5 className="font-medium text-sm mb-2">Global Theme Override:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Global Theme Override:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`const theme = createTheme({
@@ -508,7 +552,9 @@ function LoginForm() {
                 />
               </div>
               <div>
-                <h5 className="font-medium text-sm mb-2">One-off Customization:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  One-off Customization:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`<Button 
@@ -527,7 +573,9 @@ function LoginForm() {
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Base UI</CardTitle>
-              <CardDescription>Full control with custom CSS/styled-components</CardDescription>
+              <CardDescription>
+                Full control with custom CSS/styled-components
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
@@ -565,15 +613,19 @@ function LoginForm() {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Shadcn/ui</CardTitle>
-              <CardDescription>Direct code modification and CSS classes</CardDescription>
+              <CardDescription>
+                Direct code modification and CSS classes
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h5 className="font-medium text-sm mb-2">Edit Component File:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Edit Component File:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`// components/ui/button.tsx - Edit directly
@@ -590,7 +642,9 @@ const buttonVariants = cva(
                 />
               </div>
               <div>
-                <h5 className="font-medium text-sm mb-2">Tailwind Class Override:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Tailwind Class Override:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`<Button className="bg-red-600 hover:bg-red-700 rounded-lg">
@@ -604,11 +658,15 @@ const buttonVariants = cva(
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">WienerMelange</CardTitle>
-              <CardDescription>CSS custom properties and predefined classes</CardDescription>
+              <CardDescription>
+                CSS custom properties and predefined classes
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h5 className="font-medium text-sm mb-2">CSS Custom Properties:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  CSS Custom Properties:
+                </h5>
                 <CodeBlock
                   language="css"
                   code={`:root {
@@ -621,7 +679,9 @@ const buttonVariants = cva(
                 />
               </div>
               <div>
-                <h5 className="font-medium text-sm mb-2">Predefined Classes:</h5>
+                <h5 className="font-medium text-sm mb-2">
+                  Predefined Classes:
+                </h5>
                 <CodeBlock
                   language="tsx"
                   code={`<wm-button className="wm-e-button wm-e-button--secondary wm-e-button--large">
@@ -645,5 +705,5 @@ const buttonVariants = cva(
         </Button>
       </div>
     </div>
-  )
+  );
 }

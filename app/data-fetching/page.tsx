@@ -1,22 +1,31 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CodeBlock } from "@/components/code-block"
-import { KeyDifferences } from "@/components/key-differences"
-import { FetchApiExample } from "@/components/examples/fetch-api-example"
-import { AxiosExample } from "@/components/examples/axios-example"
-import { TanStackQueryExample } from "@/components/examples/tanstack-query-example"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CodeBlock } from '@/components/code-block';
+import { KeyDifferences } from '@/components/key-differences';
+import { FetchApiExample } from '@/components/examples/fetch-api-example';
+import { AxiosExample } from '@/components/examples/axios-example';
+import { TanStackQueryExample } from '@/components/examples/tanstack-query-example';
 
 export default function DataFetchingPage() {
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold tracking-tight mb-6">Data Fetching & Queries</h1>
+      <h1 className="text-3xl font-bold tracking-tight mb-6">
+        Data Fetching & Queries
+      </h1>
 
-      <p className="mb-4">This section deals with how your application requests and manages data from APIs, including both queries (reading data) and mutations (creating, updating, deleting data).</p>
+      <p className="mb-4">
+        This section deals with how your application requests and manages data
+        from APIs, including both queries (reading data) and mutations
+        (creating, updating, deleting data).
+      </p>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
-        <p>Handling asynchronous data requests, mutations, caching, revalidation, optimistic updates, and error management for API interactions.</p>
+        <p>
+          Handling asynchronous data requests, mutations, caching, revalidation,
+          optimistic updates, and error management for API interactions.
+        </p>
       </div>
 
       <Tabs defaultValue="fetch" className="mb-8">
@@ -42,19 +51,21 @@ export default function DataFetchingPage() {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Built-in to browsers, simple for basic requests, but requires manual handling of caching, loading states,
-              and error handling.
+              Built-in to browsers, simple for basic requests, but requires
+              manual handling of caching, loading states, and error handling.
             </p>
           </div>
-          
+
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <FetchApiExample />
           </div>
-          
+
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">TypeScript Interface & Basic Setup:</h4>
+              <h4 className="font-medium mb-1">
+                TypeScript Interface & Basic Setup:
+              </h4>
               <CodeBlock
                 language="typescript"
                 code={`// Define Todo interface
@@ -73,7 +84,7 @@ const [mutationLoading, setMutationLoading] = useState<{ [key: string]: boolean 
 const [successMessage, setSuccessMessage] = useState<string | null>(null)`}
               />
             </div>
-            
+
             <div>
               <h4 className="font-medium mb-1">Fetching Data:</h4>
               <CodeBlock
@@ -118,9 +129,11 @@ const loadTodos = async () => {
 }`}
               />
             </div>
-            
+
             <div>
-              <h4 className="font-medium mb-1">Mutations (Create, Update, Delete):</h4>
+              <h4 className="font-medium mb-1">
+                Mutations (Create, Update, Delete):
+              </h4>
               <CodeBlock
                 language="javascript"
                 code={`// Creating a new todo with state management
@@ -217,7 +230,9 @@ const deleteTodo = async (id) => {
 
         <TabsContent value="axios" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Axios</h3>
-          <p>A popular promise-based HTTP client for the browser and Node.js.</p>
+          <p>
+            A popular promise-based HTTP client for the browser and Node.js.
+          </p>
           <p className="mb-2">
             <a
               href="https://github.com/axios/axios"
@@ -231,19 +246,22 @@ const deleteTodo = async (id) => {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Provides a more convenient API than `fetch`, with features like automatic JSON parsing, request/response
-              interceptors, and better error handling.
+              Provides a more convenient API than `fetch`, with features like
+              automatic JSON parsing, request/response interceptors, and better
+              error handling.
             </p>
           </div>
-          
+
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <AxiosExample />
           </div>
-          
+
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">Installation & TypeScript Setup:</h4>
+              <h4 className="font-medium mb-1">
+                Installation & TypeScript Setup:
+              </h4>
               <CodeBlock
                 language="bash"
                 code={`# Install axios
@@ -272,7 +290,7 @@ const [error, setError] = useState<string | null>(null)
 const [mutationLoading, setMutationLoading] = useState<{ [key: string]: boolean }>({})`}
               />
             </div>
-            
+
             <div>
               <h4 className="font-medium mb-1">Fetching Data:</h4>
               <CodeBlock
@@ -321,9 +339,11 @@ axios.interceptors.response.use(
 )`}
               />
             </div>
-            
+
             <div>
-              <h4 className="font-medium mb-1">Mutations (Create, Update, Delete):</h4>
+              <h4 className="font-medium mb-1">
+                Mutations (Create, Update, Delete):
+              </h4>
               <CodeBlock
                 language="javascript"
                 code={`import axios from 'axios';
@@ -416,8 +436,9 @@ const deleteTodo = async (id) => {
         <TabsContent value="react-query" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">TanStack Query</h3>
           <p>
-            A powerful data fetching and caching library for React (and other frameworks under TanStack). It handles
-            server state, revalidation, optimistic updates, and more.
+            A powerful data fetching and caching library for React (and other
+            frameworks under TanStack). It handles server state, revalidation,
+            optimistic updates, and more.
           </p>
           <p className="mb-2">
             <a
@@ -432,17 +453,18 @@ const deleteTodo = async (id) => {
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Manages "server state" with intelligent caching, background re-fetching, and synchronization,
-              significantly simplifying complex data flows.
+              Manages &quot;server state&quot; with intelligent caching,
+              background re-fetching, and synchronization, significantly
+              simplifying complex data flows.
             </p>
           </div>
-          
+
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <TanStackQueryExample />
           </div>
-          
-          <div className="space-y-4">          
+
+          <div className="space-y-4">
             <div>
               <h4 className="font-medium mb-1">Installation & Dependencies:</h4>
               <CodeBlock
@@ -466,9 +488,11 @@ interface Todo {
 }`}
               />
             </div>
-            
+
             <div>
-              <h4 className="font-medium mb-1">Setup QueryProvider with DevTools:</h4>
+              <h4 className="font-medium mb-1">
+                Setup QueryProvider with DevTools:
+              </h4>
               <CodeBlock
                 language="jsx"
                 code={`"use client"
@@ -504,7 +528,7 @@ export function QueryProvider({ children }) {
 }`}
               />
             </div>
-            
+
             <div>
               <h4 className="font-medium mb-1">Using in Layout/App:</h4>
               <CodeBlock
@@ -526,7 +550,7 @@ export default function RootLayout({ children }) {
 }`}
               />
             </div>
-            
+
             <div>
               <h4 className="font-medium mb-1">Component Usage:</h4>
               <CodeBlock
@@ -597,7 +621,7 @@ function TodoList() {
 }`}
               />
             </div>
-            
+
             <div>
               <h4 className="font-medium mb-1">Mutations with useMutation:</h4>
               <CodeBlock
@@ -765,23 +789,21 @@ function TodoMutationExample() {
 }`}
               />
             </div>
-
           </div>
         </TabsContent>
       </Tabs>
 
-
-
-      <KeyDifferences 
+      <KeyDifferences
         title="Code Differences You'll Actually Write"
         differences={[
           {
-            title: "Fetch API: Manual State Management",
-            description: "Native browser API requiring manual handling of loading, errors, and caching",
-            badges: ["Native", "No dependencies", "Manual control"],
+            title: 'Fetch API: Manual State Management',
+            description:
+              'Native browser API requiring manual handling of loading, errors, and caching',
+            badges: ['Native', 'No dependencies', 'Manual control'],
             codeExamples: [
               {
-                label: "Basic Data Fetching",
+                label: 'Basic Data Fetching',
                 code: `const [todos, setTodos] = useState([])
 const [loading, setLoading] = useState(false)
 const [error, setError] = useState(null)
@@ -799,10 +821,10 @@ const fetchTodos = async () => {
   } finally {
     setLoading(false)
   }
-}`
+}`,
               },
               {
-                label: "Creating Data (Mutations)",
+                label: 'Creating Data (Mutations)',
                 code: `const createTodo = async (newTodo) => {
   setMutationLoading(prev => ({ ...prev, create: true }))
   try {
@@ -819,24 +841,25 @@ const fetchTodos = async () => {
   } finally {
     setMutationLoading(prev => ({ ...prev, create: false }))
   }
-}`
-              }
+}`,
+              },
             ],
             considerations: [
-              "You want zero dependencies and native browser support",
-              "Building simple applications with basic data needs",
-              "You prefer manual control over caching and state",
-              "Working with modern browsers only",
-              "Team is comfortable with manual error handling and loading states"
-            ]
+              'You want zero dependencies and native browser support',
+              'Building simple applications with basic data needs',
+              'You prefer manual control over caching and state',
+              'Working with modern browsers only',
+              'Team is comfortable with manual error handling and loading states',
+            ],
           },
           {
-            title: "Axios: Enhanced HTTP Client",
-            description: "Feature-rich HTTP client with interceptors, automatic transforms, and better error handling",
-            badges: ["Interceptors", "Auto-transforms", "Battle-tested"],
+            title: 'Axios: Enhanced HTTP Client',
+            description:
+              'Feature-rich HTTP client with interceptors, automatic transforms, and better error handling',
+            badges: ['Interceptors', 'Auto-transforms', 'Battle-tested'],
             codeExamples: [
               {
-                label: "Setup with Interceptors",
+                label: 'Setup with Interceptors',
                 code: `import axios from 'axios'
 
 // Global setup
@@ -856,10 +879,10 @@ axios.interceptors.response.use(
     }
     return Promise.reject(error)
   }
-)`
+)`,
               },
               {
-                label: "Simplified Data Fetching",
+                label: 'Simplified Data Fetching',
                 code: `const [todos, setTodos] = useState([])
 const [loading, setLoading] = useState(false)
 
@@ -876,10 +899,10 @@ const fetchTodos = async () => {
   } finally {
     setLoading(false)
   }
-}`
+}`,
               },
               {
-                label: "CRUD Operations",
+                label: 'CRUD Operations',
                 code: `// Create
 const { data } = await axios.post('/api/todos', newTodo)
 
@@ -890,24 +913,30 @@ const { data } = await axios.put(\`/api/todos/\${id}\`, updates)
 const { data } = await axios.patch(\`/api/todos/\${id}\`, { completed: true })
 
 // Delete
-await axios.delete(\`/api/todos/\${id}\`)`
-              }
+await axios.delete(\`/api/todos/\${id}\`)`,
+              },
             ],
             considerations: [
-              "You need advanced features like request/response interceptors",
-              "Working with complex API authentication flows",
-              "You want automatic request/response transformations",
-              "Team prefers a familiar, established library for CRUD operations",
-              "Better error handling and debugging capabilities are important"
-            ]
+              'You need advanced features like request/response interceptors',
+              'Working with complex API authentication flows',
+              'You want automatic request/response transformations',
+              'Team prefers a familiar, established library for CRUD operations',
+              'Better error handling and debugging capabilities are important',
+            ],
           },
           {
-            title: "TanStack Query: Smart Data Management",
-            description: "Intelligent caching, background updates, optimistic mutations, and automatic state management",
-            badges: ["Smart caching", "Optimistic updates", "Auto-sync", "DevTools"],
+            title: 'TanStack Query: Smart Data Management',
+            description:
+              'Intelligent caching, background updates, optimistic mutations, and automatic state management',
+            badges: [
+              'Smart caching',
+              'Optimistic updates',
+              'Auto-sync',
+              'DevTools',
+            ],
             codeExamples: [
               {
-                label: "Provider Setup",
+                label: 'Provider Setup',
                 code: `import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
@@ -927,10 +956,10 @@ function App() {
       <ReactQueryDevtools />
     </QueryClientProvider>
   )
-}`
+}`,
               },
               {
-                label: "Automatic Data Fetching",
+                label: 'Automatic Data Fetching',
                 code: `import { useQuery } from '@tanstack/react-query'
 
 function TodoList() {
@@ -952,10 +981,10 @@ function TodoList() {
   if (error) return <div>Error: {error.message}</div>
   
   return <div>{/* Render todos */}</div>
-}`
+}`,
               },
               {
-                label: "Optimistic Mutations",
+                label: 'Optimistic Mutations',
                 code: `import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const queryClient = useQueryClient()
@@ -991,18 +1020,18 @@ const createMutation = useMutation({
       queryClient.setQueryData(['todos'], context.previousTodos)
     }
   }
-})`
-              }
+})`,
+              },
             ],
             considerations: [
-              "You need sophisticated caching and background updates",
-              "Building data-heavy applications with frequent mutations",
-              "Real-time synchronization and optimistic updates are important",
-              "You want built-in loading states, error handling, and rollback logic",
-              "Developer experience with automatic cache invalidation matters",
-              "Complex data dependencies and server state management are required"
-            ]
-          }
+              'You need sophisticated caching and background updates',
+              'Building data-heavy applications with frequent mutations',
+              'Real-time synchronization and optimistic updates are important',
+              'You want built-in loading states, error handling, and rollback logic',
+              'Developer experience with automatic cache invalidation matters',
+              'Complex data dependencies and server state management are required',
+            ],
+          },
         ]}
       />
 
@@ -1015,5 +1044,5 @@ const createMutation = useMutation({
         </Button>
       </div>
     </div>
-  )
+  );
 }

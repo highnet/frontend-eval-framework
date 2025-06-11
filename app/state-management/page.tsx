@@ -1,70 +1,75 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CodeBlock } from "@/components/code-block"
-import { KeyDifferences } from "@/components/key-differences"
-import { ContextApiExample } from "@/components/examples/context-api-example"
-import { ReduxExample } from "@/components/examples/redux-example"
-import { ZustandExample } from "@/components/examples/zustand-example"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CodeBlock } from '@/components/code-block';
+import { KeyDifferences } from '@/components/key-differences';
+import { ContextApiExample } from '@/components/examples/context-api-example';
+import { ReduxExample } from '@/components/examples/redux-example';
+import { ZustandExample } from '@/components/examples/zustand-example';
 
 export default function StateManagementPage() {
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold tracking-tight mb-6">State Management</h1>
-      
+      <h1 className="text-3xl font-bold tracking-tight mb-6">
+        State Management
+      </h1>
       <p className="mb-4">
-        This section discusses how you will manage application-wide state that is shared across many components.
+        This section discusses how you will manage application-wide state that
+        is shared across many components.
       </p>
-      
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
         <p>
-          Centralizing and managing data that needs to be accessible by multiple components, 
-          often across different parts of the component tree, ensuring consistency and reactivity.
+          Centralizing and managing data that needs to be accessible by multiple
+          components, often across different parts of the component tree,
+          ensuring consistency and reactivity.
         </p>
       </div>
-      
       <Tabs defaultValue="context" className="mb-8">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="context">Context API</TabsTrigger>
           <TabsTrigger value="redux">Redux Toolkit</TabsTrigger>
           <TabsTrigger value="zustand">Zustand</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="context" className="space-y-4 mt-4">
+          {' '}
           <h3 className="text-lg font-medium">Context API (React)</h3>
           <p>
-            React's built-in way to pass data through the component tree without having to pass props 
-            down manually at every level.
+            React&apos;s built-in way to pass data through the component tree
+            without having to pass props down manually at every level.
           </p>
           <p className="mb-2">
-            <a 
-              href="https://react.dev/learn/passing-props-with-context" 
-              target="_blank" 
+            <a
+              href="https://react.dev/learn/passing-props-with-context"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
               React Docs - Context
             </a>
-          </p>          <div className="mb-4">
+          </p>{' '}
+          <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Good for small to medium-sized applications or for less frequently updated global state. 
-              Can lead to re-renders for consuming components if not optimized.
+              Good for small to medium-sized applications or for less frequently
+              updated global state. Can lead to re-renders for consuming
+              components if not optimized.
             </p>
           </div>
-          
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <ContextApiExample />
           </div>
-            <div className="space-y-4">
+          <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">TypeScript Setup & Context Creation:</h4>
-              <CodeBlock 
-                language="typescript" 
+              <h4 className="font-medium mb-1">
+                TypeScript Setup & Context Creation:
+              </h4>
+              <CodeBlock
+                language="typescript"
                 code={`"use client"
 
 import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react'
@@ -93,13 +98,13 @@ const useTodoContext = () => {
     throw new Error('useTodoContext must be used within a TodoProvider')
   }
   return context
-}`} 
+}`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Provider Implementation:</h4>
-              <CodeBlock 
-                language="tsx" 
+              <CodeBlock
+                language="tsx"
                 code={`interface TodoProviderProps {
   children: ReactNode
 }
@@ -144,13 +149,15 @@ function TodoProvider({ children }: TodoProviderProps) {
       {children}
     </TodoContext.Provider>
   )
-}`} 
+}`}
               />
             </div>
-              <div>
-              <h4 className="font-medium mb-1">Consuming Context in Components:</h4>
-              <CodeBlock 
-                language="tsx" 
+            <div>
+              <h4 className="font-medium mb-1">
+                Consuming Context in Components:
+              </h4>
+              <CodeBlock
+                language="tsx"
                 code={`// Todo item component
 function TodoItem({ todo }: { todo: Todo }) {
   const { toggleTodo, deleteTodo } = useTodoContext()
@@ -227,66 +234,70 @@ export function App() {
       <TodoList />
     </TodoProvider>
   )
-}`} 
+}`}
               />
             </div>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="redux" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Redux Toolkit</h3>
           <p>
-            A predictable state container for JavaScript apps. Redux Toolkit is the official, opinionated, 
-            batteries-included toolset for efficient Redux development.
+            A predictable state container for JavaScript apps. Redux Toolkit is
+            the official, opinionated, batteries-included toolset for efficient
+            Redux development.
           </p>
           <p className="mb-2">
-            <a 
-              href="https://redux.js.org/" 
-              target="_blank" 
+            <a
+              href="https://redux.js.org/"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
               Redux Official Documentation
             </a>
-            {" | "}
-            <a 
-              href="https://redux-toolkit.js.org/" 
-              target="_blank" 
+            {' | '}
+            <a
+              href="https://redux-toolkit.js.org/"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
               Redux Toolkit Official Documentation
             </a>
-          </p>          <div className="mb-4">
+          </p>{' '}
+          <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              Provides a centralized store for global state, with a strict unidirectional data flow. 
-              Best for complex applications with large and frequently changing state. Redux Toolkit simplifies boilerplate.
+              Provides a centralized store for global state, with a strict
+              unidirectional data flow. Best for complex applications with large
+              and frequently changing state. Redux Toolkit simplifies
+              boilerplate.
             </p>
           </div>
-          
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <ReduxExample />
           </div>
-          
           <div className="space-y-4">
             <div>
               <h4 className="font-medium mb-1">Installation & Store Setup:</h4>
-              <CodeBlock 
-                language="bash" 
+              <CodeBlock
+                language="bash"
                 code={`# Install Redux Toolkit and React Redux
 npm install @reduxjs/toolkit react-redux
 # or
 pnpm add @reduxjs/toolkit react-redux
 
-# TypeScript types are included with these packages`} 
+# TypeScript types are included with these packages`}
               />
             </div>
-              <div>
-              <h4 className="font-medium mb-1">Creating Slices with Redux Toolkit:</h4>
-              <CodeBlock 
-                language="typescript" 
+            <div>
+              <h4 className="font-medium mb-1">
+                Creating Slices with Redux Toolkit:
+              </h4>
+              <CodeBlock
+                language="typescript"
                 code={`// store/todoSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
@@ -337,13 +348,13 @@ const todoSlice = createSlice({
 export const { addTodo, toggleTodo, deleteTodo } = todoSlice.actions
 
 // Export reducer
-export default todoSlice.reducer`} 
+export default todoSlice.reducer`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Store Configuration:</h4>
-              <CodeBlock 
-                language="typescript" 
+              <CodeBlock
+                language="typescript"
                 code={`// store/index.ts
 import { configureStore } from '@reduxjs/toolkit'
 import todoReducer from './todoSlice'
@@ -364,13 +375,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector`} 
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Provider Setup:</h4>
-              <CodeBlock 
-                language="tsx" 
+              <CodeBlock
+                language="tsx"
                 code={`// app/layout.tsx or App.tsx
 import { Provider } from 'react-redux'
 import { store } from './store'
@@ -398,13 +409,13 @@ function App() {
       <TodoApp />
     </Provider>
   )
-}`} 
+}`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Using Redux in Components:</h4>
-              <CodeBlock 
-                language="tsx" 
+              <CodeBlock
+                language="tsx"
                 code={`// components/TodoItem.tsx
 import { useAppSelector, useAppDispatch } from '../store'
 import { toggleTodo, deleteTodo } from '../store/todoSlice'
@@ -487,56 +498,57 @@ function AddTodo() {
       </button>
     </form>
   )
-}`} 
+}`}
               />
             </div>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="zustand" className="space-y-4 mt-4">
           <h3 className="text-lg font-medium">Zustand</h3>
           <p>
-            A small, fast, and scalable bear-necessities state-management solution for React.
+            A small, fast, and scalable bear-necessities state-management
+            solution for React.
           </p>
           <p className="mb-2">
-            <a 
-              href="https://github.com/pmndrs/zustand" 
-              target="_blank" 
+            <a
+              href="https://github.com/pmndrs/zustand"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
               Zustand GitHub Repository
             </a>
-          </p>          <div className="mb-4">
+          </p>{' '}
+          <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
-              A lightweight and flexible alternative, offering a simplified API inspired by Redux, 
-              but with less boilerplate and often preferred for its ease of use and performance for mid-sized applications.
+              A lightweight and flexible alternative, offering a simplified API
+              inspired by Redux, but with less boilerplate and often preferred
+              for its ease of use and performance for mid-sized applications.
             </p>
           </div>
-          
           <div className="mb-6">
             <h4 className="font-medium mb-3">Interactive Demo:</h4>
             <ZustandExample />
           </div>
-          
           <div className="space-y-4">
             <div>
               <h4 className="font-medium mb-1">Installation & Basic Store:</h4>
-              <CodeBlock 
-                language="bash" 
+              <CodeBlock
+                language="bash"
                 code={`# Install Zustand
 npm install zustand
 # or
 pnpm add zustand
 
-# TypeScript types are included`} 
+# TypeScript types are included`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Creating a Zustand Store:</h4>
-              <CodeBlock 
-                language="typescript" 
+              <CodeBlock
+                language="typescript"
                 code={`import { create } from 'zustand'
 
 interface Todo {
@@ -589,32 +601,30 @@ const useTodoStore = create<TodoStore>((set) => ({
   }
 }))
 
-export default useTodoStore`} 
+export default useTodoStore`}
               />
             </div>
-              <div>
-              <h4 className="font-medium mb-1">Advanced Store with Middleware:</h4>
-              <CodeBlock 
-                language="typescript" 
+            <div>
+              <h4 className="font-medium mb-1">
+                Advanced Store with Middleware:
+              </h4>
+              <CodeBlock
+                language="typescript"
                 code={`import { create } from 'zustand'
 import { subscribeWithSelector, devtools, persist } from 'zustand/middleware'
 
 interface TodoStore {
   todos: Todo[]
-  theme: 'light' | 'dark'
   addTodo: (text: string) => void
   toggleTodo: (id: number) => void
   deleteTodo: (id: number) => void
-  toggleTheme: () => void
 }
 
 // Store with multiple middleware for persistence and devtools
 const useTodoStore = create<TodoStore>()(
   devtools(
-    persist(
-      subscribeWithSelector((set, get) => ({
+    persist(      subscribeWithSelector((set, get) => ({
         todos: [],
-        theme: 'light',
         
         addTodo: (text: string) => {
           set((state) => ({
@@ -637,12 +647,6 @@ const useTodoStore = create<TodoStore>()(
           set((state) => ({
             todos: state.todos.filter(todo => todo.id !== id)
           }), false, 'deleteTodo')
-        },
-        
-        toggleTheme: () => {
-          set((state) => ({
-            theme: state.theme === 'light' ? 'dark' : 'light'
-          }), false, 'toggleTheme')
         }
       })),
       {
@@ -664,13 +668,13 @@ useTodoStore.subscribe(
     equalityFn: Object.is, // Only re-run if array reference changes
     fireImmediately: true,
   }
-)`} 
+)`}
               />
             </div>
-              <div>
+            <div>
               <h4 className="font-medium mb-1">Using Zustand in Components:</h4>
-              <CodeBlock 
-                language="tsx" 
+              <CodeBlock
+                language="tsx"
                 code={`// Basic usage - subscribes to entire store
 function TodoList() {
   const { todos, toggleTodo, deleteTodo } = useTodoStore()
@@ -772,21 +776,23 @@ function TodoApp() {
 // No provider needed - direct usage!
 export default function App() {
   return <TodoApp />
-}`} 
+}`}
               />
             </div>
           </div>
         </TabsContent>
-      </Tabs>      <KeyDifferences 
+      </Tabs>{' '}
+      <KeyDifferences
         title="Code Differences You'll Actually Write"
         differences={[
           {
             title: "Context API: React's Built-in Solution",
-            description: "Native React state sharing mechanism with manual optimization",
-            badges: ["Built-in", "No dependencies", "Manual optimization"],
+            description:
+              'Native React state sharing mechanism with manual optimization',
+            badges: ['Built-in', 'No dependencies', 'Manual optimization'],
             codeExamples: [
               {
-                label: "Context Setup",
+                label: 'Context Setup',
                 code: `// Context creation and provider
 const TodoContext = createContext<TodoContextType | null>(null)
 
@@ -816,10 +822,10 @@ const useTodos = () => {
   const context = useContext(TodoContext)
   if (!context) throw new Error('useTodos must be used within TodoProvider')
   return context
-}`
+}`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `function TodoList() {
   const { todos, toggleTodo, deleteTodo } = useTodos()
   
@@ -847,24 +853,26 @@ function App() {
       <TodoList />
     </TodoProvider>
   )
-}`
-              }
-            ],            considerations: [
-              "You have simple to moderate state sharing needs",
-              "Want to avoid external dependencies",
-              "State updates are not frequent",
-              "Working on smaller applications",
-              "Team prefers staying within React ecosystem",
-              "Need to manually optimize re-renders with useMemo/useCallback"
-            ]
+}`,
+              },
+            ],
+            considerations: [
+              'You have simple to moderate state sharing needs',
+              'Want to avoid external dependencies',
+              'State updates are not frequent',
+              'Working on smaller applications',
+              'Team prefers staying within React ecosystem',
+              'Need to manually optimize re-renders with useMemo/useCallback',
+            ],
           },
           {
-            title: "Redux Toolkit: Predictable State Container",
-            description: "Centralized store with time-travel debugging and predictable updates",
-            badges: ["Predictable", "DevTools", "Mature", "Boilerplate"],
+            title: 'Redux Toolkit: Predictable State Container',
+            description:
+              'Centralized store with time-travel debugging and predictable updates',
+            badges: ['Predictable', 'DevTools', 'Mature', 'Boilerplate'],
             codeExamples: [
               {
-                label: "Store Setup",
+                label: 'Store Setup',
                 code: `// Slice definition
 const todoSlice = createSlice({
   name: 'todos',
@@ -889,10 +897,10 @@ const todoSlice = createSlice({
 const store = configureStore({
   reducer: { todos: todoSlice.reducer },
   devTools: true
-})`
+})`,
               },
               {
-                label: "Component Usage",
+                label: 'Component Usage',
                 code: `function TodoList() {
   const dispatch = useAppDispatch()
   const todos = useAppSelector(state => state.todos.todos)
@@ -923,24 +931,26 @@ function App() {
       <TodoList />
     </Provider>
   )
-}`
-              }
+}`,
+              },
             ],
             considerations: [
-              "Building large, complex applications",
-              "You need predictable state updates and debugging",
-              "Time-travel debugging is valuable for development",
-              "Team has experience with Redux patterns",
-              "You need middleware for async actions (RTK Query)",
-              "Want excellent developer tools and debugging capabilities"
-            ]
+              'Building large, complex applications',
+              'You need predictable state updates and debugging',
+              'Time-travel debugging is valuable for development',
+              'Team has experience with Redux patterns',
+              'You need middleware for async actions (RTK Query)',
+              'Want excellent developer tools and debugging capabilities',
+            ],
           },
           {
-            title: "Zustand: Lightweight & Flexible",
-            description: "Minimal boilerplate with maximum flexibility and great performance",
-            badges: ["Lightweight", "Flexible", "Modern", "Performant"],
-            codeExamples: [              {
-                label: "Store Creation",
+            title: 'Zustand: Lightweight & Flexible',
+            description:
+              'Minimal boilerplate with maximum flexibility and great performance',
+            badges: ['Lightweight', 'Flexible', 'Modern', 'Performant'],
+            codeExamples: [
+              {
+                label: 'Store Creation',
                 code: `// Simple store definition
 const useTodoStore = create<TodoStore>((set, get) => ({
   todos: [],
@@ -977,9 +987,10 @@ const useTodoStore = create<TodoStore>()(
       name: 'todo-storage'
     })
   )
-)`
-              },              {
-                label: "Component Usage",
+)`,
+              },
+              {
+                label: 'Component Usage',
                 code: `function TodoList() {
   // Subscribe to specific parts of store with computed selectors
   const todos = useFilteredTodos() // Custom hook with selector
@@ -1020,21 +1031,20 @@ const useFilteredTodos = () => {
   })
 }
 
-const useAddTodo = () => useTodoStore(state => state.addTodo)`
-              }
+const useAddTodo = () => useTodoStore(state => state.addTodo)`,
+              },
             ],
             considerations: [
-              "You want minimal boilerplate and setup",
-              "Building small to medium-sized applications",
-              "Team values simplicity and developer experience",
-              "You need flexible state patterns",
-              "Performance and bundle size matter",
-              "Want built-in TypeScript support without extra configuration"
-            ]
-          }
+              'You want minimal boilerplate and setup',
+              'Building small to medium-sized applications',
+              'Team values simplicity and developer experience',
+              'You need flexible state patterns',
+              'Performance and bundle size matter',
+              'Want built-in TypeScript support without extra configuration',
+            ],
+          },
         ]}
       />
-      
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
           <Link href="/data-fetching">Previous: Data Fetching</Link>
@@ -1044,5 +1054,5 @@ const useAddTodo = () => useTodoStore(state => state.addTodo)`
         </Button>
       </div>
     </div>
-  )
+  );
 }
