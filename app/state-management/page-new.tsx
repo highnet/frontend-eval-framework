@@ -26,7 +26,7 @@ export default function StateManagementPage() {
       <Tabs defaultValue="context" className="mb-8">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="context">Context API</TabsTrigger>
-          <TabsTrigger value="redux">Redux / Redux Toolkit</TabsTrigger>
+          <TabsTrigger value="redux">Redux Toolkit</TabsTrigger>
           <TabsTrigger value="zustand">Zustand</TabsTrigger>
         </TabsList>
         
@@ -76,7 +76,7 @@ function ThemeToggleButton() {
         </TabsContent>
         
         <TabsContent value="redux" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">Redux / Redux Toolkit</h3>
+          <h3 className="text-lg font-medium">Redux Toolkit</h3>
           <p>
             A predictable state container for JavaScript apps. Redux Toolkit is the official, opinionated, 
             batteries-included toolset for efficient Redux development.
@@ -206,7 +206,7 @@ function Counter() {
             ]
           },
           {
-            title: "Redux / Redux Toolkit",
+            title: "Redux Toolkit",
             description: "Predictable state container with time-travel debugging",
             badges: ["Predictable", "DevTools", "Mature"],
             considerations: [

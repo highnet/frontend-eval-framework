@@ -97,7 +97,7 @@ const evaluationAreas = [
   {
     title: "State Management",
     description: "Managing application-wide state shared across components",
-    options: ["Context API (React)", "Redux / Redux Toolkit", "Zustand"],
+    options: ["Context API (React)", "Redux Toolkit", "Zustand"],
     href: "/state-management",
   },
 ]
