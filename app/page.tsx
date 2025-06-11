@@ -85,13 +85,13 @@ const evaluationAreas = [
   {
     title: "Forms",
     description: "Handling user input, validation, and form state",
-    options: ["Formik with Yup", "React Hook Form with Zod", "WienerMelange Forms"],
+    options: ["Formik with Yup", "React Hook Form with Zod","React Hook Form with Zod and Wiener Melange Styling", "WienerMelange Forms"],
     href: "/forms",
   },
   {
     title: "Data Fetching & Queries",
     description: "How your application requests and manages data from APIs",
-    options: ["Fetch API", "Axios", "React Query / TanStack Query"],
+    options: ["Fetch API", "Axios", "TanStack Query"],
     href: "/data-fetching",
   },
   {

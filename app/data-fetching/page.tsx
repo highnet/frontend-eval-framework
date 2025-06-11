@@ -20,7 +20,7 @@ export default function DataFetchingPage() {
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="fetch">Fetch API</TabsTrigger>
           <TabsTrigger value="axios">Axios</TabsTrigger>
-          <TabsTrigger value="react-query">React Query / TanStack Query</TabsTrigger>
+          <TabsTrigger value="react-query">TanStack Query</TabsTrigger>
         </TabsList>
 
         <TabsContent value="fetch" className="space-y-4 mt-4">
@@ -89,7 +89,7 @@ axios.get('https://api.example.com/data')
         </TabsContent>
 
         <TabsContent value="react-query" className="space-y-4 mt-4">
-          <h3 className="text-lg font-medium">React Query / TanStack Query</h3>
+          <h3 className="text-lg font-medium">TanStack Query</h3>
           <p>
             A powerful data fetching and caching library for React (and other frameworks under TanStack). It handles
             server state, revalidation, optimistic updates, and more.
@@ -164,7 +164,7 @@ function Todos() {
             ]
           },
           {
-            title: "React Query / TanStack Query",
+            title: "TanStack Query",
             description: "Powerful data fetching with caching, sync, and server state management",
             badges: ["Caching", "Real-time sync", "Server state"],
             considerations: [
