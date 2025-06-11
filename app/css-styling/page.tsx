@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function CssStylingPage() {
   return (
@@ -430,6 +431,47 @@ function Card({ title, children, onPrimary, badge }) {
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "Plain CSS",
+            description: "Traditional approach with standard CSS files and string classnames",
+            badges: ["Universal", "No dependencies", "Full control"],
+            considerations: [
+              "You want zero dependencies and full control",
+              "Working with a small team or simple project",
+              "Performance is critical (no extra CSS processing)",
+              "You prefer traditional CSS methodology",
+              "Browser compatibility is a major concern"
+            ]
+          },
+          {
+            title: "SCSS (Sass)",
+            description: "CSS preprocessor with variables, nesting, and advanced features",
+            badges: ["Preprocessor", "Modular", "Developer-friendly"],
+            considerations: [
+              "You need advanced CSS features like variables and mixins",
+              "Working on medium to large projects",
+              "Team prefers organized, nested CSS structure",
+              "You want better maintainability than plain CSS",
+              "Component-based styling is important"
+            ]
+          },
+          {
+            title: "Tailwind CSS",
+            description: "Utility-first framework for rapid UI development",
+            badges: ["Utility-first", "Rapid development", "Consistent design"],
+            considerations: [
+              "You want to build UIs quickly with consistent spacing",
+              "Team values design system constraints",
+              "You prefer component-focused development",
+              "Prototyping speed is important",
+              "You want built-in responsive design utilities"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

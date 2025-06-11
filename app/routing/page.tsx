@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function RoutingPage() {
   return (
@@ -516,6 +517,47 @@ export default function Navbar() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "React Router",
+            description: "Standard routing library with component-based configuration",
+            badges: ["Mature", "Flexible", "Component-based"],
+            considerations: [
+              "Building a traditional SPA with client-side routing",
+              "You need maximum flexibility in route configuration",
+              "Team is already familiar with React Router",
+              "Working with Create React App or Vite",
+              "You prefer declarative, component-based routing"
+            ]
+          },
+          {
+            title: "TanStack Router",
+            description: "Type-safe router with advanced features and validation",
+            badges: ["Type-safe", "Validation", "Modern"],
+            considerations: [
+              "TypeScript safety is a top priority",
+              "You need advanced features like route validation",
+              "Building complex applications with nested routes",
+              "Developer experience and type inference matter",
+              "You want cutting-edge routing capabilities"
+            ]
+          },
+          {
+            title: "Next.js App Router",
+            description: "File-system based routing with server components",
+            badges: ["File-based", "Server components", "Built-in"],
+            considerations: [
+              "You're using Next.js as your framework",
+              "SEO and server-side rendering are important",
+              "You want file-system based route organization",
+              "Building full-stack applications",
+              "You prefer convention over configuration"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

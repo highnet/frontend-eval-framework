@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function CoreFrameworkPage() {
   return (
@@ -299,6 +300,35 @@ my-next-app/
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "Vite + React",
+            description: "Fast, lightweight SPA with minimal setup",
+            badges: ["Client-side", "Manual setup", "Fast dev"],
+            considerations: [
+              "Building simple to medium complexity applications",
+              "You want full control over configuration",
+              "SEO is not a primary concern",
+              "You prefer a lightweight solution",
+              "Team has experience with manual tooling setup"
+            ]
+          },
+          {
+            title: "Next.js",
+            description: "Full-stack framework with built-in optimizations",
+            badges: ["Full-stack", "Convention-based", "Production-ready"],
+            considerations: [
+              "SEO and performance are critical",
+              "You need server-side rendering capabilities",
+              "Building a larger, more complex application",
+              "You want built-in optimization features",
+              "API routes are needed within the same project"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

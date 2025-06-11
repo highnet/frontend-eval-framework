@@ -6,6 +6,7 @@ import { MuiButtonExample } from "@/components/examples/mui-button-example"
 import { BaseButtonExample } from "@/components/examples/base-ui-button-example"
 import { ShadcnButtonExample } from "@/components/examples/shadcn-button-example"
 import { WienerMelangeButtonExample } from "@/components/examples/wiener-melange-button-example"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function UIComponentsPage() {
   return (
@@ -285,6 +286,59 @@ function MyComponent() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "Material UI",
+            description: "Comprehensive component library with Google's Material Design",
+            badges: ["Comprehensive", "Material Design", "Themed"],
+            considerations: [
+              "You want a complete, ready-to-use design system",
+              "Material Design aesthetics fit your project",
+              "You need extensive component variety",
+              "Rapid prototyping is important",
+              "Your team prefers opinionated design choices"
+            ]
+          },
+          {
+            title: "Base UI",
+            description: "Headless components with full styling control",
+            badges: ["Headless", "Unstyled", "Full control"],
+            considerations: [
+              "You need complete control over component appearance",
+              "Building a custom design system from scratch",
+              "Performance and bundle size are critical",
+              "You have strong design requirements",
+              "You prefer starting with unstyled foundations"
+            ]
+          },
+          {
+            title: "Shadcn/ui",
+            description: "Copy-paste components built on Radix with Tailwind CSS",
+            badges: ["Copy-paste", "Tailwind", "Customizable"],
+            considerations: [
+              "You want to own and customize your components",
+              "Using Tailwind CSS for styling",
+              "You prefer copy-paste over npm packages",
+              "Need modern, accessible components",
+              "Want good defaults with customization flexibility"
+            ]
+          },
+          {
+            title: "WienerMelange",
+            description: "Vienna city government's official design system",
+            badges: ["Official", "Government", "Web components"],
+            considerations: [
+              "Building applications for Vienna city government",
+              "Need to comply with official design standards",
+              "Working on municipal digital services",
+              "Framework-agnostic web components are preferred",
+              "Consistency with wien.gv.at is required"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

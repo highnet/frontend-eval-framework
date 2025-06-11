@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
 import { FormikFormExample } from "@/components/examples/formik-form-example"
 import { ReactHookFormExample } from "@/components/examples/react-hook-form-example"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function FormsPage() {
   return (
@@ -313,6 +314,35 @@ export function ReactHookFormExample() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "Formik + Yup",
+            description: "Mature, established form library with object schema validation",
+            badges: ["Mature", "Component-based", "Schema validation"],
+            considerations: [
+              "You prefer a more traditional, component-based approach",
+              "Your team is already familiar with Formik",
+              "You need complex nested form structures",
+              "Object schema validation fits your use case",
+              "You're working on a legacy project already using Formik"
+            ]
+          },
+          {
+            title: "React Hook Form + Zod",
+            description: "Performance-focused with minimal re-renders and TypeScript-first validation",
+            badges: ["Performance", "Minimal re-renders", "TypeScript-first"],
+            considerations: [
+              "Performance is a key concern (large forms)",
+              "You want minimal re-renders and better UX",
+              "Strong TypeScript integration is important",
+              "You prefer a hook-based approach",
+              "Modern, type-safe development is a priority"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>

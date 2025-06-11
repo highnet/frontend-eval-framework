@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block"
+import { KeyDifferences } from "@/components/key-differences"
 
 export default function DataFetchingPage() {
   return (
@@ -135,6 +136,47 @@ function Todos() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <KeyDifferences 
+        differences={[
+          {
+            title: "Fetch API",
+            description: "Native browser API for making HTTP requests",
+            badges: ["Native", "No dependencies", "Modern"],
+            considerations: [
+              "You want zero dependencies and native browser support",
+              "Building simple applications with basic data needs",
+              "You prefer manual control over caching and state",
+              "Working with modern browsers only",
+              "Team is comfortable with manual error handling"
+            ]
+          },
+          {
+            title: "Axios",
+            description: "Popular HTTP client with interceptors and automatic transforms",
+            badges: ["Feature-rich", "Interceptors", "Battle-tested"],
+            considerations: [
+              "You need advanced features like request/response interceptors",
+              "Working with older browsers (needs polyfills)",
+              "Complex API authentication flows are required",
+              "You want automatic request/response transformations",
+              "Team prefers a familiar, established library"
+            ]
+          },
+          {
+            title: "React Query / TanStack Query",
+            description: "Powerful data fetching with caching, sync, and server state management",
+            badges: ["Caching", "Real-time sync", "Server state"],
+            considerations: [
+              "You need sophisticated caching and background updates",
+              "Building data-heavy applications",
+              "Real-time synchronization is important",
+              "You want optimistic updates and offline support",
+              "Developer experience with loading states matters"
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
