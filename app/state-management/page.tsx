@@ -9,6 +9,29 @@ import { ContextApiExample } from '@/components/examples/context-api-example';
 import { ReduxExample } from '@/components/examples/redux-example';
 import { ZustandExample } from '@/components/examples/zustand-example';
 
+// Import all code snippets
+import { contextApiSetup } from './snippets/context-api-setup';
+import { contextApiProvider } from './snippets/context-api-provider';
+import { contextApiConsumer } from './snippets/context-api-consumer';
+import { reduxInstallation } from './snippets/redux-installation';
+import { reduxSliceSetup } from './snippets/redux-slice-setup';
+import { reduxStoreConfig } from './snippets/redux-store-config';
+import { reduxProviderSetup } from './snippets/redux-provider-setup';
+import { reduxComponentUsage } from './snippets/redux-component-usage';
+import { zustandInstallation } from './snippets/zustand-installation';
+import { zustandBasicStore } from './snippets/zustand-basic-store';
+import { zustandAdvancedStore } from './snippets/zustand-advanced-store';
+import { zustandComponentUsage } from './snippets/zustand-component-usage';
+import { contextApiDiffSetup } from './snippets/context-api-diff-setup';
+import { contextApiDiffUsage } from './snippets/context-api-diff-usage';
+import { contextApiDiffWrapper } from './snippets/context-api-diff-wrapper';
+import { reduxDiffSetup } from './snippets/redux-diff-setup';
+import { reduxDiffUsage } from './snippets/redux-diff-usage';
+import { reduxDiffActions } from './snippets/redux-diff-actions';
+import { zustandDiffStore } from './snippets/zustand-diff-store';
+import { zustandDiffUsage } from './snippets/zustand-diff-usage';
+import { zustandDiffNoProvider } from './snippets/zustand-diff-no-provider';
+
 export default function StateManagementPage() {
   return (
     <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
@@ -73,63 +96,25 @@ export default function StateManagementPage() {
             <div>
               <h4 className="font-medium mb-1">
                 TypeScript Setup & Context Creation:
-              </h4>
-              <CodeBlock
-                language="typescript"
-                code={`"use client"
-
-import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react'
-
-// Define your types
-interface Todo {
-  id: number
-  text: string
-  completed: boolean
-}
-
-interface TodoContextType {
-  todos: Todo[]
-  addTodo: (text: string) => void
-  toggleTodo: (id: number) => void
-  deleteTodo: (id: number) => void
-}
-
-// Create Context with null as default
-const TodoContext = createContext<TodoContextType | null>(null)
-
-// Custom hook for consuming context
-const useTodoContext = () => {
-  const context = useContext(TodoContext)
-  if (!context) {
-    throw new Error('useTodoContext must be used within a TodoProvider')
-  }
-  return context
-}`}
-              />
+              </h4>{' '}
+              <CodeBlock language="typescript" code={contextApiSetup} />
             </div>{' '}
             <div>
-              <h4 className="font-medium mb-1">Provider Implementation:</h4>
+              <h4 className="font-medium mb-1">Provider Implementation:</h4>{' '}
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`function TodoProvider({ children }) {
-  const [todos, setTodos] = useState([])
-  const addTodo = (text) => setTodos(prev => [...prev, { id: Date.now(), text }])
-  const value = useMemo(() => ({ todos, addTodo }), [todos])
-  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>`}
+                code={contextApiProvider}
               />
             </div>{' '}
             <div>
               <h4 className="font-medium mb-1">
                 Consuming Context in Components:
-              </h4>
+              </h4>{' '}
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`function TodoList() {
-  const { todos, addTodo } = useTodoContext()
-  return <div>{todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}</div>
-}`}
+                code={contextApiConsumer}
               />
             </div>
           </div>
@@ -176,225 +161,26 @@ const useTodoContext = () => {
           </div>
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">Installation & Store Setup:</h4>
-              <CodeBlock
-                language="bash"
-                code={`# Install Redux Toolkit and React Redux
-npm install @reduxjs/toolkit react-redux
-# or
-pnpm add @reduxjs/toolkit react-redux
-
-# TypeScript types are included with these packages`}
-              />
+              <h4 className="font-medium mb-1">Installation & Store Setup:</h4>{' '}
+              <CodeBlock language="bash" code={reduxInstallation} />
             </div>
             <div>
               <h4 className="font-medium mb-1">
                 Creating Slices with Redux Toolkit:
-              </h4>
-              <CodeBlock
-                language="typescript"
-                code={`// store/todoSlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-interface Todo {
-  id: number
-  text: string
-  completed: boolean
-}
-
-interface TodoState {
-  todos: Todo[]
-}
-
-const initialState: TodoState = {
-  todos: [
-    { id: 1, text: "Learn Redux Toolkit", completed: false },
-    { id: 2, text: "Build a todo app", completed: true },
-    { id: 3, text: "Compare state management", completed: false }
-  ]
-}
-
-const todoSlice = createSlice({
-  name: 'todos',
-  initialState,
-  reducers: {
-    addTodo: (state, action: PayloadAction<string>) => {
-      // Redux Toolkit uses Immer under the hood, so we can "mutate" state
-      const newTodo: Todo = {
-        id: Date.now(),
-        text: action.payload,
-        completed: false
-      }
-      state.todos.unshift(newTodo)
-    },
-    toggleTodo: (state, action: PayloadAction<number>) => {
-      const todo = state.todos.find(todo => todo.id === action.payload)
-      if (todo) {
-        todo.completed = !todo.completed
-      }
-    },
-    deleteTodo: (state, action: PayloadAction<number>) => {
-      state.todos = state.todos.filter(todo => todo.id !== action.payload)
-    }
-  }
-})
-
-// Export actions
-export const { addTodo, toggleTodo, deleteTodo } = todoSlice.actions
-
-// Export reducer
-export default todoSlice.reducer`}
-              />
+              </h4>{' '}
+              <CodeBlock language="typescript" code={reduxSliceSetup} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Store Configuration:</h4>
-              <CodeBlock
-                language="typescript"
-                code={`// store/index.ts
-import { configureStore } from '@reduxjs/toolkit'
-import todoReducer from './todoSlice'
-
-export const store = configureStore({
-  reducer: {
-    todos: todoReducer,
-  },
-  // Redux DevTools are enabled by default in development
-  devTools: process.env.NODE_ENV !== 'production'
-})
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
-// Type-safe hooks for TypeScript
-import { useDispatch, useSelector } from 'react-redux'
-import type { TypedUseSelectorHook } from 'react-redux'
-
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector`}
-              />
+              <h4 className="font-medium mb-1">Store Configuration:</h4>{' '}
+              <CodeBlock language="typescript" code={reduxStoreConfig} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Provider Setup:</h4>
-              <CodeBlock
-                language="tsx"
-                code={`// app/layout.tsx or App.tsx
-import { Provider } from 'react-redux'
-import { store } from './store'
-
-export default function RootLayout({ 
-  children 
-}: { 
-  children: React.ReactNode 
-}) {
-  return (
-    <html>
-      <body>
-        <Provider store={store}>
-          {children}
-        </Provider>
-      </body>
-    </html>
-  )
-}
-
-// Or for a regular React app
-function App() {
-  return (
-    <Provider store={store}>
-      <TodoApp />
-    </Provider>
-  )
-}`}
-              />
+              <h4 className="font-medium mb-1">Provider Setup:</h4>{' '}
+              <CodeBlock language="tsx" code={reduxProviderSetup} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Using Redux in Components:</h4>
-              <CodeBlock
-                language="tsx"
-                code={`// components/TodoItem.tsx
-import { useAppSelector, useAppDispatch } from '../store'
-import { toggleTodo, deleteTodo } from '../store/todoSlice'
-
-interface TodoItemProps {
-  todo: { id: number; text: string; completed: boolean }
-}
-
-function TodoItem({ todo }: TodoItemProps) {
-  const dispatch = useAppDispatch()
-
-  return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border">
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => dispatch(toggleTodo(todo.id))}
-        className="h-4 w-4"
-      />
-      <span className={\`flex-1 \${todo.completed ? 'line-through text-gray-500' : ''}\`}>
-        {todo.text}
-      </span>
-      <button 
-        onClick={() => dispatch(deleteTodo(todo.id))}
-        className="h-8 w-8 p-0 text-red-500"
-      >
-        Delete
-      </button>
-    </div>
-  )
-}
-
-// components/TodoList.tsx
-import { useAppSelector } from '../store'
-
-function TodoList() {
-  const todos = useAppSelector(state => state.todos.todos)
-
-  return (
-    <div className="space-y-2">
-      {todos.map(todo => (
-        <TodoItem key={todo.id} todo={todo} />
-      ))}
-      {todos.length === 0 && (
-        <p className="text-center text-gray-500 py-8">
-          No todos yet. Add one above!
-        </p>
-      )}
-    </div>
-  )
-}
-
-// components/AddTodo.tsx  
-import { useState } from 'react'
-import { useAppDispatch } from '../store'
-import { addTodo } from '../store/todoSlice'
-
-function AddTodo() {
-  const dispatch = useAppDispatch()
-  const [text, setText] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (text.trim()) {
-      dispatch(addTodo(text.trim()))
-      setText('')
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Add a new todo..."
-        className="flex-1 px-3 py-2 border rounded"
-      />
-      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-        Add Todo
-      </button>
-    </form>
-  )
-}`}
-              />
+              <h4 className="font-medium mb-1">Using Redux in Components:</h4>{' '}
+              <CodeBlock language="tsx" code={reduxComponentUsage} />
             </div>
           </div>
         </TabsContent>
@@ -429,250 +215,22 @@ function AddTodo() {
           </div>
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">Installation & Basic Store:</h4>
-              <CodeBlock
-                language="bash"
-                code={`# Install Zustand
-npm install zustand
-# or
-pnpm add zustand
-
-# TypeScript types are included`}
-              />
+              <h4 className="font-medium mb-1">Installation & Basic Store:</h4>{' '}
+              <CodeBlock language="bash" code={zustandInstallation} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Creating a Zustand Store:</h4>
-              <CodeBlock
-                language="typescript"
-                code={`import { create } from 'zustand'
-
-interface Todo {
-  id: number
-  text: string
-  completed: boolean
-}
-
-interface TodoStore {
-  // State
-  todos: Todo[]
-  
-  // Actions
-  addTodo: (text: string) => void
-  toggleTodo: (id: number) => void
-  deleteTodo: (id: number) => void
-}
-
-// Create store with initial data
-const useTodoStore = create<TodoStore>((set) => ({
-  // Initial state
-  todos: [
-    { id: 1, text: "Learn Zustand", completed: false },
-    { id: 2, text: "Build a todo app", completed: true },
-    { id: 3, text: "Compare state management", completed: false }
-  ],
-
-  // Actions
-  addTodo: (text) => {
-    set((state) => ({
-      todos: [
-        { id: Date.now(), text, completed: false },
-        ...state.todos
-      ]
-    }))
-  },
-
-  toggleTodo: (id) => {
-    set((state) => ({
-      todos: state.todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    }))
-  },
-
-  deleteTodo: (id) => {
-    set((state) => ({
-      todos: state.todos.filter(todo => todo.id !== id)
-    }))
-  }
-}))
-
-export default useTodoStore`}
-              />
+              <h4 className="font-medium mb-1">Creating a Zustand Store:</h4>{' '}
+              <CodeBlock language="typescript" code={zustandBasicStore} />
             </div>
             <div>
               <h4 className="font-medium mb-1">
                 Advanced Store with Middleware:
-              </h4>
-              <CodeBlock
-                language="typescript"
-                code={`import { create } from 'zustand'
-import { subscribeWithSelector, devtools, persist } from 'zustand/middleware'
-
-interface TodoStore {
-  todos: Todo[]
-  addTodo: (text: string) => void
-  toggleTodo: (id: number) => void
-  deleteTodo: (id: number) => void
-}
-
-// Store with multiple middleware for persistence and devtools
-const useTodoStore = create<TodoStore>()(
-  devtools(
-    persist(      subscribeWithSelector((set, get) => ({
-        todos: [],
-        
-        addTodo: (text: string) => {
-          set((state) => ({
-            todos: [
-              { id: Date.now(), text, completed: false },
-              ...state.todos
-            ]
-          }), false, 'addTodo') // Third parameter is action name for devtools
-        },
-        
-        toggleTodo: (id: number) => {
-          set((state) => ({
-            todos: state.todos.map(todo =>
-              todo.id === id ? { ...todo, completed: !todo.completed } : todo
-            )
-          }), false, 'toggleTodo')
-        },
-        
-        deleteTodo: (id: number) => {
-          set((state) => ({
-            todos: state.todos.filter(todo => todo.id !== id)
-          }), false, 'deleteTodo')
-        }
-      })),
-      {
-        name: 'todo-storage', // Unique name for localStorage
-        partialize: (state) => ({ todos: state.todos }), // Only persist todos
-      }
-    ),
-    {
-      name: 'todo-store', // Name for Redux DevTools
-    }
-  )
-)
-
-// Subscribe to specific state changes
-useTodoStore.subscribe(
-  (state) => state.todos,
-  (todos) => console.log('Todos updated:', todos),
-  {
-    equalityFn: Object.is, // Only re-run if array reference changes
-    fireImmediately: true,
-  }
-)`}
-              />
+              </h4>{' '}
+              <CodeBlock language="typescript" code={zustandAdvancedStore} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Using Zustand in Components:</h4>
-              <CodeBlock
-                language="tsx"
-                code={`// Basic usage - subscribes to entire store
-function TodoList() {
-  const { todos, toggleTodo, deleteTodo } = useTodoStore()
-  
-  return (
-    <div className="space-y-2">
-      {todos.map(todo => (
-        <div key={todo.id} className="flex items-center gap-3 p-3 rounded-lg border">
-          <input 
-            type="checkbox" 
-            checked={todo.completed}
-            onChange={() => toggleTodo(todo.id)}
-            className="h-4 w-4"
-          />
-          <span className={\`flex-1 \${todo.completed ? 'line-through text-gray-500' : ''}\`}>
-            {todo.text}
-          </span>
-          <button 
-            onClick={() => deleteTodo(todo.id)}
-            className="h-8 w-8 p-0 text-red-500"
-          >
-            Delete
-          </button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// Optimized usage - subscribe to specific parts only
-function TodoStats() {
-  // Only re-renders when todos array changes
-  const todos = useTodoStore((state) => state.todos)
-  
-  const stats = useMemo(() => ({
-    total: todos.length,
-    completed: todos.filter(t => t.completed).length,
-    active: todos.filter(t => !t.completed).length
-  }), [todos])
-
-  return (
-    <div className="flex gap-2">
-      <span>Total: {stats.total}</span>
-      <span>Completed: {stats.completed}</span>
-      <span>Active: {stats.active}</span>
-    </div>
-  )
-}
-
-// Custom hooks for reusable store logic
-const useAddTodo = () => useTodoStore((state) => state.addTodo)
-const useTodos = () => useTodoStore((state) => state.todos)
-
-function AddTodoForm() {
-  const addTodo = useAddTodo()
-  const [text, setText] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (text.trim()) {
-      addTodo(text.trim())
-      setText('')
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Add a new todo..."
-        className="flex-1 px-3 py-2 border rounded"
-      />
-      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-        Add Todo
-      </button>
-    </form>
-  )
-}
-
-// Using with shallow comparison for object selections
-import { shallow } from 'zustand/shallow'
-
-function TodoApp() {
-  const { todos, addTodo } = useTodoStore(
-    (state) => ({ todos: state.todos, addTodo: state.addTodo }),
-    shallow // Prevents re-renders when other state changes
-  )
-
-  return (
-    <div className="space-y-4">
-      <AddTodoForm />
-      <TodoList />
-      <TodoStats />
-    </div>
-  )
-}
-
-// No provider needed - direct usage!
-export default function App() {
-  return <TodoApp />
-}`}
-              />
+              <h4 className="font-medium mb-1">Using Zustand in Components:</h4>{' '}
+              <CodeBlock language="tsx" code={zustandComponentUsage} />
             </div>
           </div>
         </TabsContent>
@@ -687,27 +245,15 @@ export default function App() {
             codeExamples: [
               {
                 label: 'Context Setup',
-                code: `const TodoContext = createContext(null)
-
-function TodoProvider({ children }) {
-  const [todos, setTodos] = useState([])
-  const value = useMemo(() => ({ todos, addTodo }), [todos])
-  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>`,
+                code: contextApiDiffSetup,
               },
               {
                 label: 'Component Usage',
-                code: `function TodoList() {
-  const { todos, toggleTodo } = useTodos()
-  return <div>{todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}</div>
-}`,
+                code: contextApiDiffUsage,
               },
               {
                 label: 'Provider Wrapper',
-                code: `function App() {
-  return (
-    <TodoProvider>
-      <TodoList />
-    </TodoProvider>`,
+                code: contextApiDiffWrapper,
               },
             ],
           },
@@ -718,27 +264,15 @@ function TodoProvider({ children }) {
             codeExamples: [
               {
                 label: 'Store Setup',
-                code: `const todoSlice = createSlice({
-  name: 'todos',
-  initialState: { todos: [] },
-  reducers: {
-    addTodo: (state, action) => state.todos.unshift(action.payload)`,
+                code: reduxDiffSetup,
               },
               {
                 label: 'Component Usage',
-                code: `function TodoList() {
-  const dispatch = useDispatch()
-  const todos = useSelector(state => state.todos.todos)
-  return <div>{todos.map(todo => <TodoItem key={todo.id} />)}</div>
-}`,
+                code: reduxDiffUsage,
               },
               {
                 label: 'Actions & Store',
-                code: `// Export actions
-export const { addTodo, toggleTodo } = todoSlice.actions
-
-// Configure store
-const store = configureStore({ reducer: { todos: todoSlice.reducer } })`,
+                code: reduxDiffActions,
               },
             ],
           },
@@ -749,26 +283,15 @@ const store = configureStore({ reducer: { todos: todoSlice.reducer } })`,
             codeExamples: [
               {
                 label: 'Store Creation',
-                code: `const useTodoStore = create((set) => ({
-  todos: [],
-  addTodo: (text) => set((state) => ({ 
-    todos: [{ id: Date.now(), text }, ...state.todos]
-  }))`,
+                code: zustandDiffStore,
               },
               {
                 label: 'Component Usage',
-                code: `function TodoList() {
-  const todos = useTodoStore(state => state.todos)
-  const addTodo = useTodoStore(state => state.addTodo)
-  return <div>{todos.map(todo => <TodoItem key={todo.id} />)}</div>
-}`,
+                code: zustandDiffUsage,
               },
               {
                 label: 'No Provider Needed',
-                code: `// Direct usage - no provider wrapper needed
-function App() {
-  return <TodoList />
-}`,
+                code: zustandDiffNoProvider,
               },
             ],
           },
