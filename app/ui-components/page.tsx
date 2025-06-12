@@ -15,6 +15,31 @@ import { ShadcnButtonExample } from '@/components/examples/shadcn-button-example
 import { WienerMelangeButtonExample } from '@/components/examples/wiener-melange-button-example';
 import { KeyDifferences } from '@/components/key-differences';
 
+// Import all code snippets
+import { muiBasicButton } from './snippets/mui-basic-button';
+import { baseUiStyledButton } from './snippets/base-ui-styled-button';
+import { shadcnButtonExample } from './snippets/shadcn-button-example';
+import { shadcnFullButtonComponent } from './snippets/shadcn-full-button-component';
+import { wienerMelangeButton } from './snippets/wiener-melange-button';
+import { muiInstallSetup } from './snippets/mui-install-setup';
+import { muiComponentUsage } from './snippets/mui-component-usage';
+import { baseUiInstallSetup } from './snippets/base-ui-install-setup';
+import { baseUiComponentUsage } from './snippets/base-ui-component-usage';
+import { baseUiCustomStyling } from './snippets/base-ui-custom-styling';
+import { shadcnInstallSetup } from './snippets/shadcn-install-setup';
+import { shadcnComponentUsage } from './snippets/shadcn-component-usage';
+import { wienerMelangeInstallSetup } from './snippets/wiener-melange-install-setup';
+import { wienerMelangeComponentUsage } from './snippets/wiener-melange-component-usage';
+import { wienerMelangeReactIntegration } from './snippets/wiener-melange-react-integration';
+import { muiGlobalThemeOverride } from './snippets/mui-global-theme-override';
+import { muiOneOffCustomization } from './snippets/mui-one-off-customization';
+import { baseUiStyledComponents } from './snippets/base-ui-styled-components';
+import { baseUiCssClasses } from './snippets/base-ui-css-classes';
+import { shadcnEditComponentFile } from './snippets/shadcn-edit-component-file';
+import { shadcnTailwindOverride } from './snippets/shadcn-tailwind-override';
+import { wienerMelangeCssCustomProperties } from './snippets/wiener-melange-css-custom-properties';
+import { wienerMelangePredefinedClasses } from './snippets/wiener-melange-predefined-classes';
+
 export default function UIComponentsPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 w-full min-w-0">
@@ -84,18 +109,7 @@ export default function UIComponentsPage() {
 
           <div>
             <h4 className="font-medium mb-1">Code Example (Basic Button):</h4>
-            <CodeBlock
-              language="jsx"
-              code={`import Button from '@mui/material/Button';
-
-function MyComponent() {
-  return (
-    <Button variant="contained" color="primary">
-      Material UI Button
-    </Button>
-  );
-}`}
-            />
+            <CodeBlock language="jsx" code={muiBasicButton} />
           </div>
         </TabsContent>
 
@@ -132,21 +146,7 @@ function MyComponent() {
 
           <div>
             <h4 className="font-medium mb-1">Code Example (Styled Button):</h4>
-            <CodeBlock
-              language="jsx"
-              code={`import { clsx } from 'clsx';
-
-const baseStyles = "inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2";
-const primaryStyles = "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500";
-
-function MyButton() {
-  return (
-    <button className={clsx(baseStyles, primaryStyles)}>
-      Base UI Button
-    </button>
-  );
-}`}
-            />
+            <CodeBlock language="jsx" code={baseUiStyledButton} />
           </div>
         </TabsContent>
 
@@ -187,90 +187,14 @@ function MyButton() {
             <h4 className="font-medium mb-1">
               How the button above was rendered:
             </h4>
-            <CodeBlock
-              language="tsx"
-              code={`// components/examples/shadcn-button-example.tsx
-'use client'
-
-import { Button } from '@/components/ui/button'
-
-export function ShadcnButtonExample() {
-  return (
-    <Button variant="default">
-      Shadcn/ui Button
-    </Button>
-  )
-}`}
-            />
+            <CodeBlock language="tsx" code={shadcnButtonExample} />
           </div>
 
           <div>
             <h4 className="font-medium mb-1">
               Code Example (Full Button Component):
             </h4>
-            <CodeBlock
-              language="tsx"
-              code={`// components/ui/button.tsx
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
-
-export { Button, buttonVariants }
-
-// Usage:
-import { Button } from "@/components/ui/button"
-
-function MyComponent() {
-  return <Button>Shadcn/ui Button</Button>;
-}`}
-            />
+            <CodeBlock language="tsx" code={shadcnFullButtonComponent} />
           </div>
         </TabsContent>
 
@@ -316,12 +240,7 @@ function MyComponent() {
             <h4 className="font-medium mb-1">
               Code Example (Wiener Melange Button):
             </h4>
-            <CodeBlock
-              language="jsx"
-              code={`<wm-button>
-  <a href="#" class="wm-e-button">Wiener Melange Button</a>
-</wm-button>`}
-            />
+            <CodeBlock language="jsx" code={wienerMelangeButton} />
           </div>
         </TabsContent>
       </Tabs>
@@ -336,19 +255,11 @@ function MyComponent() {
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install @mui/material @emotion/react
-
-// Theme setup in layout
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-const theme = createTheme({ /* config */ })`,
+                code: muiInstallSetup,
               },
               {
                 label: 'Component Usage',
-                code: `import { Button, TextField, Card } from '@mui/material'
-
-function LoginForm() {
-  return <Card><TextField label="Email" /><Button>Sign In</Button></Card>
-}`,
+                code: muiComponentUsage,
               },
             ],
           },
@@ -359,26 +270,15 @@ function LoginForm() {
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install @base_ui/react
-
-// No theme setup needed - you control all styling
-import { Button } from '@base_ui/react/Button'`,
+                code: baseUiInstallSetup,
               },
               {
                 label: 'Component Usage',
-                code: `import { Button } from '@base_ui/react/Button'
-
-function LoginForm() {
-  return <Button className="custom-styles">Sign In</Button>
-}`,
+                code: baseUiComponentUsage,
               },
               {
                 label: 'Custom Styling',
-                code: `// Complete control over styling
-const StyledButton = styled(Button)\`
-  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
-  border: 0;
-  border-radius: 3px;`,
+                code: baseUiCustomStyling,
               },
             ],
           },
@@ -389,18 +289,11 @@ const StyledButton = styled(Button)\`
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npx shadcn-ui@latest init
-
-# Copy specific components
-npx shadcn-ui@latest add button input card`,
+                code: shadcnInstallSetup,
               },
               {
                 label: 'Component Usage',
-                code: `import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-
-function LoginForm() {
-  return <><Input placeholder="Email" /><Button>Sign In</Button></>`,
+                code: shadcnComponentUsage,
               },
             ],
           },
@@ -411,26 +304,15 @@ function LoginForm() {
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `<!-- Include via CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@wiener-melange/components"></script>
-
-<!-- Or install via npm -->`,
+                code: wienerMelangeInstallSetup,
               },
               {
                 label: 'Component Usage',
-                code: `<!-- Web components work in any framework -->
-<wm-card class="wm-e-card">
-  <wm-input placeholder="Email"></wm-input>
-  <wm-button class="wm-e-button--primary">Anmelden</wm-button>
-</wm-card>`,
+                code: wienerMelangeComponentUsage,
               },
               {
                 label: 'React Integration',
-                code: `// In React (with proper JSX attributes)
-function LoginForm() {
-  return <wm-card className="wm-e-card">
-    <wm-input placeholder="Email" />
-    <wm-button className="wm-e-button--primary">Anmelden</wm-button>`,
+                code: wienerMelangeReactIntegration,
               },
             ],
           },
@@ -454,37 +336,13 @@ function LoginForm() {
                 <h5 className="font-medium text-sm mb-2">
                   Global Theme Override:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: '8px',
-          textTransform: 'none'
-        }
-      }
-    }
-  }
-})`}
-                />
+                <CodeBlock language="tsx" code={muiGlobalThemeOverride} />
               </div>
               <div>
                 <h5 className="font-medium text-sm mb-2">
                   One-off Customization:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`<Button 
-  sx={{ 
-    backgroundColor: 'red', 
-    '&:hover': { backgroundColor: 'darkred' } 
-  }}
->
-  Custom Button
-</Button>`}
-                />
+                <CodeBlock language="tsx" code={muiOneOffCustomization} />
               </div>
             </CardContent>
           </Card>
@@ -499,36 +357,11 @@ function LoginForm() {
             <CardContent className="space-y-4">
               <div>
                 <h5 className="font-medium text-sm mb-2">Styled Components:</h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`const StyledButton = styled(Button)\`
-  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
-  border: 0;
-  border-radius: 8px;
-  color: white;
-  padding: 12px 24px;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
-\``}
-                />
+                <CodeBlock language="tsx" code={baseUiStyledComponents} />
               </div>
               <div>
                 <h5 className="font-medium text-sm mb-2">CSS Classes:</h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`<Button className="custom-button">
-  Custom Button
-</Button>
-
-/* CSS */
-.custom-button {
-  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
-  border: 0;
-  border-radius: 8px;
-}`}
-                />
+                <CodeBlock language="tsx" code={baseUiCssClasses} />
               </div>
             </CardContent>
           </Card>
@@ -545,31 +378,13 @@ function LoginForm() {
                 <h5 className="font-medium text-sm mb-2">
                   Edit Component File:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// components/ui/button.tsx - Edit directly
-const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg", 
-  {
-    variants: {
-      variant: {
-        default: "bg-red-600 hover:bg-red-700"
-      }
-    }
-  }
-)`}
-                />
+                <CodeBlock language="tsx" code={shadcnEditComponentFile} />
               </div>
               <div>
                 <h5 className="font-medium text-sm mb-2">
                   Tailwind Class Override:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`<Button className="bg-red-600 hover:bg-red-700 rounded-lg">
-  Custom Button
-</Button>`}
-                />
+                <CodeBlock language="tsx" code={shadcnTailwindOverride} />
               </div>
             </CardContent>
           </Card>
@@ -588,13 +403,7 @@ const buttonVariants = cva(
                 </h5>
                 <CodeBlock
                   language="css"
-                  code={`:root {
-  --wm-color-primary: #DC143C;
-  --wm-color-secondary: #B71C1C;
-  --wm-border-radius: 8px;
-}
-
-/* Affects all WM components globally */`}
+                  code={wienerMelangeCssCustomProperties}
                 />
               </div>
               <div>
@@ -603,11 +412,7 @@ const buttonVariants = cva(
                 </h5>
                 <CodeBlock
                   language="tsx"
-                  code={`<wm-button className="wm-e-button wm-e-button--secondary wm-e-button--large">
-  Vienna Style Button
-</wm-button>
-
-<!-- Limited customization - follows city design standards -->`}
+                  code={wienerMelangePredefinedClasses}
                 />
               </div>
             </CardContent>
