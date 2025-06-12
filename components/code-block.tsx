@@ -26,19 +26,14 @@ hljs.registerLanguage('bash', bash);
 interface CodeBlockProps {
   language: string;
   code: string;
-  showLineNumbers?: boolean;
 }
 
 export function CodeBlock({
   language,
   code,
-  showLineNumbers = true,
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
-
-  // Split code into lines for line numbering
-  const lines = code.split('\n');
 
   useEffect(() => {
     if (codeRef.current) {
@@ -60,18 +55,6 @@ export function CodeBlock({
     <div className="relative w-full max-w-full">
       <pre className="rounded-md bg-muted overflow-x-auto max-w-full">
         <div className="flex min-w-0">
-          {showLineNumbers && (
-            <div className="select-none px-2 sm:px-3 py-4 text-muted-foreground text-xs sm:text-sm border-r border-border/50 bg-muted/50 flex-shrink-0">
-              {lines.map((_, index) => (
-                <div
-                  key={index}
-                  className="text-right leading-5 sm:leading-6 whitespace-nowrap"
-                >
-                  {index + 1}
-                </div>
-              ))}
-            </div>
-          )}
           <div className="flex-1 min-w-0 p-2 sm:p-4">
             <code
               ref={codeRef}
