@@ -26,11 +26,26 @@ hljs.registerLanguage('bash', bash);
 interface CodeBlockProps {
   language: string;
   code: string;
+  isShortSnippet?: boolean;
 }
 
-export function CodeBlock({ language, code }: CodeBlockProps) {
+export function CodeBlock({
+  language,
+  code,
+  isShortSnippet = false,
+}: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
+
+  // Validate short snippet line count
+  if (isShortSnippet) {
+    const lines = code.split('\n');
+    if (lines.length > 5) {
+      throw new Error(
+        `Short snippet cannot exceed 5 lines. Current snippet has ${lines.length} lines.`
+      );
+    }
+  }
 
   useEffect(() => {
     if (codeRef.current) {
