@@ -15,6 +15,23 @@ import { FormikFormExample } from '@/components/examples/formik-form-example';
 import { ReactHookFormExample } from '@/components/examples/react-hook-form-example';
 import { KeyDifferences } from '@/components/key-differences';
 
+// Import code snippets
+import { formikBasicSetup } from './snippets/formik-basic-setup';
+import { reactHookFormBasicSetup } from './snippets/react-hook-form-basic-setup';
+import { reactHookFormWienerMelange } from './snippets/react-hook-form-wiener-melange';
+import { formikInstallationSetup } from './snippets/formik-installation-setup';
+import { formikFormImplementation } from './snippets/formik-form-implementation';
+import { formikFieldBinding } from './snippets/formik-field-binding';
+import { reactHookFormInstallationSetup } from './snippets/react-hook-form-installation-setup';
+import { reactHookFormImplementation } from './snippets/react-hook-form-implementation';
+import { reactHookFormAutoWiring } from './snippets/react-hook-form-auto-wiring';
+import { formikStateManagement } from './snippets/formik-state-management';
+import { reactHookFormStateManagement } from './snippets/react-hook-form-state-management';
+import { yupSchemaExample } from './snippets/yup-schema-example';
+import { zodSchemaExample } from './snippets/zod-schema-example';
+import { formikReRenderBehavior } from './snippets/formik-rerender-behavior';
+import { reactHookFormPerformance } from './snippets/react-hook-form-performance';
+
 export default function FormsPage() {
   return (
     <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
@@ -86,11 +103,7 @@ export default function FormsPage() {
             <CodeBlock
               language="tsx"
               isShortSnippet={true}
-              code={`npm install formik yup
-// Setup with validation schema
-const formik = useFormik({
-  initialValues: { name: '', message: '' },
-  validationSchema: Yup.object({ name: Yup.string().required() })`}
+              code={formikBasicSetup}
             />
           </div>
         </TabsContent>
@@ -132,11 +145,7 @@ const formik = useFormik({
             <CodeBlock
               language="tsx"
               isShortSnippet={true}
-              code={`npm install react-hook-form @hookform/resolvers zod
-// Schema-first validation with type inference
-const schema = z.object({ name: z.string().min(2) })
-const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) })
-const onSubmit = (data) => console.log(data)`}
+              code={reactHookFormBasicSetup}
             />
           </div>
         </TabsContent>
@@ -167,11 +176,7 @@ const onSubmit = (data) => console.log(data)`}
             <CodeBlock
               language="tsx"
               isShortSnippet={true}
-              code={`import { useForm, Controller } from "react-hook-form"
-// Use Controller for custom web components
-<Controller name="email" control={control}
-  render={({ field }) => <wm-input {...field} />}
-/>`}
+              code={reactHookFormWienerMelange}
             />
           </div>
         </TabsContent>
@@ -211,28 +216,15 @@ const onSubmit = (data) => console.log(data)`}
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install formik yup
-
-const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(6, 'Too short').required('Required')
-})`,
+                code: formikInstallationSetup,
               },
               {
                 label: 'Form Implementation',
-                code: `const formik = useFormik({
-  initialValues: { email: '', password: '' },
-  validationSchema,
-  onSubmit: (values) => console.log(values)
-})`,
+                code: formikFormImplementation,
               },
               {
                 label: 'Field Binding',
-                code: `<input
-  name="email"
-  onChange={formik.handleChange}
-  value={formik.values.email}
-/>`,
+                code: formikFieldBinding,
               },
             ],
           },
@@ -243,27 +235,15 @@ const validationSchema = Yup.object({
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install react-hook-form @hookform/resolvers zod
-
-const schema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z.string().min(6, 'Password too short')
-})`,
+                code: reactHookFormInstallationSetup,
               },
               {
                 label: 'Form Implementation',
-                code: `const { register, handleSubmit, formState: { errors } } = useForm({
-  resolver: zodResolver(schema)
-})
-
-const onSubmit = (data) => console.log(data)`,
+                code: reactHookFormImplementation,
               },
               {
                 label: 'Auto-Wiring Fields',
-                code: `<input {...register('email')} type="email" />
-{errors.email && <div>{errors.email.message}</div>}
-
-<button type="submit">Submit</button>`,
+                code: reactHookFormAutoWiring,
               },
             ],
           },
@@ -286,11 +266,7 @@ const onSubmit = (data) => console.log(data)`,
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`// All form state in formik object
-const formik = useFormik({
-  initialValues: { name: '', email: '', message: '' },
-  onSubmit: (values) => { /* submit */ }
-})`}
+                code={formikStateManagement}
               />
             </CardContent>
           </Card>
@@ -308,11 +284,7 @@ const formik = useFormik({
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`// Hooks for different aspects
-const { register, handleSubmit, formState } = useForm()
-
-// Auto-registration with spread operator
-<input {...register('email')} />`}
+                code={reactHookFormStateManagement}
               />
             </CardContent>
           </Card>
@@ -335,11 +307,7 @@ const { register, handleSubmit, formState } = useForm()
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`import * as Yup from 'yup'
-// Object-based schema definition  
-const schema = Yup.object({
-  email: Yup.string().email().required(),
-  password: Yup.string().min(8).required()`}
+                code={yupSchemaExample}
               />
             </CardContent>
           </Card>
@@ -355,11 +323,7 @@ const schema = Yup.object({
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`import { z } from 'zod'
-// TypeScript-first schema definition
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8)`}
+                code={zodSchemaExample}
               />
             </CardContent>
           </Card>
@@ -384,11 +348,7 @@ const schema = z.object({
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`// Formik re-renders entire component on each change
-function MyForm() {
-  const formik = useFormik({ initialValues: { name: '' } })
-  return <input value={formik.values.name} onChange={formik.handleChange} />
-}`}
+                code={formikReRenderBehavior}
               />
             </CardContent>
           </Card>
@@ -406,11 +366,7 @@ function MyForm() {
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
-                code={`// React Hook Form uses uncontrolled inputs
-function MyForm() {
-  const { register } = useForm()
-  return <input {...register('email')} /> // No re-renders
-}`}
+                code={reactHookFormPerformance}
               />
             </CardContent>
           </Card>
