@@ -28,10 +28,7 @@ interface CodeBlockProps {
   code: string;
 }
 
-export function CodeBlock({
-  language,
-  code,
-}: CodeBlockProps) {
+export function CodeBlock({ language, code }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
 
