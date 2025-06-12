@@ -43,9 +43,9 @@ export function CodeBlock({
   // Validate short snippet line count
   if (isShortSnippet) {
     const lines = code.split('\n');
-    if (lines.length > 5) {
+    if (lines.length > 10) {
       throw new Error(
-        `Short snippet cannot exceed 5 lines. Current snippet has ${lines.length} lines. ${code}`
+        `Short snippet cannot exceed 10 lines. Current snippet has ${lines.length} lines. ${code}`
       );
     }
   }
