@@ -9,7 +9,7 @@ import { TanStackQueryExample } from '@/components/examples/tanstack-query-examp
 
 export default function DataFetchingPage() {
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         Data Fetching & Queries
       </h1>
@@ -95,44 +95,11 @@ const [successMessage, setSuccessMessage] = useState<string | null>(null)`}
               <h4 className="font-medium mb-1">Fetching Data:</h4>
               <CodeBlock
                 language="javascript"
+                isShortSnippet={true}
                 code={`// Basic fetch example
-fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-
-// Async/await with error handling
-const fetchTodos = async () => {
-  try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
-    if (!response.ok) {
-      throw new Error('Failed to fetch todos')
-    }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.error('Error:', error)
-    throw error // Re-throw to handle in calling code
-  }
-}
-
-// With loading states in React component
-const [todos, setTodos] = useState([])
-const [loading, setLoading] = useState(false)
-const [error, setError] = useState(null)
-
-const loadTodos = async () => {
-  setLoading(true)
-  setError(null)
-  try {
-    const data = await fetchTodos()
-    setTodos(data)
-  } catch (err) {
-    setError(err.message)
-  } finally {
-    setLoading(false)
-  }
-}`}
+const response = await fetch('/api/todos')
+const data = await response.json()
+// Manual error handling and loading states required`}
               />
             </div>
 
@@ -812,42 +779,25 @@ function TodoMutationExample() {
                 label: 'Basic Data Fetching',
                 code: `const [todos, setTodos] = useState([])
 const [loading, setLoading] = useState(false)
-const [error, setError] = useState(null)
-
 const fetchTodos = async () => {
   setLoading(true)
-  setError(null)
-  try {
-    const response = await fetch('/api/todos')
-    if (!response.ok) throw new Error('Failed to fetch')
-    const data = await response.json()
-    setTodos(data)
-  } catch (err) {
-    setError(err.message)
-  } finally {
-    setLoading(false)
-  }
-}`,
+  const response = await fetch('/api/todos')`,
               },
               {
                 label: 'Creating Data (Mutations)',
                 code: `const createTodo = async (newTodo) => {
-  setMutationLoading(prev => ({ ...prev, create: true }))
-  try {
-    const response = await fetch('/api/todos', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newTodo)
-    })
-    if (!response.ok) throw new Error('Failed to create')
-    const created = await response.json()
-    setTodos(prev => [created, ...prev]) // Manual state update
-  } catch (error) {
-    setError(error.message)
-  } finally {
-    setMutationLoading(prev => ({ ...prev, create: false }))
-  }
-}`,
+  const response = await fetch('/api/todos', {
+    method: 'POST',
+    body: JSON.stringify(newTodo),
+    headers: { 'Content-Type': 'application/json' }`,
+              },
+              {
+                label: 'Error Handling',
+                code: `try {
+  const response = await fetch('/api/todos')
+  if (!response.ok) throw new Error('Failed')
+  const data = await response.json()
+} catch (error) { console.error(error) }`,
               },
             ],
             considerations: [
@@ -865,60 +815,29 @@ const fetchTodos = async () => {
             badges: ['Interceptors', 'Auto-transforms', 'Battle-tested'],
             codeExamples: [
               {
-                label: 'Setup with Interceptors',
-                code: `import axios from 'axios'
+                label: 'Installation & Setup',
+                code: `npm install axios
 
-// Global setup
+// Global interceptor setup
 axios.interceptors.request.use(config => {
-  const token = localStorage.getItem('authToken')
-  if (token) {
-    config.headers.Authorization = \`Bearer \${token}\`
-  }
+  config.headers.Authorization = \`Bearer \${token}\`
   return config
-})
-
-axios.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response?.status === 401) {
-      window.location.href = '/login'
-    }
-    return Promise.reject(error)
-  }
-)`,
+})`,
               },
               {
                 label: 'Simplified Data Fetching',
-                code: `const [todos, setTodos] = useState([])
-const [loading, setLoading] = useState(false)
+                code: `const { data } = await axios.get('/api/todos')
+setTodos(data) // Automatic JSON parsing
 
-const fetchTodos = async () => {
-  setLoading(true)
-  try {
-    const { data } = await axios.get('/api/todos')
-    setTodos(data) // Automatic JSON parsing
-  } catch (error) {
-    const message = axios.isAxiosError(error) 
-      ? error.response?.data?.message || error.message 
-      : 'Failed to fetch'
-    setError(message)
-  } finally {
-    setLoading(false)
-  }
-}`,
+// Auto error handling with interceptors
+axios.isAxiosError(error) // Built-in error detection`,
               },
               {
                 label: 'CRUD Operations',
-                code: `// Create
+                code: `// All operations return data directly
 const { data } = await axios.post('/api/todos', newTodo)
-
-// Update
 const { data } = await axios.put(\`/api/todos/\${id}\`, updates)
-
-// Partial update
 const { data } = await axios.patch(\`/api/todos/\${id}\`, { completed: true })
-
-// Delete
 await axios.delete(\`/api/todos/\${id}\`)`,
               },
             ],
@@ -942,91 +861,30 @@ await axios.delete(\`/api/todos/\${id}\`)`,
             ],
             codeExamples: [
               {
-                label: 'Provider Setup',
-                code: `import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+                label: 'Installation & Provider',
+                code: `npm install @tanstack/react-query
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000, // 1 minute
-      refetchOnWindowFocus: false,
-    },
-  },
-})
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <YourApp />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  )
-}`,
+<QueryClientProvider client={queryClient}>
+  <App />
+  <ReactQueryDevtools />
+</QueryClientProvider>`,
               },
               {
                 label: 'Automatic Data Fetching',
-                code: `import { useQuery } from '@tanstack/react-query'
-
-function TodoList() {
-  const { 
-    data: todos, 
-    isLoading, 
-    error, 
-    isStale, 
-    refetch 
-  } = useQuery({
-    queryKey: ['todos'],
-    queryFn: () => fetch('/api/todos').then(res => res.json()),
-    staleTime: 30000, // Consider fresh for 30s
-    refetchOnWindowFocus: false,
-  })
-  
-  // No manual loading states needed!
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-  
-  return <div>{/* Render todos */}</div>
-}`,
+                code: `const { data: todos, isLoading, error } = useQuery({
+  queryKey: ['todos'],
+  queryFn: () => fetch('/api/todos').then(res => res.json()),
+  staleTime: 30000, // Smart caching
+})`,
               },
               {
                 label: 'Optimistic Mutations',
-                code: `import { useMutation, useQueryClient } from '@tanstack/react-query'
-
-const queryClient = useQueryClient()
-
-const createMutation = useMutation({
+                code: `const createMutation = useMutation({
   mutationFn: (newTodo) => axios.post('/api/todos', newTodo),
   onMutate: async (newTodo) => {
-    // Cancel outgoing refetches
-    await queryClient.cancelQueries({ queryKey: ['todos'] })
-    
-    // Snapshot previous value
-    const previousTodos = queryClient.getQueryData(['todos'])
-    
-    // Optimistically update
-    const optimisticTodo = { ...newTodo, id: Date.now() }
-    queryClient.setQueryData(['todos'], old => 
-      old ? [optimisticTodo, ...old] : [optimisticTodo]
-    )
-    
-    return { previousTodos, optimisticTodo }
-  },
-  onSuccess: (data, variables, context) => {
-    // Replace optimistic update with real data
-    queryClient.setQueryData(['todos'], old =>
-      old?.map(todo => 
-        todo.id === context?.optimisticTodo.id ? data : todo
-      )
-    )
-  },
-  onError: (err, variables, context) => {
-    // Rollback on error
-    if (context?.previousTodos) {
-      queryClient.setQueryData(['todos'], context.previousTodos)
-    }
-  }
-})`,
+    // Optimistically update UI instantly
+    queryClient.setQueryData(['todos'], old => [newTodo, ...old])
+  }`,
               },
             ],
             considerations: [

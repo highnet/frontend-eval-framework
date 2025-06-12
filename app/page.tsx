@@ -12,8 +12,8 @@ import {
 export default function HomePage() {
   return (
     <div className="mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-5xl font-bold tracking-tight mb-4">
           Frontend Library and Tool Evaluation Framework
         </h1>
         <p className="text-xl text-muted-foreground mb-8">

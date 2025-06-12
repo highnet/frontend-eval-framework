@@ -13,7 +13,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function CoreFrameworkPage() {
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Core Framework</h1>
 
       <p className="mb-4">
@@ -433,15 +433,7 @@ backend/
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}`,
+  return <BrowserRouter>/* routes */</BrowserRouter>`,
               },
               {
                 label: 'API Calls',
@@ -449,9 +441,7 @@ function App() {
 const API_BASE = 'http://localhost:3001/api'
 
 const fetchUsers = async () => {
-  const response = await fetch(\`\${API_BASE}/users\`)
-  return response.json()
-}`,
+  const response = await fetch(\`\${API_BASE}/users\`)`,
               },
               {
                 label: 'SEO Meta Tags',
@@ -459,16 +449,7 @@ const fetchUsers = async () => {
 import { Helmet } from 'react-helmet-async'
 
 function Page() {
-  return (
-    <>
-      <Helmet>
-        <title>Page Title</title>
-        <meta name="description" content="Description" />
-      </Helmet>
-      <div>Content</div>
-    </>
-  )
-}`,
+  return <><Helmet><title>Page Title</title></Helmet>`,
               },
             ],
           },
@@ -483,7 +464,6 @@ function Page() {
 export default function AboutPage() {
   return <div>About page</div>
 }
-
 // Automatically creates /about route`,
               },
               {
@@ -492,22 +472,14 @@ export default function AboutPage() {
 export async function GET() {
   const users = await db.users.findMany()
   return Response.json(users)
-}
-
-// Frontend: fetch('/api/users') - same origin`,
+}`,
               },
               {
                 label: 'Built-in SEO',
                 code: `// app/page.tsx - Type-safe metadata
-import { Metadata } from 'next'
-
 export const metadata: Metadata = {
   title: 'Page Title',
   description: 'Description'
-}
-
-export default function Page() {
-  return <div>Content</div> // Pre-rendered for SEO
 }`,
               },
             ],

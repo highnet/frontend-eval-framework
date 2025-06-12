@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 
 export default function IntroductionPage() {
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         Introduction to Frontend Library and Tool Evaluation
       </h1>

@@ -11,7 +11,7 @@ import { ZustandExample } from '@/components/examples/zustand-example';
 
 export default function StateManagementPage() {
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         State Management
       </h1>
@@ -106,140 +106,29 @@ const useTodoContext = () => {
   return context
 }`}
               />
-            </div>
+            </div>{' '}
             <div>
               <h4 className="font-medium mb-1">Provider Implementation:</h4>
               <CodeBlock
                 language="tsx"
-                code={`interface TodoProviderProps {
-  children: ReactNode
-}
-
-function TodoProvider({ children }: TodoProviderProps) {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, text: "Learn React Context", completed: false },
-    { id: 2, text: "Build a todo app", completed: true },
-    { id: 3, text: "Compare state management", completed: false }
-  ])
-
-  // Wrap actions in useCallback to prevent unnecessary re-renders
-  const addTodo = useCallback((text: string) => {
-    const newTodo: Todo = {
-      id: Date.now(),
-      text,
-      completed: false
-    }
-    setTodos(prev => [newTodo, ...prev])
-  }, [])
-
-  const toggleTodo = useCallback((id: number) => {
-    setTodos(prev => prev.map(todo => 
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
-  }, [])
-
-  const deleteTodo = useCallback((id: number) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
-  }, [])
-
-  // Memoize the context value to prevent unnecessary re-renders
-  const value = useMemo(() => ({
-    todos,
-    addTodo,
-    toggleTodo,
-    deleteTodo
-  }), [todos, addTodo, toggleTodo, deleteTodo])
-
-  return (
-    <TodoContext.Provider value={value}>
-      {children}
-    </TodoContext.Provider>
-  )
-}`}
+                isShortSnippet={true}
+                code={`function TodoProvider({ children }) {
+  const [todos, setTodos] = useState([])
+  const addTodo = (text) => setTodos(prev => [...prev, { id: Date.now(), text }])
+  const value = useMemo(() => ({ todos, addTodo }), [todos])
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>`}
               />
-            </div>
+            </div>{' '}
             <div>
               <h4 className="font-medium mb-1">
                 Consuming Context in Components:
               </h4>
               <CodeBlock
                 language="tsx"
-                code={`// Todo item component
-function TodoItem({ todo }: { todo: Todo }) {
-  const { toggleTodo, deleteTodo } = useTodoContext()
-  
-  return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border">
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => toggleTodo(todo.id)}
-        className="h-4 w-4"
-      />
-      <span className={\`flex-1 \${todo.completed ? 'line-through text-gray-500' : ''}\`}>
-        {todo.text}
-      </span>
-      <button 
-        onClick={() => deleteTodo(todo.id)}
-        className="h-8 w-8 p-0"
-      >
-        Delete
-      </button>
-    </div>
-  )
-}
-
-// Add todo form component
-function AddTodoForm() {
-  const { addTodo } = useTodoContext()
-  const [text, setText] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (text.trim()) {
-      addTodo(text.trim())
-      setText('')
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Add a new todo..."
-        className="flex-1 px-3 py-2 border rounded"
-      />
-      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-        Add
-      </button>
-    </form>
-  )
-}
-
-// Main component that uses the context
-function TodoList() {
-  const { todos } = useTodoContext()
-
-  return (
-    <div className="space-y-4">
-      <AddTodoForm />
-      <div className="space-y-2">
-        {todos.map(todo => (
-          <TodoItem key={todo.id} todo={todo} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// Usage in App - Provider must wrap consuming components
-export function App() {
-  return (
-    <TodoProvider>
-      <TodoList />
-    </TodoProvider>
-  )
+                isShortSnippet={true}
+                code={`function TodoList() {
+  const { todos, addTodo } = useTodoContext()
+  return <div>{todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}</div>
 }`}
               />
             </div>
@@ -799,67 +688,27 @@ export default function App() {
             codeExamples: [
               {
                 label: 'Context Setup',
-                code: `// Context creation and provider
-const TodoContext = createContext<TodoContextType | null>(null)
+                code: `const TodoContext = createContext(null)
 
-function TodoProvider({ children }: { children: ReactNode }) {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, text: "Learn React Context", completed: false }
-  ])
-  
-  const addTodo = useCallback((text: string) => {
-    setTodos(prev => [{ id: Date.now(), text, completed: false }, ...prev])
-  }, [])
-  
-  // Must memoize to prevent unnecessary re-renders
-  const value = useMemo(() => ({
-    todos, addTodo, toggleTodo, deleteTodo
-  }), [todos, addTodo, toggleTodo, deleteTodo])
-  
-  return (
-    <TodoContext.Provider value={value}>
-      {children}
-    </TodoContext.Provider>
-  )
-}
-
-// Custom hook for consuming context
-const useTodos = () => {
-  const context = useContext(TodoContext)
-  if (!context) throw new Error('useTodos must be used within TodoProvider')
-  return context
-}`,
+function TodoProvider({ children }) {
+  const [todos, setTodos] = useState([])
+  const value = useMemo(() => ({ todos, addTodo }), [todos])
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>`,
               },
               {
                 label: 'Component Usage',
                 code: `function TodoList() {
-  const { todos, toggleTodo, deleteTodo } = useTodos()
-  
-  return (
-    <div>
-      {todos.map(todo => (
-        <div key={todo.id}>
-          <input 
-            checked={todo.completed}
-            onChange={() => toggleTodo(todo.id)}
-            type="checkbox" 
-          />
-          <span>{todo.text}</span>
-          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// Must wrap entire app in provider
-function App() {
+  const { todos, toggleTodo } = useTodos()
+  return <div>{todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}</div>
+}`,
+              },
+              {
+                label: 'Provider Wrapper',
+                code: `function App() {
   return (
     <TodoProvider>
       <TodoList />
-    </TodoProvider>
-  )
-}`,
+    </TodoProvider>`,
               },
             ],
             considerations: [
@@ -879,65 +728,27 @@ function App() {
             codeExamples: [
               {
                 label: 'Store Setup',
-                code: `// Slice definition
-const todoSlice = createSlice({
+                code: `const todoSlice = createSlice({
   name: 'todos',
-  initialState: { todos: [], filter: 'all' },
+  initialState: { todos: [] },
   reducers: {
-    addTodo: (state, action: PayloadAction<string>) => {
-      // Immer allows "mutations"
-      state.todos.unshift({
-        id: Date.now(),
-        text: action.payload,
-        completed: false
-      })
-    },
-    toggleTodo: (state, action: PayloadAction<number>) => {
-      const todo = state.todos.find(t => t.id === action.payload)
-      if (todo) todo.completed = !todo.completed
-    }
-  }
-})
-
-// Store configuration
-const store = configureStore({
-  reducer: { todos: todoSlice.reducer },
-  devTools: true
-})`,
+    addTodo: (state, action) => state.todos.unshift(action.payload)`,
               },
               {
                 label: 'Component Usage',
                 code: `function TodoList() {
-  const dispatch = useAppDispatch()
-  const todos = useAppSelector(state => state.todos.todos)
-  
-  return (
-    <div>
-      {todos.map(todo => (
-        <div key={todo.id}>
-          <input 
-            checked={todo.completed}
-            onChange={() => dispatch(toggleTodo(todo.id))}
-            type="checkbox" 
-          />
-          <span>{todo.text}</span>
-          <button onClick={() => dispatch(deleteTodo(todo.id))}>
-            Delete
-          </button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// Provider setup required
-function App() {
-  return (
-    <Provider store={store}>
-      <TodoList />
-    </Provider>
-  )
+  const dispatch = useDispatch()
+  const todos = useSelector(state => state.todos.todos)
+  return <div>{todos.map(todo => <TodoItem key={todo.id} />)}</div>
 }`,
+              },
+              {
+                label: 'Actions & Store',
+                code: `// Export actions
+export const { addTodo, toggleTodo } = todoSlice.actions
+
+// Configure store
+const store = configureStore({ reducer: { todos: todoSlice.reducer } })`,
               },
             ],
             considerations: [
@@ -957,87 +768,26 @@ function App() {
             codeExamples: [
               {
                 label: 'Store Creation',
-                code: `// Simple store definition
-const useTodoStore = create<TodoStore>((set, get) => ({
+                code: `const useTodoStore = create((set) => ({
   todos: [],
-  filter: 'all',
-  
-  // Actions
-  addTodo: (text) => set((state) => ({
-    todos: [{ id: Date.now(), text, completed: false }, ...state.todos]
-  })),
-  
-  toggleTodo: (id) => set((state) => ({
-    todos: state.todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    )
-  })),
-  
-  setFilter: (filter) => set({ filter })
-}))
-
-// Custom hooks for computed values (avoids infinite loops)
-const useFilteredTodos = () => {
-  return useTodoStore((state) => {
-    const { todos, filter } = state
-    return filter === 'all' ? todos : todos.filter(t => 
-      filter === 'completed' ? t.completed : !t.completed
-    )
-  })
-}
-
-// With middleware for persistence and devtools
-const useTodoStore = create<TodoStore>()(
-  devtools(
-    persist((set, get) => ({ /* store definition */ }), {
-      name: 'todo-storage'
-    })
-  )
-)`,
+  addTodo: (text) => set((state) => ({ 
+    todos: [{ id: Date.now(), text }, ...state.todos]
+  }))`,
               },
               {
                 label: 'Component Usage',
                 code: `function TodoList() {
-  // Subscribe to specific parts of store with computed selectors
-  const todos = useFilteredTodos() // Custom hook with selector
-  const toggleTodo = useTodoStore(state => state.toggleTodo)
-  const deleteTodo = useTodoStore(state => state.deleteTodo)
-  
-  return (
-    <div>
-      {todos.map(todo => (
-        <div key={todo.id}>
-          <input 
-            checked={todo.completed}
-            onChange={() => toggleTodo(todo.id)}
-            type="checkbox" 
-          />
-          <span>{todo.text}</span>
-          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// No provider needed - direct usage
+  const todos = useTodoStore(state => state.todos)
+  const addTodo = useTodoStore(state => state.addTodo)
+  return <div>{todos.map(todo => <TodoItem key={todo.id} />)}</div>
+}`,
+              },
+              {
+                label: 'No Provider Needed',
+                code: `// Direct usage - no provider wrapper needed
 function App() {
   return <TodoList />
-}
-
-// Custom hooks for reusability and avoiding infinite loops
-const useFilteredTodos = () => {
-  return useTodoStore((state) => {
-    const { todos, filter } = state
-    switch (filter) {
-      case 'completed': return todos.filter(t => t.completed)
-      case 'active': return todos.filter(t => !t.completed)
-      default: return todos
-    }
-  })
-}
-
-const useAddTodo = () => useTodoStore(state => state.addTodo)`,
+}`,
               },
             ],
             considerations: [

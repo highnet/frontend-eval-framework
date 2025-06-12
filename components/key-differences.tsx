@@ -61,9 +61,11 @@ export function KeyDifferences({
                     <div key={exampleIndex} className="w-full min-w-0">
                       <h5 className="font-medium text-sm mb-2">
                         {example.label}:
-                      </h5>
-                      <div className="w-full min-w-0">
-                        <CodeBlock language="tsx" code={example.code} />
+                      </h5>{' '}                      <div className="w-full min-w-0">
+                        <CodeBlock
+                          language="tsx"
+                          code={example.code}
+                        />
                       </div>
                     </div>
                   ))}

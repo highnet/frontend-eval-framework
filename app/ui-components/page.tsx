@@ -17,7 +17,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function UIComponentsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">
         UI Components & Design System
       </h1>
@@ -337,43 +337,18 @@ function MyComponent() {
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install @mui/material @emotion/react @emotion/styled
+                code: `npm install @mui/material @emotion/react
 
-// Theme setup in layout or _app
+// Theme setup in layout
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-
-const theme = createTheme({
-  palette: {
-    primary: { main: '#1976d2' },
-    secondary: { main: '#dc004e' }
-  }
-})`,
+const theme = createTheme({ /* config */ })`,
               },
               {
                 label: 'Component Usage',
-                code: `import { Button, TextField, Card, CardContent } from '@mui/material'
+                code: `import { Button, TextField, Card } from '@mui/material'
 
 function LoginForm() {
-  return (
-    <Card sx={{ maxWidth: 400, margin: 'auto' }}>
-      <CardContent>
-        <TextField 
-          fullWidth 
-          variant="outlined" 
-          label="Email"
-          margin="normal"
-        />
-        <Button 
-          variant="contained" 
-          color="primary" 
-          fullWidth
-          sx={{ mt: 2 }}
-        >
-          Sign In
-        </Button>
-      </CardContent>
-    </Card>
-  )
+  return <Card><TextField label="Email" /><Button>Sign In</Button></Card>
 }`,
               },
             ],
@@ -388,42 +363,24 @@ function LoginForm() {
                 label: 'Installation & Setup',
                 code: `npm install @base_ui/react
 
-// No theme setup needed - you control all styling`,
+// No theme setup needed - you control all styling
+import { Button } from '@base_ui/react/Button'`,
               },
               {
                 label: 'Component Usage',
                 code: `import { Button } from '@base_ui/react/Button'
 
 function LoginForm() {
-  return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
-      <input 
-        type="email" 
-        placeholder="Email"
-        className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4"
-      />
-      <Button className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-        Sign In
-      </Button>
-    </div>
-  )
+  return <Button className="custom-styles">Sign In</Button>
 }`,
               },
               {
                 label: 'Custom Styling',
                 code: `// Complete control over styling
 const StyledButton = styled(Button)\`
-  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  background: linear-gradient(45deg, #FE6B8B, #FF8E53);
   border: 0;
-  border-radius: 3px;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  
-  &:hover {
-    opacity: 0.8;
-  }
-\``,
+  border-radius: 3px;`,
               },
             ],
           },
@@ -438,32 +395,15 @@ const StyledButton = styled(Button)\`
                 code: `npx shadcn-ui@latest init
 
 # Copy specific components
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add input
-npx shadcn-ui@latest add card`,
+npx shadcn-ui@latest add button input card`,
               },
               {
                 label: 'Component Usage',
                 code: `import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
 
 function LoginForm() {
-  return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardContent className="space-y-4">
-        <Input 
-          type="email" 
-          placeholder="Email"
-          className="w-full"
-        />
-        <Button className="w-full">
-          Sign In
-        </Button>
-      </CardContent>
-    </Card>
-  )
-}`,
+  return <><Input placeholder="Email" /><Button>Sign In</Button></>`,
               },
             ],
           },
@@ -482,44 +422,23 @@ function LoginForm() {
                 code: `<!-- Include via CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@wiener-melange/components"></script>
 
-<!-- Or install via npm -->
-npm install @wiener-melange/components`,
+<!-- Or install via npm -->`,
               },
               {
                 label: 'Component Usage',
                 code: `<!-- Web components work in any framework -->
-<wm-card class="wm-e-card wm-max-width-md wm-margin-auto">
-  <wm-card-content class="wm-e-card__content">
-    <wm-input 
-      type="email" 
-      placeholder="Email"
-      class="wm-e-input wm-full-width wm-margin-bottom-md"
-    ></wm-input>
-    <wm-button class="wm-e-button wm-e-button--primary wm-full-width">
-      <a href="#" class="wm-e-button__link">Anmelden</a>
-    </wm-button>
-  </wm-card-content>
+<wm-card class="wm-e-card">
+  <wm-input placeholder="Email"></wm-input>
+  <wm-button class="wm-e-button--primary">Anmelden</wm-button>
 </wm-card>`,
               },
               {
                 label: 'React Integration',
                 code: `// In React (with proper JSX attributes)
 function LoginForm() {
-  return (
-    <wm-card className="wm-e-card wm-max-width-md wm-margin-auto">
-      <wm-card-content className="wm-e-card__content">
-        <wm-input 
-          type="email" 
-          placeholder="Email"
-          className="wm-e-input wm-full-width wm-margin-bottom-md"
-        />
-        <wm-button className="wm-e-button wm-e-button--primary wm-full-width">
-          Anmelden
-        </wm-button>
-      </wm-card-content>
-    </wm-card>
-  )
-}`,
+  return <wm-card className="wm-e-card">
+    <wm-input placeholder="Email" />
+    <wm-button className="wm-e-button--primary">Anmelden</wm-button>`,
               },
             ],
           },

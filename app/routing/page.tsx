@@ -13,7 +13,7 @@ import { KeyDifferences } from '@/components/key-differences';
 
 export default function RoutingPage() {
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-4 w-full min-w-0">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Routing</h1>
 
       <p className="mb-4">
@@ -558,20 +558,7 @@ export default function Navbar() {
 
 // App.jsx - Manual router configuration
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}`,
+function App() { return <BrowserRouter>/* routes */</BrowserRouter> }`,
               },
               {
                 label: 'Navigation Links',
@@ -579,24 +566,7 @@ function App() {
 
 function Navbar() {
   const location = useLocation()
-  
-  return (
-    <nav>
-      <Link 
-        to="/" 
-        className={location.pathname === '/' ? 'active' : ''}
-      >
-        Home
-      </Link>
-      <Link 
-        to="/about"
-        className={location.pathname === '/about' ? 'active' : ''}
-      >
-        About
-      </Link>
-    </nav>
-  )
-}`,
+  return <Link to="/" className={location.pathname === '/' ? 'active' : ''}>`,
               },
               {
                 label: 'Dynamic Routes',
@@ -604,13 +574,7 @@ function Navbar() {
 <Route path="/user/:id" element={<UserProfile />} />
 
 // Component using route params
-import { useParams } from 'react-router-dom'
-
-function UserProfile() {
-  const { id } = useParams()
-  
-  return <div>User ID: {id}</div>
-}`,
+const { id } = useParams()`,
               },
             ],
           },
@@ -625,11 +589,7 @@ function UserProfile() {
 npm install -D @tanstack/router-vite-plugin
 
 // vite.config.ts
-import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
-
-export default defineConfig({
-  plugins: [react(), TanStackRouterVite()]
-})`,
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin'`,
               },
               {
                 label: 'File-Based Route Definition',
@@ -637,13 +597,7 @@ export default defineConfig({
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: () => <div>Home Page</div>
-})
-
-// routes/about.tsx - Automatic /about route
-export const Route = createFileRoute('/about')({
-  component: () => <div>About Page</div>
-})`,
+  component: () => <div>Home Page</div>`,
               },
               {
                 label: 'Type-Safe Navigation',
@@ -651,17 +605,7 @@ export const Route = createFileRoute('/about')({
 import { Link } from '@tanstack/react-router'
 
 function Navbar() {
-  return (
-    <nav>
-      {/* TypeScript knows these routes exist */}
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/user/$userId" params={{ userId: '123' }}>
-        User
-      </Link>
-    </nav>
-  )
-}`,
+  return <Link to="/user/$userId" params={{ userId: '123' }}>`,
               },
             ],
           },
@@ -676,12 +620,7 @@ function Navbar() {
                 code: `// No installation needed - built into Next.js
 app/
 ├── page.tsx           # / route
-├── about/
-│   └── page.tsx       # /about route
-├── users/
-│   ├── page.tsx       # /users route
-│   └── [id]/
-│       └── page.tsx   # /users/[id] route
+├── about/page.tsx     # /about route
 └── layout.tsx         # Shared layout`,
               },
               {
@@ -690,41 +629,13 @@ app/
 import { usePathname } from 'next/navigation'
 
 function Navbar() {
-  const pathname = usePathname()
-  
-  return (
-    <nav>
-      <Link 
-        href="/" 
-        className={pathname === '/' ? 'active' : ''}
-      >
-        Home
-      </Link>
-      <Link 
-        href="/about"
-        className={pathname === '/about' ? 'active' : ''}
-      >
-        About
-      </Link>
-    </nav>
-  )
-}`,
+  const pathname = usePathname()`,
               },
               {
                 label: 'Dynamic Routes',
                 code: `// app/users/[id]/page.tsx - Dynamic route
-export default function UserPage({ 
-  params 
-}: { 
-  params: { id: string } 
-}) {
+export default function UserPage({ params }: { params: { id: string } }) {
   return <div>User ID: {params.id}</div>
-}
-
-// Built-in loading and error states
-// app/users/[id]/loading.tsx
-export default function Loading() {
-  return <div>Loading user...</div>
 }`,
               },
             ],

@@ -42,7 +42,7 @@ export function CodeBlock({
     const lines = code.split('\n');
     if (lines.length > 5) {
       throw new Error(
-        `Short snippet cannot exceed 5 lines. Current snippet has ${lines.length} lines.`
+        `Short snippet cannot exceed 5 lines. Current snippet has ${lines.length} lines. ${code}`
       );
     }
   }
