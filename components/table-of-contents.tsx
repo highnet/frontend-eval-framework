@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link';
 
 export function TableOfContents() {
   return (
@@ -9,7 +9,6 @@ export function TableOfContents() {
           <Link href="/introduction" className="text-sm hover:underline">
             Introduction
           </Link>
-
         </nav>
       </div>
       <div>
@@ -39,5 +38,5 @@ export function TableOfContents() {
         </nav>
       </div>
     </div>
-  )
+  );
 }
