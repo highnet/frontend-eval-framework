@@ -1,9 +1,4 @@
-export const axiosInstallation = `# Install axios
-npm install axios
-# or
-pnpm add axios
-
-# For TypeScript projects, types are included
+export const axiosInstallation = `# For TypeScript projects, types are included
 # Define your data interfaces
 interface Todo {
   id: number

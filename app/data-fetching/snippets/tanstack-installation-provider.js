@@ -1,6 +1,4 @@
-export const tanstackInstallationProvider = `npm install @tanstack/react-query
-
-<QueryClientProvider client={queryClient}>
+export const tanstackInstallationProvider = `<QueryClientProvider client={queryClient}>
   <App />
   <ReactQueryDevtools />
 </QueryClientProvider>`;

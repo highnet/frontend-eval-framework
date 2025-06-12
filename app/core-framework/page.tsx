@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/card';
 import { CodeBlock } from '@/components/code-block';
 import { KeyDifferences } from '@/components/key-differences';
-import installReactRouterCode from './snippets/install-react-router';
 import useReactRouterCode from './snippets/use-react-router';
 import viteFrontendApiCallsCode from './snippets/vite-frontend-api-calls';
 import viteSeoOptimizationCode from './snippets/vite-seo-optimization';
@@ -95,11 +94,6 @@ export default function CoreFrameworkPage() {
                 <h5 className="text-sm font-medium mb-1">
                   1. React Router for routing:
                 </h5>
-                <CodeBlock
-                  className="mb-2"
-                  language="tsx"
-                  code={installReactRouterCode}
-                />
                 <CodeBlock language="tsx" code={useReactRouterCode} />
               </div>
 

@@ -1,7 +1,6 @@
 export default `# Create new Vite React project
 npm create vite@latest my-react-app -- --template react-ts
 cd my-react-app
-npm install
 
 # Basic SPA project structure
 my-react-app/

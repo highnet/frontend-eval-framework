@@ -1,5 +1,4 @@
 export default `// Manual meta tag management with React Helmet
-npm install react-helmet-async
 
 import { Helmet } from 'react-helmet-async'
 
