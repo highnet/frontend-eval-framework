@@ -43,12 +43,12 @@ export function SidebarToggleButton({
 export function CollapsibleSidebar({ isOpen }: { isOpen: boolean }) {
   return (
     <aside
-      className={`hidden md:block shrink-0 border-r pr-8 pt-8 pb-12 transition-all duration-300 ease-in-out ${
-        isOpen ? 'md:w-64' : 'md:w-0 pr-0'
+      className={`hidden md:block shrink-0 border-r transition-all duration-300 ease-in-out ${
+        isOpen ? 'md:w-64 pr-8' : 'md:w-0 pr-0'
       }`}
     >
       <div
-        className={`transition-opacity duration-300 ${
+        className={`sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto pt-8 pb-12 transition-opacity duration-300 ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
