@@ -11,6 +11,36 @@ import {
 import { CodeBlock } from '@/components/code-block';
 import { KeyDifferences } from '@/components/key-differences';
 
+// Import code snippets
+import { reactRouterFileStructure } from './snippets/react-router-file-structure';
+import { reactRouterBasicSetup } from './snippets/react-router-basic-setup';
+import { reactRouterNavigation } from './snippets/react-router-navigation';
+import { reactRouterPageComponents } from './snippets/react-router-page-components';
+import { tanstackRouterFileStructure } from './snippets/tanstack-router-file-structure';
+import { tanstackRouterRootRoute } from './snippets/tanstack-router-root-route';
+import { tanstackRouterPageRoutes } from './snippets/tanstack-router-page-routes';
+import { tanstackRouterAppSetup } from './snippets/tanstack-router-app-setup';
+import { nextjsAppRouterFileStructure } from './snippets/nextjs-app-router-file-structure';
+import { nextjsAppRouterRootLayout } from './snippets/nextjs-app-router-root-layout';
+import { nextjsAppRouterPageComponents } from './snippets/nextjs-app-router-page-components';
+import { nextjsAppRouterSpecialFiles } from './snippets/nextjs-app-router-special-files';
+import { nextjsAppRouterNavigationComponent } from './snippets/nextjs-app-router-navigation-component';
+import { reactRouterInstallationSetup } from './snippets/react-router-installation-setup';
+import { reactRouterNavigationLinks } from './snippets/react-router-navigation-links';
+import { reactRouterDynamicRoutes } from './snippets/react-router-dynamic-routes';
+import { tanstackRouterInstallationSetup } from './snippets/tanstack-router-installation-setup';
+import { tanstackRouterFileBasedDefinition } from './snippets/tanstack-router-file-based-definition';
+import { tanstackRouterTypeSafeNavigation } from './snippets/tanstack-router-type-safe-navigation';
+import { nextjsFileStructureRoutes } from './snippets/nextjs-file-structure-routes';
+import { nextjsNavigationExample } from './snippets/nextjs-navigation-example';
+import { nextjsDynamicRoutes } from './snippets/nextjs-dynamic-routes';
+import { reactRouterRouteDefinitions } from './snippets/react-router-route-definitions';
+import { tanstackRouterFileBasedComparison } from './snippets/tanstack-router-file-based-comparison';
+import { nextjsAppRouterComparison } from './snippets/nextjs-app-router-comparison';
+import { reactRouterStateManagement } from './snippets/react-router-state-management';
+import { tanstackRouterStateManagement } from './snippets/tanstack-router-state-management';
+import { nextjsAppRouterStateManagement } from './snippets/nextjs-app-router-state-management';
+
 export default function RoutingPage() {
   return (
     <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
@@ -61,121 +91,22 @@ export default function RoutingPage() {
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Required File Structure:</h4>
-            <CodeBlock
-              language="bash"
-              code={`src/
-├── App.jsx                 # Main app with router setup
-├── index.js               # Entry point
-├── pages/
-│   ├── Home.jsx          # Home page component
-│   ├── About.jsx         # About page component
-│   ├── Contact.jsx       # Contact page component
-│   └── NotFound.jsx      # 404 page component
-└── components/
-    └── Navbar.jsx        # Navigation component`}
-            />
+            <CodeBlock language="bash" code={reactRouterFileStructure} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Basic Setup & Navigation:</h4>
-            <CodeBlock
-              language="jsx"
-              code={`// App.jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
-
-function App() {
-  return (
-    <Router>
-      <div className="app">
-        <Navbar />
-        <main className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
-  );
-}
-
-export default App;`}
-            />
+            <CodeBlock language="jsx" code={reactRouterBasicSetup} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Navigation Component:</h4>
-            <CodeBlock
-              language="jsx"
-              code={`// components/Navbar.jsx
-import { Link } from 'react-router-dom';
-
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <div className="nav-brand">
-        <Link to="/">My App</Link>
-      </div>
-      <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-      </ul>
-    </nav>
-  );
-}
-
-export default Navbar;`}
-            />
+            <CodeBlock language="jsx" code={reactRouterNavigation} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Page Components:</h4>
-            <CodeBlock
-              language="jsx"
-              code={`// pages/Home.jsx
-function Home() {
-  return (
-    <div className="page">
-      <h1>Welcome to Home Page</h1>
-      <p>This is the home page content.</p>
-    </div>
-  );
-}
-
-export default Home;
-
-// pages/About.jsx
-function About() {
-  return (
-    <div className="page">
-      <h1>About Us</h1>
-      <p>Learn more about our company.</p>
-    </div>
-  );
-}
-
-export default About;
-
-// pages/Contact.jsx
-function Contact() {
-  return (
-    <div className="page">
-      <h1>Contact Us</h1>
-      <p>Get in touch with us.</p>
-    </div>
-  );
-}
-
-export default Contact;`}
-            />
+            <CodeBlock language="jsx" code={reactRouterPageComponents} />
           </div>
         </TabsContent>
 
@@ -200,131 +131,22 @@ export default Contact;`}
             <h4 className="font-medium mb-1">
               Required File Structure (File-based):
             </h4>
-            <CodeBlock
-              language="bash"
-              code={`src/
-├── main.tsx               # Entry point
-├── App.tsx               # App component
-├── routes/
-│   ├── __root.tsx        # Root route (layout)
-│   ├── index.tsx         # Home page (/)
-│   ├── about.tsx         # About page (/about)
-│   └── contact.tsx       # Contact page (/contact)
-└── routeTree.gen.ts      # Generated route tree (auto-generated)`}
-            />
+            <CodeBlock language="bash" code={tanstackRouterFileStructure} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Root Route Setup:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// routes/__root.tsx
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-
-export const Route = createRootRoute({
-  component: () => (
-    <div className="app">
-      <nav className="navbar">
-        <div className="nav-brand">
-          <Link to="/">My App</Link>
-        </div>
-        <ul className="nav-links">
-          <li>
-            <Link to="/" className="[&.active]:font-bold">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="[&.active]:font-bold">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="[&.active]:font-bold">
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      
-      <main className="content">
-        <Outlet />
-      </main>
-      
-      <TanStackRouterDevtools />
-    </div>
-  ),
-})`}
-            />
+            <CodeBlock language="tsx" code={tanstackRouterRootRoute} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Page Routes:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// routes/index.tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/')({
-  component: () => (
-    <div className="page">
-      <h1>Welcome to Home Page</h1>
-      <p>This is the home page content.</p>
-    </div>
-  ),
-})
-
-// routes/about.tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/about')({
-  component: () => (
-    <div className="page">
-      <h1>About Us</h1>
-      <p>Learn more about our company.</p>
-    </div>
-  ),
-})
-
-// routes/contact.tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/contact')({
-  component: () => (
-    <div className="page">
-      <h1>Contact Us</h1>
-      <p>Get in touch with us.</p>
-    </div>
-  ),
-})`}
-            />
+            <CodeBlock language="tsx" code={tanstackRouterPageRoutes} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">App Setup:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// App.tsx
-import { createRouter, RouterProvider } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
-
-// Create a new router instance
-const router = createRouter({ routeTree })
-
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}
-
-function App() {
-  return <RouterProvider router={router} />
-}
-
-export default App`}
-            />
+            <CodeBlock language="tsx" code={tanstackRouterAppSetup} />
           </div>
         </TabsContent>
 
@@ -348,197 +170,29 @@ export default App`}
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Required File Structure:</h4>
-            <CodeBlock
-              language="bash"
-              code={`app/
-├── layout.tsx          # Root layout (required)
-├── page.tsx           # Home page (/)
-├── loading.tsx        # Loading UI (optional)
-├── error.tsx          # Error UI (optional)
-├── not-found.tsx      # 404 page (optional)
-├── about/
-│   └── page.tsx       # About page (/about)
-└── contact/
-    └── page.tsx       # Contact page (/contact)
-
-components/
-└── navbar.tsx         # Shared navigation component`}
-            />
+            <CodeBlock language="bash" code={nextjsAppRouterFileStructure} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Root Layout:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// app/layout.tsx - Required root layout
-import Link from 'next/link'
-import './globals.css'
-
-export const metadata = {
-  title: 'My App',
-  description: 'A simple Next.js application',
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body>
-        <nav className="navbar">
-          <div className="nav-brand">
-            <Link href="/">My App</Link>
-          </div>
-          <ul className="nav-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-          </ul>
-        </nav>
-        
-        <main className="content">
-          {children}
-        </main>
-      </body>
-    </html>
-  )
-}`}
-            />
+            <CodeBlock language="tsx" code={nextjsAppRouterRootLayout} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Page Components:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// app/page.tsx - Home page
-export default function HomePage() {
-  return (
-    <div className="page">
-      <h1>Welcome to Home Page</h1>
-      <p>This is the home page content.</p>
-    </div>
-  )
-}
-
-// app/about/page.tsx - About page
-export default function AboutPage() {
-  return (
-    <div className="page">
-      <h1>About Us</h1>
-      <p>Learn more about our company.</p>
-    </div>
-  )
-}
-
-// app/contact/page.tsx - Contact page
-export default function ContactPage() {
-  return (
-    <div className="page">
-      <h1>Contact Us</h1>
-      <p>Get in touch with us.</p>
-    </div>
-  )
-}`}
-            />
+            <CodeBlock language="tsx" code={nextjsAppRouterPageComponents} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Optional Special Files:</h4>
-            <CodeBlock
-              language="tsx"
-              code={`// app/loading.tsx - Loading UI
-export default function Loading() {
-  return (
-    <div className="loading">
-      <p>Loading...</p>
-    </div>
-  )
-}
-
-// app/error.tsx - Error UI
-'use client'
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
-  return (
-    <div className="error">
-      <h2>Something went wrong!</h2>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
-  )
-}
-
-// app/not-found.tsx - 404 page
-import Link from 'next/link'
-
-export default function NotFound() {
-  return (
-    <div className="not-found">
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
-  )
-}`}
-            />
+            <CodeBlock language="tsx" code={nextjsAppRouterSpecialFiles} />
           </div>
 
           <div className="mb-4">
             <h4 className="font-medium mb-1">Navigation Component:</h4>
             <CodeBlock
               language="tsx"
-              code={`// components/navbar.tsx - Reusable navigation
-'use client'
-
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-export default function Navbar() {
-  const pathname = usePathname()
-  
-  const isActive = (path: string) => pathname === path
-  
-  return (
-    <nav className="navbar">
-      <div className="nav-brand">
-        <Link href="/">My App</Link>
-      </div>
-      <ul className="nav-links">
-        <li>
-          <Link 
-            href="/" 
-            className={isActive('/') ? 'active' : ''}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link 
-            href="/about" 
-            className={isActive('/about') ? 'active' : ''}
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link 
-            href="/contact" 
-            className={isActive('/contact') ? 'active' : ''}
-          >
-            Contact
-          </Link>
-        </li>
-      </ul>
-    </nav>
-  )
-}`}
+              code={nextjsAppRouterNavigationComponent}
             />
           </div>
         </TabsContent>
@@ -553,27 +207,15 @@ export default function Navbar() {
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install react-router-dom
-
-// App.jsx - Manual router configuration
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-function App() { return <BrowserRouter>/* routes */</BrowserRouter> }`,
+                code: reactRouterInstallationSetup,
               },
               {
                 label: 'Navigation Links',
-                code: `import { Link, useLocation } from 'react-router-dom'
-
-function Navbar() {
-  const location = useLocation()
-  return <Link to="/" className={location.pathname === '/' ? 'active' : ''}>`,
+                code: reactRouterNavigationLinks,
               },
               {
                 label: 'Dynamic Routes',
-                code: `// Route definition
-<Route path="/user/:id" element={<UserProfile />} />
-
-// Component using route params
-const { id } = useParams()`,
+                code: reactRouterDynamicRoutes,
               },
             ],
           },
@@ -583,27 +225,15 @@ const { id } = useParams()`,
             codeExamples: [
               {
                 label: 'Installation & Setup',
-                code: `npm install @tanstack/react-router
-npm install -D @tanstack/router-vite-plugin
-
-// vite.config.ts
-import { TanStackRouterVite } from '@tanstack/router-vite-plugin'`,
+                code: tanstackRouterInstallationSetup,
               },
               {
                 label: 'File-Based Route Definition',
-                code: `// routes/index.tsx - Automatic / route
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/')({
-  component: () => <div>Home Page</div>`,
+                code: tanstackRouterFileBasedDefinition,
               },
               {
                 label: 'Type-Safe Navigation',
-                code: `// Automatic type safety for routes
-import { Link } from '@tanstack/react-router'
-
-function Navbar() {
-  return <Link to="/user/$userId" params={{ userId: '123' }}>`,
+                code: tanstackRouterTypeSafeNavigation,
               },
             ],
           },
@@ -614,26 +244,15 @@ function Navbar() {
             codeExamples: [
               {
                 label: 'File Structure = Routes',
-                code: `// No installation needed - built into Next.js
-app/
-├── page.tsx           # / route
-├── about/page.tsx     # /about route
-└── layout.tsx         # Shared layout`,
+                code: nextjsFileStructureRoutes,
               },
               {
                 label: 'Navigation with Next.js',
-                code: `import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-function Navbar() {
-  const pathname = usePathname()`,
+                code: nextjsNavigationExample,
               },
               {
                 label: 'Dynamic Routes',
-                code: `// app/users/[id]/page.tsx - Dynamic route
-export default function UserPage({ params }: { params: { id: string } }) {
-  return <div>User ID: {params.id}</div>
-}`,
+                code: nextjsDynamicRoutes,
               },
             ],
           },
@@ -651,26 +270,7 @@ export default function UserPage({ params }: { params: { id: string } }) {
               <CardDescription>Programmatic route definitions</CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="tsx"
-                code={`// All routes defined in one place
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<User />} />
-        <Route path="/blog" element={<Blog />}>
-          <Route path=":slug" element={<Post />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}`}
-              />
+              <CodeBlock language="tsx" code={reactRouterRouteDefinitions} />
             </CardContent>
           </Card>
 
@@ -684,18 +284,7 @@ function App() {
             <CardContent>
               <CodeBlock
                 language="bash"
-                code={`routes/
-├── __root.tsx          # Root layout
-├── index.tsx           # / route
-├── about.tsx           # /about route
-├── users/
-│   ├── index.tsx       # /users route
-│   └── $userId.tsx     # /users/$userId route
-└── blog/
-    ├── index.tsx       # /blog route
-    └── $slug.tsx       # /blog/$slug route
-
-# Auto-generates routeTree.gen.ts with types`}
+                code={tanstackRouterFileBasedComparison}
               />
             </CardContent>
           </Card>
@@ -706,24 +295,7 @@ function App() {
               <CardDescription>Pure file-system conventions</CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="bash"
-                code={`app/
-├── page.tsx            # / route
-├── about/
-│   └── page.tsx        # /about route
-├── users/
-│   ├── page.tsx        # /users route
-│   └── [id]/
-│       └── page.tsx    # /users/[id] route
-├── blog/
-│   ├── page.tsx        # /blog route
-│   └── [slug]/
-│       └── page.tsx    # /blog/[slug] route
-└── not-found.tsx       # 404 page
-
-# No configuration needed`}
-              />
+              <CodeBlock language="bash" code={nextjsAppRouterComparison} />
             </CardContent>
           </Card>
         </div>
@@ -740,39 +312,7 @@ function App() {
               <CardDescription>Hooks and imperative navigation</CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="tsx"
-                code={`import { 
-  useNavigate, 
-  useLocation, 
-  useParams, 
-  useSearchParams 
-} from 'react-router-dom'
-
-function MyComponent() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const params = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
-  
-  const handleLogin = () => {
-    // Programmatic navigation
-    navigate('/dashboard', { replace: true })
-  }
-  
-  const updateSearch = () => {
-    setSearchParams({ filter: 'active' })
-  }
-  
-  return (
-    <div>
-      <p>Current path: {location.pathname}</p>
-      <p>User ID: {params.id}</p>
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  )
-}`}
-              />
+              <CodeBlock language="tsx" code={reactRouterStateManagement} />
             </CardContent>
           </Card>
 
@@ -784,38 +324,7 @@ function MyComponent() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="tsx"
-                code={`import { 
-  useNavigate, 
-  useLocation, 
-  useParams, 
-  useSearch 
-} from '@tanstack/react-router'
-
-function MyComponent() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const params = useParams({ from: '/users/$userId' })
-  const search = useSearch({ from: '/users' })
-  
-  const handleLogin = () => {
-    // Type-safe navigation
-    navigate({ 
-      to: '/dashboard',
-      search: { tab: 'overview' }
-    })
-  }
-  
-  return (
-    <div>
-      <p>Current path: {location.pathname}</p>
-      <p>User ID: {params.userId}</p> {/* Type-safe */}
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  )
-}`}
-              />
+              <CodeBlock language="tsx" code={tanstackRouterStateManagement} />
             </CardContent>
           </Card>
 
@@ -827,41 +336,7 @@ function MyComponent() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="tsx"
-                code={`'use client'
-import { 
-  useRouter, 
-  usePathname, 
-  useSearchParams 
-} from 'next/navigation'
-
-function MyComponent() {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  
-  const handleLogin = () => {
-    // Client-side navigation
-    router.push('/dashboard')
-    // Or server-side redirect in Server Component
-    // redirect('/dashboard')
-  }
-  
-  const updateSearch = () => {
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('filter', 'active')
-    router.push(pathname + '?' + params.toString())
-  }
-  
-  return (
-    <div>
-      <p>Current path: {pathname}</p>
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  )
-}`}
-              />
+              <CodeBlock language="tsx" code={nextjsAppRouterStateManagement} />
             </CardContent>
           </Card>
         </div>
