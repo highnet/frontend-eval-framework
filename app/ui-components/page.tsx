@@ -333,7 +333,6 @@ function MyComponent() {
             title: 'Material UI: Pre-built Components',
             description:
               'Import and use ready-made components with built-in styling',
-            badges: ['Import & Use', 'Built-in Themes', 'Props-based'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -357,7 +356,6 @@ function LoginForm() {
             title: 'Base UI: Headless Components',
             description:
               'Unstyled components with full control over appearance',
-            badges: ['Headless', 'Unstyled', 'Full Control'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -388,7 +386,6 @@ const StyledButton = styled(Button)\`
             title: 'Shadcn/ui: Copy-Paste Components',
             description:
               'Copy component code into your project for full ownership',
-            badges: ['Copy-Paste', 'Tailwind CSS', 'Full Ownership'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -411,11 +408,6 @@ function LoginForm() {
             title: 'WienerMelange: Web Components',
             description:
               "Vienna city government's official design system as web components",
-            badges: [
-              'Web Components',
-              'Framework Agnostic',
-              'Government Standard',
-            ],
             codeExamples: [
               {
                 label: 'Installation & Setup',

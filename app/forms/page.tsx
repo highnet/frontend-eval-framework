@@ -208,7 +208,6 @@ const onSubmit = (data) => console.log(data)`}
             title: 'Formik + Yup: Object-Oriented Approach',
             description:
               'Component-based form handling with object schema validation',
-            badges: ['useFormik Hook', 'Object Schema', 'Field-by-Field'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -236,19 +235,11 @@ const validationSchema = Yup.object({
 />`,
               },
             ],
-            considerations: [
-              'You prefer explicit form state management and control',
-              'Working with complex forms that need custom validation',
-              'Team is familiar with object-oriented form patterns',
-              'You want a mature, stable library with extensive documentation',
-              "Performance isn't a critical concern for your forms",
-            ],
           },
           {
             title: 'React Hook Form + Zod: Hook-Based Approach',
             description:
               'Performance-focused with TypeScript-first schema validation',
-            badges: ['useForm Hook', 'TypeScript-First', 'Auto-Registration'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -274,13 +265,6 @@ const onSubmit = (data) => console.log(data)`,
 
 <button type="submit">Submit</button>`,
               },
-            ],
-            considerations: [
-              'Performance is critical - minimal re-renders needed',
-              'You want TypeScript-first schema validation and auto-completion',
-              'Building forms with many fields or complex validation',
-              'Team values modern hooks-based patterns',
-              'You need built-in integration with validation libraries',
             ],
           },
         ]}

@@ -684,7 +684,6 @@ export default function App() {
             title: "Context API: React's Built-in Solution",
             description:
               'Native React state sharing mechanism with manual optimization',
-            badges: ['Built-in', 'No dependencies', 'Manual optimization'],
             codeExamples: [
               {
                 label: 'Context Setup',
@@ -711,20 +710,11 @@ function TodoProvider({ children }) {
     </TodoProvider>`,
               },
             ],
-            considerations: [
-              'You have simple to moderate state sharing needs',
-              'Want to avoid external dependencies',
-              'State updates are not frequent',
-              'Working on smaller applications',
-              'Team prefers staying within React ecosystem',
-              'Need to manually optimize re-renders with useMemo/useCallback',
-            ],
           },
           {
             title: 'Redux Toolkit: Predictable State Container',
             description:
               'Centralized store with time-travel debugging and predictable updates',
-            badges: ['Predictable', 'DevTools', 'Mature', 'Boilerplate'],
             codeExamples: [
               {
                 label: 'Store Setup',
@@ -751,20 +741,11 @@ export const { addTodo, toggleTodo } = todoSlice.actions
 const store = configureStore({ reducer: { todos: todoSlice.reducer } })`,
               },
             ],
-            considerations: [
-              'Building large, complex applications',
-              'You need predictable state updates and debugging',
-              'Time-travel debugging is valuable for development',
-              'Team has experience with Redux patterns',
-              'You need middleware for async actions (RTK Query)',
-              'Want excellent developer tools and debugging capabilities',
-            ],
           },
           {
             title: 'Zustand: Lightweight & Flexible',
             description:
               'Minimal boilerplate with maximum flexibility and great performance',
-            badges: ['Lightweight', 'Flexible', 'Modern', 'Performant'],
             codeExamples: [
               {
                 label: 'Store Creation',
@@ -789,14 +770,6 @@ function App() {
   return <TodoList />
 }`,
               },
-            ],
-            considerations: [
-              'You want minimal boilerplate and setup',
-              'Building small to medium-sized applications',
-              'Team values simplicity and developer experience',
-              'You need flexible state patterns',
-              'Performance and bundle size matter',
-              'Want built-in TypeScript support without extra configuration',
             ],
           },
         ]}

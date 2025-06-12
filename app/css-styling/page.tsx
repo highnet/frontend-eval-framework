@@ -150,7 +150,6 @@ export default function CssStylingPage() {
             title: 'Plain CSS',
             description:
               'Traditional approach with standard CSS files and string classnames',
-            badges: ['Universal', 'No dependencies', 'Full control'],
             codeExamples: [
               {
                 label: 'Component Styling',
@@ -161,19 +160,11 @@ export default function CssStylingPage() {
                 code: plainCssDynamicClasses,
               },
             ],
-            considerations: [
-              'You want zero dependencies and full control',
-              'Working with a small team or simple project',
-              'Performance is critical (no extra CSS processing)',
-              'You prefer traditional CSS methodology',
-              'Browser compatibility is a major concern',
-            ],
           },
           {
             title: 'SCSS (Sass)',
             description:
               'CSS preprocessor with variables, nesting, and advanced features',
-            badges: ['Preprocessor', 'Modular', 'Developer-friendly'],
             codeExamples: [
               {
                 label: 'Variables & Mixins',
@@ -184,18 +175,10 @@ export default function CssStylingPage() {
                 code: scssComponentUsage,
               },
             ],
-            considerations: [
-              'You need advanced CSS features like variables and mixins',
-              'Working on medium to large projects',
-              'Team prefers organized, nested CSS structure',
-              'You want better maintainability than plain CSS',
-              'Component-based styling is important',
-            ],
           },
           {
             title: 'Tailwind CSS',
             description: 'Utility-first framework for rapid UI development',
-            badges: ['Utility-first', 'Rapid development', 'Consistent design'],
             codeExamples: [
               {
                 label: 'Component Styling',
@@ -205,13 +188,6 @@ export default function CssStylingPage() {
                 label: 'Responsive Layout',
                 code: tailwindResponsiveLayout,
               },
-            ],
-            considerations: [
-              'You want to build UIs quickly with consistent spacing',
-              'Team values design system constraints',
-              'You prefer component-focused development',
-              'Prototyping speed is important',
-              'You want built-in responsive design utilities',
             ],
           },
         ]}

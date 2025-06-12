@@ -211,40 +211,16 @@ function ThemeDisplay() {
             title: 'Context API',
             description:
               "React's built-in state sharing mechanism for component trees",
-            badges: ['Built-in', 'Simple', 'React native'],
-            considerations: [
-              'You have simple to moderate state sharing needs',
-              'Want to avoid external dependencies',
-              'State updates are not frequent',
-              'Working on smaller applications',
-              'Team prefers staying within React ecosystem',
-            ],
           },
           {
             title: 'Redux Toolkit',
             description:
               'Predictable state container with time-travel debugging',
-            badges: ['Predictable', 'DevTools', 'Mature'],
-            considerations: [
-              'Building large, complex applications',
-              'You need predictable state updates and debugging',
-              'Time-travel debugging is valuable',
-              'Team has experience with Redux patterns',
-              'You need middleware for async actions',
-            ],
           },
           {
             title: 'Zustand',
             description:
               'Lightweight, flexible state management with minimal boilerplate',
-            badges: ['Lightweight', 'Flexible', 'Modern'],
-            considerations: [
-              'You want minimal boilerplate and setup',
-              'Building medium-sized applications',
-              'Team values simplicity and developer experience',
-              'You need flexible state patterns',
-              'Performance and bundle size matter',
-            ],
           },
         ]}
       />

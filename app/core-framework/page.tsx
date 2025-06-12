@@ -231,7 +231,6 @@ export default function CoreFrameworkPage() {
             title: 'Vite + React: Manual Setup',
             description:
               'Explicit configuration and manual integration of tools',
-            badges: ['Explicit', 'Manual', 'Granular control'],
             codeExamples: [
               {
                 label: 'Routing Setup',
@@ -250,7 +249,6 @@ export default function CoreFrameworkPage() {
           {
             title: 'Next.js: Convention-Based',
             description: 'Built-in solutions with minimal configuration needed',
-            badges: ['Convention', 'Built-in', 'Zero-config'],
             codeExamples: [
               {
                 label: 'File-Based Routing',

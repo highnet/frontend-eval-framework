@@ -550,7 +550,6 @@ export default function Navbar() {
           {
             title: 'React Router: Component-Based Setup',
             description: 'Manual configuration with JSX route definitions',
-            badges: ['Manual Setup', 'JSX Routes', 'Component-based'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -581,7 +580,6 @@ const { id } = useParams()`,
           {
             title: 'TanStack Router: File-Based + Type-Safe',
             description: 'File-system routing with TypeScript-first approach',
-            badges: ['File-Based', 'Type-Safe', 'Auto-Generated'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -613,7 +611,6 @@ function Navbar() {
             title: 'Next.js App Router: File-System Conventions',
             description:
               'Zero-config routing with built-in layouts and loading states',
-            badges: ['Zero Config', 'File-System', 'Server Components'],
             codeExamples: [
               {
                 label: 'File Structure = Routes',

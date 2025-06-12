@@ -233,7 +233,6 @@ export default function DataFetchingPage() {
             title: 'Fetch API: Manual State Management',
             description:
               'Native browser API requiring manual handling of loading, errors, and caching',
-            badges: ['Native', 'No dependencies', 'Manual control'],
             codeExamples: [
               {
                 label: 'Basic Data Fetching',
@@ -248,19 +247,11 @@ export default function DataFetchingPage() {
                 code: fetchErrorHandling,
               },
             ],
-            considerations: [
-              'You want zero dependencies and native browser support',
-              'Building simple applications with basic data needs',
-              'You prefer manual control over caching and state',
-              'Working with modern browsers only',
-              'Team is comfortable with manual error handling and loading states',
-            ],
           },
           {
             title: 'Axios: Enhanced HTTP Client',
             description:
               'Feature-rich HTTP client with interceptors, automatic transforms, and better error handling',
-            badges: ['Interceptors', 'Auto-transforms', 'Battle-tested'],
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -275,24 +266,12 @@ export default function DataFetchingPage() {
                 code: axiosCrudOperations,
               },
             ],
-            considerations: [
-              'You need advanced features like request/response interceptors',
-              'Working with complex API authentication flows',
-              'You want automatic request/response transformations',
-              'Team prefers a familiar, established library for CRUD operations',
-              'Better error handling and debugging capabilities are important',
-            ],
           },
           {
             title: 'TanStack Query: Smart Data Management',
             description:
               'Intelligent caching, background updates, optimistic mutations, and automatic state management',
-            badges: [
-              'Smart caching',
-              'Optimistic updates',
-              'Auto-sync',
-              'DevTools',
-            ],
+
             codeExamples: [
               {
                 label: 'Installation & Provider',
@@ -306,14 +285,6 @@ export default function DataFetchingPage() {
                 label: 'Optimistic Mutations',
                 code: tanstackOptimisticMutations,
               },
-            ],
-            considerations: [
-              'You need sophisticated caching and background updates',
-              'Building data-heavy applications with frequent mutations',
-              'Real-time synchronization and optimistic updates are important',
-              'You want built-in loading states, error handling, and rollback logic',
-              'Developer experience with automatic cache invalidation matters',
-              'Complex data dependencies and server state management are required',
             ],
           },
         ]}
