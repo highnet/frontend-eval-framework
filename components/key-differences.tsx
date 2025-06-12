@@ -54,18 +54,15 @@ export function KeyDifferences({
               )}
             </CardHeader>
             <CardContent className="space-y-4">
-              {' '}
               {item.codeExamples && item.codeExamples.length > 0 && (
                 <div className="space-y-4 w-full min-w-0">
                   {item.codeExamples.map((example, exampleIndex) => (
                     <div key={exampleIndex} className="w-full min-w-0">
                       <h5 className="font-medium text-sm mb-2">
                         {example.label}:
-                      </h5>{' '}                      <div className="w-full min-w-0">
-                        <CodeBlock
-                          language="tsx"
-                          code={example.code}
-                        />
+                      </h5>
+                      <div className="w-full min-w-0">
+                        <CodeBlock language="tsx" code={example.code} />
                       </div>
                     </div>
                   ))}

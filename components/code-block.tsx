@@ -10,6 +10,7 @@ import scss from 'highlight.js/lib/languages/scss';
 import xml from 'highlight.js/lib/languages/xml';
 import json from 'highlight.js/lib/languages/json';
 import bash from 'highlight.js/lib/languages/bash';
+import clsx from 'clsx';
 
 // Register languages
 hljs.registerLanguage('javascript', javascript);
@@ -27,12 +28,14 @@ interface CodeBlockProps {
   language: string;
   code: string;
   isShortSnippet?: boolean;
+  className?: string;
 }
 
 export function CodeBlock({
   language,
   code,
   isShortSnippet = false,
+  className = '',
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
@@ -64,7 +67,7 @@ export function CodeBlock({
   };
 
   return (
-    <div className="relative w-full max-w-full">
+    <div className={clsx('relative w-full max-w-full', className)}>
       <pre className="rounded-md bg-muted overflow-x-auto max-w-full">
         <div className="flex min-w-0">
           <div className="flex-1 min-w-0 p-2 sm:p-4">

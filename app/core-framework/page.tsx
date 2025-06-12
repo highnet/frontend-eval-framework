@@ -10,6 +10,29 @@ import {
 } from '@/components/ui/card';
 import { CodeBlock } from '@/components/code-block';
 import { KeyDifferences } from '@/components/key-differences';
+import installReactRouterCode from './snippets/install-react-router';
+import useReactRouterCode from './snippets/use-react-router';
+import viteFrontendApiCallsCode from './snippets/vite-frontend-api-calls';
+import viteSeoOptimizationCode from './snippets/vite-seo-optimization';
+import viteProjectStructureCode from './snippets/vite-project-structure';
+import nextjsFileBasedRoutingCode from './snippets/nextjs-file-based-routing';
+import nextjsApiRoutesCode from './snippets/nextjs-api-routes';
+import nextjsSeoOptimizationCode from './snippets/nextjs-seo-optimization';
+import nextjsImageOptimizationCode from './snippets/nextjs-image-optimization';
+import nextjsCodeSplittingCode from './snippets/nextjs-code-splitting';
+import nextjsProjectStructureCode from './snippets/nextjs-project-structure';
+import viteStructureComparisonCode from './snippets/vite-structure-comparison';
+import nextjsStructureComparisonCode from './snippets/nextjs-structure-comparison';
+import viteFrontendCommandsCode from './snippets/vite-frontend-commands';
+import viteBackendCommandsCode from './snippets/vite-backend-commands';
+import nextjsFullstackCommandsCode from './snippets/nextjs-fullstack-commands';
+import nextjsUnifiedDevelopmentCode from './snippets/nextjs-unified-development';
+import viteManualRoutingSetupCode from './snippets/vite-manual-routing-setup';
+import viteApiCallsManualCode from './snippets/vite-api-calls-manual';
+import viteSeoMetaTagsCode from './snippets/vite-seo-meta-tags';
+import nextjsFileBasedRoutingExampleCode from './snippets/nextjs-file-based-routing-example';
+import nextjsApiRoutesExampleCode from './snippets/nextjs-api-routes-example';
+import nextjsBuiltinSeoCode from './snippets/nextjs-builtin-seo';
 
 export default function CoreFrameworkPage() {
   return (
@@ -73,103 +96,31 @@ export default function CoreFrameworkPage() {
                   1. React Router for routing:
                 </h5>
                 <CodeBlock
+                  className="mb-2"
                   language="tsx"
-                  code={`// Install React Router
-npm install react-router-dom
-
-// App.tsx - Manual routing setup
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}`}
+                  code={installReactRouterCode}
                 />
+                <CodeBlock language="tsx" code={useReactRouterCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   2. Separate backend/API server:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// Frontend API calls to separate backend
-const fetchUsers = async () => {
-  const response = await fetch('http://localhost:3001/api/users')
-  return response.json()
-}
-
-// Or using a library like Axios
-import axios from 'axios'
-const api = axios.create({
-  baseURL: 'http://localhost:3001/api'
-})
-
-// Requires separate Express/Node.js server running
-// on different port (3001) than frontend (3000)`}
-                />
+                <CodeBlock language="tsx" code={viteFrontendApiCallsCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   3. Manual SEO optimization:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// Manual meta tag management with React Helmet
-npm install react-helmet-async
-
-import { Helmet } from 'react-helmet-async'
-
-function HomePage() {
-  return (
-    <>
-      <Helmet>
-        <title>Home - My App</title>
-        <meta name="description" content="Welcome to my app" />
-        <meta property="og:title" content="Home - My App" />
-      </Helmet>
-      <div>Content rendered on client-side only</div>
-    </>
-  )
-}`}
-                />
+                <CodeBlock language="tsx" code={viteSeoOptimizationCode} />
               </div>
             </div>
           </div>
           <div>
             <h4 className="font-medium mb-1">Example (Project Structure):</h4>
-            <CodeBlock
-              language="bash"
-              code={`# Create new Vite React project
-npm create vite@latest my-react-app -- --template react-ts
-cd my-react-app
-npm install
-
-# Basic SPA project structure
-my-react-app/
-├── public/
-├── src/
-│   ├── App.tsx              # Main app component
-│   ├── main.tsx             # Entry point
-│   └── index.css
-├── index.html               # Single HTML file
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-
-# Start development server
-npm run dev
-`}
-            />
+            <CodeBlock language="bash" code={viteProjectStructureCode} />
           </div>
         </TabsContent>
 
@@ -203,143 +154,41 @@ npm run dev
                 <h5 className="text-sm font-medium mb-1">
                   1. File-based routing (no React Router needed):
                 </h5>
-                <CodeBlock
-                  language="bash"
-                  code={`# Automatic routing based on file structure
-app/
-├── page.tsx                 # → /
-├── about/
-│   └── page.tsx             # → /about
-├── blog/
-│   ├── page.tsx             # → /blog
-│   └── [slug]/
-│       └── page.tsx         # → /blog/[slug] (dynamic route)
-└── api/
-    └── users/
-        └── route.ts         # → /api/users`}
-                />
+                <CodeBlock language="bash" code={nextjsFileBasedRoutingCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   2. API routes (built-in backend):
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// app/api/users/route.ts - Built-in API endpoints
-export async function GET() {
-  const users = await fetchUsersFromDB()
-  return Response.json(users)
-}
-
-export async function POST(request: Request) {
-  const body = await request.json()
-  const newUser = await createUser(body)
-  return Response.json(newUser)
-}
-
-// Frontend can call directly without separate server
-const response = await fetch('/api/users')
-const users = await response.json()`}
-                />
+                <CodeBlock language="tsx" code={nextjsApiRoutesCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   3. SEO optimization (SSR/SSG):
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// app/page.tsx - Automatic SEO with metadata
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Home - My App',
-  description: 'Welcome to my app',
-  openGraph: {
-    title: 'Home - My App',
-    description: 'Welcome to my app',
-  },
-}
-
-// Content is rendered on server for SEO
-export default function HomePage() {
-  return <div>Content pre-rendered for search engines</div>
-}`}
-                />
+                <CodeBlock language="tsx" code={nextjsSeoOptimizationCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   4. Image optimization:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// Automatic image optimization with next/image
-import Image from 'next/image'
-
-function ProfilePage() {
-  return (
-    <Image
-      src="/profile.jpg"
-      alt="Profile"
-      width={300}
-      height={300}
-      // Automatic: WebP conversion, lazy loading, 
-      // responsive images, blur placeholder
-    />
-  )
-}`}
-                />
+                <CodeBlock language="tsx" code={nextjsImageOptimizationCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
                   5. Automatic code splitting:
                 </h5>
-                <CodeBlock
-                  language="tsx"
-                  code={`// Automatic code splitting per page/component
-import dynamic from 'next/dynamic'
-
-// Heavy component loaded only when needed
-const HeavyChart = dynamic(() => import('./HeavyChart'), {
-  loading: () => <p>Loading chart...</p>,
-  ssr: false // Optional: disable server-side rendering
-})
-
-// Each page automatically gets its own bundle
-// /about → about.js, /blog → blog.js, etc.`}
-                />
+                <CodeBlock language="tsx" code={nextjsCodeSplittingCode} />
               </div>
             </div>
           </div>
           <div>
             <h4 className="font-medium mb-1">Example (Project Structure):</h4>
-            <CodeBlock
-              language="bash"
-              code={`# Create new Next.js project
-npx create-next-app@latest my-next-app --typescript --tailwind --eslint --app
-
-# Full-stack project structure with built-in features
-my-next-app/
-├── app/
-│   ├── globals.css          # Global styles
-│   ├── layout.tsx           # Root layout component
-│   ├── page.tsx             # Home page
-│   ├── about/
-│   │   └── page.tsx         # File-based routing
-│   └── api/                 # Built-in API routes
-│       └── users/
-│           └── route.ts     # Backend endpoints
-├── components/              # Component directory
-├── public/                  # Static assets
-├── next.config.js           # Next.js configuration
-├── tailwind.config.js       # Tailwind CSS config
-├── tsconfig.json           # TypeScript config
-└── package.json
-`}
-            />
+            <CodeBlock language="bash" code={nextjsProjectStructureCode} />
           </div>
         </TabsContent>
       </Tabs>
@@ -357,30 +206,7 @@ my-next-app/
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="bash"
-                code={`src/
-├── App.tsx                  # Main app with router setup
-├── main.tsx                 # Entry point
-├── components/
-│   ├── Header.tsx
-│   └── Footer.tsx
-├── pages/                   # Manual page organization
-│   ├── Home.tsx
-│   ├── About.tsx
-│   └── Contact.tsx
-├── hooks/                   # Custom hooks
-├── utils/                   # Utility functions
-└── styles/
-    └── globals.css
-
-# Separate backend required
-backend/
-├── server.js               # Express server
-├── routes/
-│   └── api.js
-└── models/`}
-              />
+              <CodeBlock language="bash" code={viteStructureComparisonCode} />
             </CardContent>
           </Card>
 
@@ -392,27 +218,7 @@ backend/
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <CodeBlock
-                language="bash"
-                code={`app/
-├── layout.tsx              # Root layout (automatic)
-├── page.tsx                # Home page (automatic route)
-├── about/
-│   └── page.tsx            # /about route (automatic)
-├── contact/
-│   └── page.tsx            # /contact route (automatic)
-├── api/                    # Built-in API (same project)
-│   ├── users/
-│   │   └── route.ts        # /api/users endpoint
-│   └── posts/
-│       └── route.ts        # /api/posts endpoint
-├── globals.css             # Global styles
-└── components/             # Shared components
-    ├── Header.tsx
-    └── Footer.tsx
-
-# Everything in one project - no separate backend needed`}
-              />
+              <CodeBlock language="bash" code={nextjsStructureComparisonCode} />
             </CardContent>
           </Card>
         </div>
@@ -429,27 +235,15 @@ backend/
             codeExamples: [
               {
                 label: 'Routing Setup',
-                code: `// Manual React Router setup in App.tsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-function App() {
-  return <BrowserRouter>/* routes */</BrowserRouter>`,
+                code: viteManualRoutingSetupCode,
               },
               {
                 label: 'API Calls',
-                code: `// Separate backend required
-const API_BASE = 'http://localhost:3001/api'
-
-const fetchUsers = async () => {
-  const response = await fetch(\`\${API_BASE}/users\`)`,
+                code: viteApiCallsManualCode,
               },
               {
                 label: 'SEO Meta Tags',
-                code: `// Manual meta management with React Helmet
-import { Helmet } from 'react-helmet-async'
-
-function Page() {
-  return <><Helmet><title>Page Title</title></Helmet>`,
+                code: viteSeoMetaTagsCode,
               },
             ],
           },
@@ -460,27 +254,15 @@ function Page() {
             codeExamples: [
               {
                 label: 'File-Based Routing',
-                code: `// app/about/page.tsx - No router setup needed
-export default function AboutPage() {
-  return <div>About page</div>
-}
-// Automatically creates /about route`,
+                code: nextjsFileBasedRoutingExampleCode,
               },
               {
                 label: 'API Routes',
-                code: `// app/api/users/route.ts - Built-in backend
-export async function GET() {
-  const users = await db.users.findMany()
-  return Response.json(users)
-}`,
+                code: nextjsApiRoutesExampleCode,
               },
               {
                 label: 'Built-in SEO',
-                code: `// app/page.tsx - Type-safe metadata
-export const metadata: Metadata = {
-  title: 'Page Title',
-  description: 'Description'
-}`,
+                code: nextjsBuiltinSeoCode,
               },
             ],
           },
@@ -504,31 +286,13 @@ export const metadata: Metadata = {
                 <h5 className="font-medium text-sm mb-2">
                   Frontend Development:
                 </h5>
-                <CodeBlock
-                  language="bash"
-                  code={`# Start frontend (port 3000)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview`}
-                />
+                <CodeBlock language="bash" code={viteFrontendCommandsCode} />
               </div>
               <div>
                 <h5 className="font-medium text-sm mb-2">
                   Backend Development (separate):
                 </h5>
-                <CodeBlock
-                  language="bash"
-                  code={`# Start Express server (port 3001)
-cd backend
-npm start
-
-# Or with nodemon for development
-npm run dev`}
-                />
+                <CodeBlock language="bash" code={viteBackendCommandsCode} />
               </div>
             </CardContent>
           </Card>
@@ -543,17 +307,7 @@ npm run dev`}
                 <h5 className="font-medium text-sm mb-2">
                   Full-stack Development:
                 </h5>
-                <CodeBlock
-                  language="bash"
-                  code={`# Start full-stack app (frontend + API)
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start`}
-                />
+                <CodeBlock language="bash" code={nextjsFullstackCommandsCode} />
               </div>
               <div>
                 <h5 className="font-medium text-sm mb-2">
@@ -561,9 +315,7 @@ npm start`}
                 </h5>
                 <CodeBlock
                   language="bash"
-                  code={`# Frontend: http://localhost:3000
-# API routes: http://localhost:3000/api/*
-# No separate backend server needed`}
+                  code={nextjsUnifiedDevelopmentCode}
                 />
               </div>
             </CardContent>
