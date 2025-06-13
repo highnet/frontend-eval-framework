@@ -3,4 +3,5 @@ export const tanstackOptimisticMutations = `const createMutation = useMutation({
   onMutate: async (newTodo) => {
     // Optimistically update UI instantly
     queryClient.setQueryData(['todos'], old => [newTodo, ...old])
-  }`;
+  }
+})`;

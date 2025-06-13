@@ -6,13 +6,10 @@ import { KeyDifferences } from '@/components/key-differences';
 import { FetchApiExample } from '@/components/examples/fetch-api-example';
 import { AxiosExample } from '@/components/examples/axios-example';
 import { TanStackQueryExample } from '@/components/examples/tanstack-query-example';
-import { fetchApiInterfaces } from './snippets/fetch-api-interfaces';
 import { fetchApiBasic } from './snippets/fetch-api-basic';
 import { fetchApiMutations } from './snippets/fetch-api-mutations';
-import { axiosInstallation } from './snippets/axios-installation';
 import { axiosFetching } from './snippets/axios-fetching';
 import { axiosMutations } from './snippets/axios-mutations';
-import { tanstackInstallation } from './snippets/tanstack-installation';
 import { tanstackProvider } from './snippets/tanstack-provider';
 import { tanstackLayout } from './snippets/tanstack-layout';
 import { tanstackUsage } from './snippets/tanstack-usage';
@@ -89,13 +86,6 @@ export default function DataFetchingPage() {
 
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">
-                TypeScript Interface & Basic Setup:
-              </h4>
-              <CodeBlock language="typescript" code={fetchApiInterfaces} />
-            </div>
-
-            <div>
               <h4 className="font-medium mb-1">Fetching Data:</h4>
               <CodeBlock
                 language="javascript"
@@ -144,13 +134,6 @@ export default function DataFetchingPage() {
 
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">
-                Installation & TypeScript Setup:
-              </h4>
-              <CodeBlock language="bash" code={axiosInstallation} />
-            </div>
-
-            <div>
               <h4 className="font-medium mb-1">Fetching Data:</h4>
               <CodeBlock language="javascript" code={axiosFetching} />
             </div>
@@ -196,11 +179,6 @@ export default function DataFetchingPage() {
           </div>
 
           <div className="space-y-4">
-            <div>
-              <h4 className="font-medium mb-1">Installation & Dependencies:</h4>
-              <CodeBlock language="bash" code={tanstackInstallation} />
-            </div>
-
             <div>
               <h4 className="font-medium mb-1">
                 Setup QueryProvider with DevTools:

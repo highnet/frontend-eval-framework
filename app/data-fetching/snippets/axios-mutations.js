@@ -1,4 +1,5 @@
 export const axiosMutations = `import axios from 'axios';
+const [mutationLoading, setMutationLoading] = useState({})
 
 // Creating a new todo with state management
 const createTodo = async (newTodo) => {

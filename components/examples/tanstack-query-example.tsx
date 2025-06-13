@@ -313,7 +313,6 @@ export function TanStackQueryExample() {
           >
             Clear Cache
           </Button>
-          <Button variant="outline">Debug Cache</Button>
         </div>
         {/* Create Todo Section */}
         <div className="flex gap-2">
