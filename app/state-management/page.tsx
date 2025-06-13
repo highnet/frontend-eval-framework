@@ -13,7 +13,6 @@ import { ZustandExample } from '@/components/examples/zustand-example';
 import { contextApiSetup } from './snippets/context-api-setup';
 import { contextApiProvider } from './snippets/context-api-provider';
 import { contextApiConsumer } from './snippets/context-api-consumer';
-import { reduxInstallation } from './snippets/redux-installation';
 import { reduxSliceSetup } from './snippets/redux-slice-setup';
 import { reduxStoreConfig } from './snippets/redux-store-config';
 import { reduxProviderSetup } from './snippets/redux-provider-setup';
@@ -160,10 +159,6 @@ export default function StateManagementPage() {
             <ReduxExample />
           </div>
           <div className="space-y-4">
-            <div>
-              <h4 className="font-medium mb-1">Installation & Store Setup:</h4>{' '}
-              <CodeBlock language="bash" code={reduxInstallation} />
-            </div>
             <div>
               <h4 className="font-medium mb-1">
                 Creating Slices with Redux Toolkit:
