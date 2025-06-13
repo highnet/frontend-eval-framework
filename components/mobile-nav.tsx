@@ -1,13 +1,19 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet"
+import { useState } from 'react';
+import Link from 'next/link';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetHeader,
+} from '@/components/ui/sheet';
 
 export function MobileNav() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -22,7 +28,11 @@ export function MobileNav() {
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         </SheetHeader>
         <div className="px-7">
-          <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <Link
+            href="/"
+            className="flex items-center"
+            onClick={() => setOpen(false)}
+          >
             <span className="font-bold">Frontend Evaluation</span>
           </Link>
         </div>
@@ -62,7 +72,11 @@ export function MobileNav() {
           >
             Routing
           </Link>
-          <Link href="/forms" onClick={() => setOpen(false)} className="px-5 py-2 text-base hover:bg-accent rounded-md">
+          <Link
+            href="/forms"
+            onClick={() => setOpen(false)}
+            className="px-5 py-2 text-base hover:bg-accent rounded-md"
+          >
             Forms
           </Link>
           <Link
@@ -82,5 +96,5 @@ export function MobileNav() {
         </div>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
