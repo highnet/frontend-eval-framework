@@ -162,7 +162,7 @@ export default function StateManagementPage() {
             <div>
               <h4 className="font-medium mb-1">
                 Creating Slices with Redux Toolkit:
-              </h4>{' '}
+              </h4>
               <CodeBlock language="typescript" code={reduxSliceSetup} />
             </div>
             <div>
