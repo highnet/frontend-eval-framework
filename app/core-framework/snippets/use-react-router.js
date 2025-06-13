@@ -1,5 +1,4 @@
-export default
-`// App.tsx - Manual routing setup
+export default `// App.tsx - Manual routing setup
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'

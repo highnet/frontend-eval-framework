@@ -236,7 +236,7 @@ export default function StateManagementPage() {
         </TabsContent>
       </Tabs>{' '}
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: "Context API: React's Built-in Solution",

@@ -207,7 +207,7 @@ export default function FormsPage() {
       </Tabs>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'Formik + Yup: Object-Oriented Approach',

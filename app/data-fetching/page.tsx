@@ -227,7 +227,7 @@ export default function DataFetchingPage() {
       </Tabs>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'Fetch API: Manual State Management',

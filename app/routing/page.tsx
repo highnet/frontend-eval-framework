@@ -199,7 +199,7 @@ export default function RoutingPage() {
       </Tabs>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'React Router: Component-Based Setup',

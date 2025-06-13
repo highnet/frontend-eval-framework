@@ -11,26 +11,16 @@ import {
 import { CodeBlock } from '@/components/code-block';
 import { KeyDifferences } from '@/components/key-differences';
 import useReactRouterCode from './snippets/use-react-router';
-import viteFrontendApiCallsCode from './snippets/vite-frontend-api-calls';
 import viteSeoOptimizationCode from './snippets/vite-seo-optimization';
 import viteProjectStructureCode from './snippets/vite-project-structure';
 import nextjsFileBasedRoutingCode from './snippets/nextjs-file-based-routing';
-import nextjsApiRoutesCode from './snippets/nextjs-api-routes';
 import nextjsSeoOptimizationCode from './snippets/nextjs-seo-optimization';
 import nextjsImageOptimizationCode from './snippets/nextjs-image-optimization';
-import nextjsCodeSplittingCode from './snippets/nextjs-code-splitting';
-import nextjsProjectStructureCode from './snippets/nextjs-project-structure';
 import viteStructureComparisonCode from './snippets/vite-structure-comparison';
 import nextjsStructureComparisonCode from './snippets/nextjs-structure-comparison';
-import viteFrontendCommandsCode from './snippets/vite-frontend-commands';
-import viteBackendCommandsCode from './snippets/vite-backend-commands';
-import nextjsFullstackCommandsCode from './snippets/nextjs-fullstack-commands';
-import nextjsUnifiedDevelopmentCode from './snippets/nextjs-unified-development';
 import viteManualRoutingSetupCode from './snippets/vite-manual-routing-setup';
-import viteApiCallsManualCode from './snippets/vite-api-calls-manual';
 import viteSeoMetaTagsCode from './snippets/vite-seo-meta-tags';
 import nextjsFileBasedRoutingExampleCode from './snippets/nextjs-file-based-routing-example';
-import nextjsApiRoutesExampleCode from './snippets/nextjs-api-routes-example';
 import nextjsBuiltinSeoCode from './snippets/nextjs-builtin-seo';
 
 export default function CoreFrameworkPage() {
@@ -92,21 +82,14 @@ export default function CoreFrameworkPage() {
             <div className="space-y-4">
               <div>
                 <h5 className="text-sm font-medium mb-1">
-                  1. React Router for routing:
+                  React Router for routing:
                 </h5>
                 <CodeBlock language="tsx" code={useReactRouterCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
-                  2. Separate backend/API server:
-                </h5>
-                <CodeBlock language="tsx" code={viteFrontendApiCallsCode} />
-              </div>
-
-              <div>
-                <h5 className="text-sm font-medium mb-1">
-                  3. Manual SEO optimization:
+                  Manual SEO optimization:
                 </h5>
                 <CodeBlock language="tsx" code={viteSeoOptimizationCode} />
               </div>
@@ -146,43 +129,23 @@ export default function CoreFrameworkPage() {
             <div className="space-y-4">
               <div>
                 <h5 className="text-sm font-medium mb-1">
-                  1. File-based routing (no React Router needed):
+                  File-based routing (no React Router needed):
                 </h5>
                 <CodeBlock language="bash" code={nextjsFileBasedRoutingCode} />
               </div>
 
               <div>
-                <h5 className="text-sm font-medium mb-1">
-                  2. API routes (built-in backend):
-                </h5>
-                <CodeBlock language="tsx" code={nextjsApiRoutesCode} />
-              </div>
-
-              <div>
-                <h5 className="text-sm font-medium mb-1">
-                  3. SEO optimization (SSR/SSG):
-                </h5>
+                <h5 className="text-sm font-medium mb-1">SEO optimization:</h5>
                 <CodeBlock language="tsx" code={nextjsSeoOptimizationCode} />
               </div>
 
               <div>
                 <h5 className="text-sm font-medium mb-1">
-                  4. Image optimization:
+                  Image optimization:
                 </h5>
                 <CodeBlock language="tsx" code={nextjsImageOptimizationCode} />
               </div>
-
-              <div>
-                <h5 className="text-sm font-medium mb-1">
-                  5. Automatic code splitting:
-                </h5>
-                <CodeBlock language="tsx" code={nextjsCodeSplittingCode} />
-              </div>
             </div>
-          </div>
-          <div>
-            <h4 className="font-medium mb-1">Example (Project Structure):</h4>
-            <CodeBlock language="bash" code={nextjsProjectStructureCode} />
           </div>
         </TabsContent>
       </Tabs>
@@ -219,7 +182,7 @@ export default function CoreFrameworkPage() {
       </div>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'Vite + React: Manual Setup',
@@ -229,10 +192,6 @@ export default function CoreFrameworkPage() {
               {
                 label: 'Routing Setup',
                 code: viteManualRoutingSetupCode,
-              },
-              {
-                label: 'API Calls',
-                code: viteApiCallsManualCode,
               },
               {
                 label: 'SEO Meta Tags',
@@ -249,10 +208,6 @@ export default function CoreFrameworkPage() {
                 code: nextjsFileBasedRoutingExampleCode,
               },
               {
-                label: 'API Routes',
-                code: nextjsApiRoutesExampleCode,
-              },
-              {
                 label: 'Built-in SEO',
                 code: nextjsBuiltinSeoCode,
               },
@@ -260,61 +215,6 @@ export default function CoreFrameworkPage() {
           },
         ]}
       />
-
-      <div className="mt-8 mb-8">
-        <h2 className="text-2xl font-semibold mb-6">
-          Development Commands Comparison
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Vite + React Commands</CardTitle>
-              <CardDescription>
-                Multiple tools, separate backend
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h5 className="font-medium text-sm mb-2">
-                  Frontend Development:
-                </h5>
-                <CodeBlock language="bash" code={viteFrontendCommandsCode} />
-              </div>
-              <div>
-                <h5 className="font-medium text-sm mb-2">
-                  Backend Development (separate):
-                </h5>
-                <CodeBlock language="bash" code={viteBackendCommandsCode} />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Next.js Commands</CardTitle>
-              <CardDescription>Unified full-stack development</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h5 className="font-medium text-sm mb-2">
-                  Full-stack Development:
-                </h5>
-                <CodeBlock language="bash" code={nextjsFullstackCommandsCode} />
-              </div>
-              <div>
-                <h5 className="font-medium text-sm mb-2">
-                  Everything in one project:
-                </h5>
-                <CodeBlock
-                  language="bash"
-                  code={nextjsUnifiedDevelopmentCode}
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
           <Link href="/introduction">Previous: Introduction</Link>

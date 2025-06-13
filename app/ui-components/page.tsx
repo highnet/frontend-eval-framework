@@ -246,7 +246,7 @@ export default function UIComponentsPage() {
       </Tabs>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'Material UI: Pre-built Components',

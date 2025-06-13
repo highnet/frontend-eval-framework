@@ -144,7 +144,7 @@ export default function CssStylingPage() {
       </Tabs>
 
       <KeyDifferences
-        title="Code Differences You'll Actually Write"
+        title="Code Differences"
         differences={[
           {
             title: 'Plain CSS',
