@@ -16,12 +16,11 @@ import { ReactHookFormExample } from '@/components/examples/react-hook-form-exam
 import { KeyDifferences } from '@/components/key-differences';
 
 // Import code snippets
-import { formikBasicSetup } from './snippets/formik-basic-setup';
-import { reactHookFormBasicSetup } from './snippets/react-hook-form-basic-setup';
 import { reactHookFormWienerMelange } from './snippets/react-hook-form-wiener-melange';
 import { formikInstallationSetup } from './snippets/formik-installation-setup';
 import { formikFormImplementation } from './snippets/formik-form-implementation';
 import { formikFieldBinding } from './snippets/formik-field-binding';
+import { formikFormExampleSource } from './snippets/formik-form-example-source';
 import { reactHookFormInstallationSetup } from './snippets/react-hook-form-installation-setup';
 import { reactHookFormImplementation } from './snippets/react-hook-form-implementation';
 import { reactHookFormAutoWiring } from './snippets/react-hook-form-auto-wiring';
@@ -97,14 +96,9 @@ export default function FormsPage() {
             <h4 className="font-medium mb-3">Live Example</h4>
             <FormikFormExample />
           </div>
-
-          <div className="mb-4">
-            <h4 className="font-medium mb-1">Basic Setup:</h4>
-            <CodeBlock
-              language="tsx"
-              isShortSnippet={true}
-              code={formikBasicSetup}
-            />
+          <div className="mb-6">
+            <h4 className="font-medium mb-3">Code Example</h4>
+            <CodeBlock language="tsx" code={formikFormExampleSource} />
           </div>
         </TabsContent>
 
@@ -139,15 +133,6 @@ export default function FormsPage() {
             <h4 className="font-medium mb-3">Live Example</h4>
             <ReactHookFormExample />
           </div>
-
-          <div className="mb-4">
-            <h4 className="font-medium mb-1">Basic Setup:</h4>
-            <CodeBlock
-              language="tsx"
-              isShortSnippet={true}
-              code={reactHookFormBasicSetup}
-            />
-          </div>
         </TabsContent>
 
         <TabsContent value="react-hook-form-wiener" className="space-y-6 mt-4">
@@ -168,6 +153,16 @@ export default function FormsPage() {
               className="text-primary hover:underline"
             >
               Controller Component Documentation
+            </a>
+          </p>
+          <p className="mb-4">
+            <a
+              href="https://infodat-fe-snapshot.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              WienerMelange Form Prototype
             </a>
           </p>
 
