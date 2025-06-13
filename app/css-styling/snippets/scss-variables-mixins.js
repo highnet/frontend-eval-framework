@@ -1,5 +1,5 @@
 export const scssVariablesMixins = `// styles/_variables.scss
-$primary-color: #3b82f6;
+$bg-color: #3b82f6;
 $border-radius: 8px;
 $shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 $shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
