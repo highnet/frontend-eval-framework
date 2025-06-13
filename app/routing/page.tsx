@@ -28,7 +28,6 @@ import { nextjsAppRouterNavigationComponent } from './snippets/nextjs-app-router
 import { reactRouterInstallationSetup } from './snippets/react-router-installation-setup';
 import { reactRouterNavigationLinks } from './snippets/react-router-navigation-links';
 import { reactRouterDynamicRoutes } from './snippets/react-router-dynamic-routes';
-import { tanstackRouterInstallationSetup } from './snippets/tanstack-router-installation-setup';
 import { tanstackRouterFileBasedDefinition } from './snippets/tanstack-router-file-based-definition';
 import { tanstackRouterTypeSafeNavigation } from './snippets/tanstack-router-type-safe-navigation';
 import { nextjsFileStructureRoutes } from './snippets/nextjs-file-structure-routes';
@@ -206,7 +205,7 @@ export default function RoutingPage() {
             description: 'Manual configuration with JSX route definitions',
             codeExamples: [
               {
-                label: 'Installation & Setup',
+                label: 'Setup',
                 code: reactRouterInstallationSetup,
               },
               {
@@ -223,10 +222,6 @@ export default function RoutingPage() {
             title: 'TanStack Router: File-Based + Type-Safe',
             description: 'File-system routing with TypeScript-first approach',
             codeExamples: [
-              {
-                label: 'Installation & Setup',
-                code: tanstackRouterInstallationSetup,
-              },
               {
                 label: 'File-Based Route Definition',
                 code: tanstackRouterFileBasedDefinition,
