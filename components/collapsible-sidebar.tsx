@@ -43,8 +43,8 @@ export function SidebarToggleButton({
 export function CollapsibleSidebar({ isOpen }: { isOpen: boolean }) {
   return (
     <aside
-      className={`hidden md:block shrink-0 border-r transition-all duration-300 ease-in-out ${
-        isOpen ? 'md:w-64 pr-8' : 'md:w-0 pr-0'
+      className={`hidden md:block border-t border-l shrink-0 transition-all duration-300 ease-in-out ${
+        isOpen ? 'md:w-64 px-4' : 'md:w-0 pr-0'
       }`}
     >
       <div
