@@ -25,7 +25,6 @@ import { muiInstallSetup } from './snippets/mui-install-setup';
 import { muiComponentUsage } from './snippets/mui-component-usage';
 import { baseUiInstallSetup } from './snippets/base-ui-install-setup';
 import { baseUiComponentUsage } from './snippets/base-ui-component-usage';
-import { baseUiCustomStyling } from './snippets/base-ui-custom-styling';
 import { shadcnInstallSetup } from './snippets/shadcn-install-setup';
 import { shadcnComponentUsage } from './snippets/shadcn-component-usage';
 import { wienerMelangeInstallSetup } from './snippets/wiener-melange-install-setup';
@@ -275,10 +274,6 @@ export default function UIComponentsPage() {
               {
                 label: 'Component Usage',
                 code: baseUiComponentUsage,
-              },
-              {
-                label: 'Custom Styling',
-                code: baseUiCustomStyling,
               },
             ],
           },
