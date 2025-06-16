@@ -39,5 +39,5 @@ const formik = useFormik<FormValues>({
   validationSchema
 })
 
-// Manual synchronization between schema and interface`
+// Manual synchronization between schema and interface`,
 };

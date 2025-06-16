@@ -31,5 +31,5 @@ formik.handleBlur      // Blur handler
 formik.handleSubmit    // Submit handler
 formik.isSubmitting    // Submission state
 formik.isValid         // Form validity
-formik.resetForm       // Reset form`
+formik.resetForm       // Reset form`,
 };

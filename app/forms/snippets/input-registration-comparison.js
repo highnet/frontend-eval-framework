@@ -31,5 +31,5 @@ export const inputRegistrationComparison = {
   onBlur={formik.handleBlur}
   value={formik.values.email}
   className={formik.touched.email && formik.errors.email ? 'border-red-500' : ''}
-/>`
+/>`,
 };

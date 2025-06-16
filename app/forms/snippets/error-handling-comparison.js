@@ -34,5 +34,5 @@ const formik = useFormik({
   <p className="text-red-500 text-sm">
     {formik.errors.email}
   </p>
-)}`
+)}`,
 };
