@@ -23,6 +23,7 @@ import { formikFieldBinding } from './snippets/formik-field-binding';
 import { formikFormExampleSource } from './snippets/formik-form-example-source';
 import { reactHookFormInstallationSetup } from './snippets/react-hook-form-installation-setup';
 import { reactHookFormImplementation } from './snippets/react-hook-form-implementation';
+import { reactHookFormExampleSource } from './snippets/react-hook-form-example-source';
 import { reactHookFormAutoWiring } from './snippets/react-hook-form-auto-wiring';
 import { formikStateManagement } from './snippets/formik-state-management';
 import { reactHookFormStateManagement } from './snippets/react-hook-form-state-management';
@@ -30,16 +31,19 @@ import { yupSchemaExample } from './snippets/yup-schema-example';
 import { zodSchemaExample } from './snippets/zod-schema-example';
 import { formikReRenderBehavior } from './snippets/formik-rerender-behavior';
 import { reactHookFormPerformance } from './snippets/react-hook-form-performance';
+import { validationLibraryComparison } from './snippets/validation-library-comparison';
+import { inputRegistrationComparison } from './snippets/input-registration-comparison';
+import { typescriptIntegrationComparison } from './snippets/typescript-integration-comparison';
+import { formApiComparison } from './snippets/form-api-comparison';
+import { errorHandlingComparison } from './snippets/error-handling-comparison';
 
 export default function FormsPage() {
   return (
     <div className="max-w-5xl mx-auto px-2 sm:px-4 w-full min-w-0">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Forms</h1>
-
       <p className="mb-4">
         This covers how you handle user input, validation, and state for forms.
       </p>
-
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
         <p>
@@ -47,7 +51,6 @@ export default function FormsPage() {
           providing feedback.
         </p>
       </div>
-
       <Tabs defaultValue="formik" className="mb-8">
         <TabsList className="grid grid-cols-2 w-full h-auto gap-1 p-1">
           <TabsTrigger value="formik" className="">
@@ -133,6 +136,11 @@ export default function FormsPage() {
             <h4 className="font-medium mb-3">Live Example</h4>
             <ReactHookFormExample />
           </div>
+
+          <div className="mb-6">
+            <h4 className="font-medium mb-3">Code Example</h4>
+            <CodeBlock language="tsx" code={reactHookFormExampleSource} />
+          </div>
         </TabsContent>
 
         <TabsContent value="react-hook-form-wiener" className="space-y-6 mt-4">
@@ -199,15 +207,14 @@ export default function FormsPage() {
             </p>
           </div>
         </TabsContent>
-      </Tabs>
-
+      </Tabs>{' '}
       <KeyDifferences
         title="Code Differences"
         differences={[
           {
             title: 'Formik + Yup: Object-Oriented Approach',
             description:
-              'Component-based form handling with object schema validation',
+              'Component-based form handling with explicit field binding and manual TypeScript types',
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -218,7 +225,7 @@ export default function FormsPage() {
                 code: formikFormImplementation,
               },
               {
-                label: 'Field Binding',
+                label: 'Field Binding (Verbose)',
                 code: formikFieldBinding,
               },
             ],
@@ -226,7 +233,7 @@ export default function FormsPage() {
           {
             title: 'React Hook Form + Zod: Hook-Based Approach',
             description:
-              'Performance-focused with TypeScript-first schema validation',
+              'Performance-focused with automatic TypeScript inference and minimal boilerplate',
             codeExamples: [
               {
                 label: 'Installation & Setup',
@@ -237,14 +244,219 @@ export default function FormsPage() {
                 code: reactHookFormImplementation,
               },
               {
-                label: 'Auto-Wiring Fields',
+                label: 'Auto-Wiring Fields (Minimal)',
                 code: reactHookFormAutoWiring,
               },
             ],
           },
         ]}
       />
+      <div className="mt-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">
+          Detailed Feature Comparison
+        </h2>
 
+        <div className="space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">
+                Validation Library Integration
+              </CardTitle>
+              <CardDescription>
+                How each approach handles schema validation and type safety
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-green-700">
+                    React Hook Form + Zod
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    TypeScript-first validation with automatic type inference
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={validationLibraryComparison.reactHookForm}
+                  />
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-blue-700">
+                    Formik + Yup
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Traditional object-based validation with manual types
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={validationLibraryComparison.formik}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">
+                Input Registration & Boilerplate
+              </CardTitle>
+              <CardDescription>
+                Comparing the amount of code needed to wire up form inputs
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-green-700">
+                    React Hook Form - Minimal
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Simple spread operator for field registration
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={inputRegistrationComparison.reactHookForm}
+                  />
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-blue-700">
+                    Formik - Explicit
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Manual prop binding for each input field
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={inputRegistrationComparison.formik}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">TypeScript Integration</CardTitle>
+              <CardDescription>
+                How type safety is achieved and maintained
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-green-700">
+                    React Hook Form + Zod
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Automatic type inference from schema
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={typescriptIntegrationComparison.reactHookForm}
+                  />
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-blue-700">
+                    Formik + Yup
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Manual interface definition required
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={typescriptIntegrationComparison.formik}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Form State & API</CardTitle>
+              <CardDescription>
+                How form state and methods are accessed and organized
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-green-700">
+                    React Hook Form
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Destructured API with specific functions
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={formApiComparison.reactHookForm}
+                  />
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-blue-700">
+                    Formik
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Single object containing all form logic
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={formApiComparison.formik}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Error Handling</CardTitle>
+              <CardDescription>
+                When and how validation errors are displayed to users
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-green-700">
+                    React Hook Form
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Immediate error display on validation failure
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={errorHandlingComparison.reactHookForm}
+                  />
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm mb-2 text-blue-700">
+                    Formik
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Errors shown only after field is touched
+                  </p>
+                  <CodeBlock
+                    language="tsx"
+                    isShortSnippet={true}
+                    code={errorHandlingComparison.formik}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
       <div className="mt-8 mb-8">
         <h2 className="text-2xl font-semibold mb-6">
           Form State Management Comparison
@@ -285,7 +497,6 @@ export default function FormsPage() {
           </Card>
         </div>
       </div>
-
       <div className="mt-8 mb-8">
         <h2 className="text-2xl font-semibold mb-6">
           Validation Schema Comparison
@@ -324,7 +535,6 @@ export default function FormsPage() {
           </Card>
         </div>
       </div>
-
       <div className="mt-8 mb-8">
         <h2 className="text-2xl font-semibold mb-6">
           Performance & Re-renders
@@ -367,7 +577,6 @@ export default function FormsPage() {
           </Card>
         </div>
       </div>
-
       <div className="flex justify-between mt-8">
         <Button variant="outline" asChild>
           <Link href="/routing">Previous: Routing</Link>
