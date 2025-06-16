@@ -34,7 +34,7 @@ function TodoItem({ todo }: TodoItemProps) {
 import { useAppSelector } from '../store'
 
 function TodoList() {
-  const todos = useAppSelector(state => state.todos.todos)
+  const todos = useAppSelector(state => state.reduxTodos.todos)
 
   return (
     <div className="space-y-2">

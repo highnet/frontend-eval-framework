@@ -42,13 +42,13 @@ export default function StateManagementPage() {
         is shared across many components.
       </p>
       <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>
+        <h2 className="text-xl font-semibold mb-2">What it addresses:</h2>{' '}
         <p>
           Centralizing and managing data that needs to be accessible by multiple
           components, often across different parts of the component tree,
           ensuring consistency and reactivity.
         </p>
-      </div>{' '}
+      </div>
       <Tabs defaultValue="context" className="mb-8">
         <TabsList className="flex flex-col sm:flex-row w-full h-auto sm:h-10 gap-1 p-1">
           <TabsTrigger value="context" className="flex-1">
@@ -63,7 +63,6 @@ export default function StateManagementPage() {
         </TabsList>
 
         <TabsContent value="context" className="space-y-4 mt-4">
-          {' '}
           <h3 className="text-lg font-medium">Context API (React)</h3>
           <p>
             React&apos;s built-in way to pass data through the component tree
@@ -78,7 +77,7 @@ export default function StateManagementPage() {
             >
               React Docs - Context
             </a>
-          </p>{' '}
+          </p>
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
@@ -95,21 +94,21 @@ export default function StateManagementPage() {
             <div>
               <h4 className="font-medium mb-1">
                 TypeScript Setup & Context Creation:
-              </h4>{' '}
+              </h4>
               <CodeBlock language="typescript" code={contextApiSetup} />
-            </div>{' '}
+            </div>
             <div>
-              <h4 className="font-medium mb-1">Provider Implementation:</h4>{' '}
+              <h4 className="font-medium mb-1">Provider Implementation:</h4>
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
                 code={contextApiProvider}
               />
-            </div>{' '}
+            </div>
             <div>
               <h4 className="font-medium mb-1">
                 Consuming Context in Components:
-              </h4>{' '}
+              </h4>
               <CodeBlock
                 language="tsx"
                 isShortSnippet={true}
@@ -144,7 +143,7 @@ export default function StateManagementPage() {
             >
               Redux Toolkit Official Documentation
             </a>
-          </p>{' '}
+          </p>
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
@@ -166,15 +165,15 @@ export default function StateManagementPage() {
               <CodeBlock language="typescript" code={reduxSliceSetup} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Store Configuration:</h4>{' '}
+              <h4 className="font-medium mb-1">Store Configuration:</h4>
               <CodeBlock language="typescript" code={reduxStoreConfig} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Provider Setup:</h4>{' '}
+              <h4 className="font-medium mb-1">Provider Setup:</h4>
               <CodeBlock language="tsx" code={reduxProviderSetup} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Using Redux in Components:</h4>{' '}
+              <h4 className="font-medium mb-1">Using Redux in Components:</h4>
               <CodeBlock language="tsx" code={reduxComponentUsage} />
             </div>
           </div>
@@ -195,7 +194,7 @@ export default function StateManagementPage() {
             >
               Zustand GitHub Repository
             </a>
-          </p>{' '}
+          </p>
           <div className="mb-4">
             <h4 className="font-medium mb-1">Concept:</h4>
             <p>
@@ -210,26 +209,26 @@ export default function StateManagementPage() {
           </div>
           <div className="space-y-4">
             <div>
-              <h4 className="font-medium mb-1">Installation & Basic Store:</h4>{' '}
+              <h4 className="font-medium mb-1">Installation & Basic Store:</h4>
               <CodeBlock language="bash" code={zustandInstallation} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Creating a Zustand Store:</h4>{' '}
+              <h4 className="font-medium mb-1">Creating a Zustand Store:</h4>
               <CodeBlock language="typescript" code={zustandBasicStore} />
             </div>
             <div>
               <h4 className="font-medium mb-1">
                 Advanced Store with Middleware:
-              </h4>{' '}
+              </h4>
               <CodeBlock language="typescript" code={zustandAdvancedStore} />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Using Zustand in Components:</h4>{' '}
+              <h4 className="font-medium mb-1">Using Zustand in Components:</h4>
               <CodeBlock language="tsx" code={zustandComponentUsage} />
             </div>
           </div>
         </TabsContent>
-      </Tabs>{' '}
+      </Tabs>
       <KeyDifferences
         title="Code Differences"
         differences={[

@@ -207,7 +207,7 @@ export default function FormsPage() {
             </p>
           </div>
         </TabsContent>
-      </Tabs>{' '}
+      </Tabs>
       <KeyDifferences
         title="Code Differences"
         differences={[

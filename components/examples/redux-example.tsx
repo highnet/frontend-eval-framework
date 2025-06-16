@@ -21,12 +21,12 @@ interface TodoState {
 }
 
 interface AppState {
-  todos: TodoState
+  reduxTodos: TodoState
 }
 
 // Todo slice
 const todosSlice = createSlice({
-  name: 'todos',
+  name: 'reduxTodos',
   initialState: {
     todos: [
       { id: 1, text: "Learn Redux Toolkit", completed: false },
@@ -61,9 +61,11 @@ export const { addTodo, toggleTodo, deleteTodo } = todosSlice.actions
 // Configure store
 const store = configureStore({
   reducer: {
-    todos: todosSlice.reducer
+    reduxTodos: todosSlice.reducer
   },
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: {
+    name: '⚡ Redux Toolkit Todo Store' // Custom name for devtools
+  }
 })
 
 // Todo item component
@@ -123,7 +125,7 @@ function AddTodoForm() {
 
 // Stats component
 function TodoStats() {
-  const todos = useSelector((state: AppState) => state.todos.todos)
+  const todos = useSelector((state: AppState) => state.reduxTodos.todos)
   const completed = todos.filter(todo => todo.completed).length
   const total = todos.length
 
@@ -144,7 +146,7 @@ function TodoStats() {
 
 // Main todo list component
 function TodoList() {
-  const todos = useSelector((state: AppState) => state.todos.todos)
+  const todos = useSelector((state: AppState) => state.reduxTodos.todos)
 
   return (
     <div className="p-4 rounded-lg bg-gray-900 text-white">

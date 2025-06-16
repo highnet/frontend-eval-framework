@@ -290,13 +290,12 @@ export function TanStackQueryExample() {
               Mutating...
             </Badge>
           )}
-        </CardTitle>{' '}
+        </CardTitle>
         <CardDescription>
           Using TanStack Query with mutations and automatic cache management
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        {' '}
         <div className="flex gap-2">
           <Button
             onClick={refetchTodos}
@@ -401,7 +400,7 @@ export function TanStackQueryExample() {
                     className="text-xs"
                   >
                     {todo.completed ? 'Done' : 'Pending'}
-                  </Badge>{' '}
+                  </Badge>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -416,7 +415,7 @@ export function TanStackQueryExample() {
                     )}
                   </Button>
                 </div>
-              ))}{' '}
+              ))}
         </div>
       </CardContent>
     </Card>

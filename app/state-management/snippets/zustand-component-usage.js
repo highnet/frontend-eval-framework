@@ -1,10 +1,10 @@
 export const zustandComponentUsage = `// Basic usage - subscribes to entire store
 function TodoList() {
-  const { todos, toggleTodo, deleteTodo } = useTodoStore()
+  const { zustandTodos, toggleTodo, deleteTodo } = useTodoStore()
   
   return (
     <div className="space-y-2">
-      {todos.map(todo => (
+      {zustandTodos.map(todo => (
         <div key={todo.id} className="flex items-center gap-3 p-3 rounded-lg border">
           <input 
             type="checkbox" 
@@ -30,7 +30,7 @@ function TodoList() {
 // Optimized usage - subscribe to specific parts only
 function TodoStats() {
   // Only re-renders when todos array changes
-  const todos = useTodoStore((state) => state.todos)
+  const todos = useTodoStore((state) => state.zustandTodos)
   
   const stats = useMemo(() => ({
     total: todos.length,
@@ -49,7 +49,7 @@ function TodoStats() {
 
 // Custom hooks for reusable store logic
 const useAddTodo = () => useTodoStore((state) => state.addTodo)
-const useTodos = () => useTodoStore((state) => state.todos)
+const useTodos = () => useTodoStore((state) => state.zustandTodos)
 
 function AddTodoForm() {
   const addTodo = useAddTodo()
@@ -82,8 +82,8 @@ function AddTodoForm() {
 import { shallow } from 'zustand/shallow'
 
 function TodoApp() {
-  const { todos, addTodo } = useTodoStore(
-    (state) => ({ todos: state.todos, addTodo: state.addTodo }),
+  const { zustandTodos, addTodo } = useTodoStore(
+    (state) => ({ zustandTodos: state.zustandTodos, addTodo: state.addTodo }),
     shallow // Prevents re-renders when other state changes
   )
 

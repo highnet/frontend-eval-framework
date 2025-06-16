@@ -2,7 +2,7 @@ export const zustandAdvancedStore = `import { create } from 'zustand'
 import { subscribeWithSelector, devtools, persist } from 'zustand/middleware'
 
 interface TodoStore {
-  todos: Todo[]
+  zustandTodos: Todo[]
   addTodo: (text: string) => void
   toggleTodo: (id: number) => void
   deleteTodo: (id: number) => void
@@ -10,22 +10,20 @@ interface TodoStore {
 
 // Store with multiple middleware for persistence and devtools
 const useTodoStore = create<TodoStore>()(
-  devtools(
-    persist(      subscribeWithSelector((set, get) => ({
-        todos: [],
-        
-        addTodo: (text: string) => {
+  devtools(    persist(      subscribeWithSelector((set, get) => ({
+        zustandTodos: [],
+          addTodo: (text: string) => {
           set((state) => ({
-            todos: [
+            zustandTodos: [
               { id: Date.now(), text, completed: false },
-              ...state.todos
+              ...state.zustandTodos
             ]
           }), false, 'addTodo') // Third parameter is action name for devtools
         },
         
         toggleTodo: (id: number) => {
           set((state) => ({
-            todos: state.todos.map(todo =>
+            zustandTodos: state.zustandTodos.map(todo =>
               todo.id === id ? { ...todo, completed: !todo.completed } : todo
             )
           }), false, 'toggleTodo')
@@ -33,24 +31,23 @@ const useTodoStore = create<TodoStore>()(
         
         deleteTodo: (id: number) => {
           set((state) => ({
-            todos: state.todos.filter(todo => todo.id !== id)
+            zustandTodos: state.zustandTodos.filter(todo => todo.id !== id)
           }), false, 'deleteTodo')
         }
       })),
       {
         name: 'todo-storage', // Unique name for localStorage
-        partialize: (state) => ({ todos: state.todos }), // Only persist todos
-      }
+        partialize: (state) => ({ zustandTodos: state.zustandTodos }), // Only persist todos      }
     ),
     {
-      name: 'todo-store', // Name for Redux DevTools
+      name: '🐻 Zustand Advanced Store', // Name for Redux DevTools
     }
   )
 )
 
 // Subscribe to specific state changes
 useTodoStore.subscribe(
-  (state) => state.todos,
+  (state) => state.zustandTodos,
   (todos) => console.log('Todos updated:', todos),
   {
     equalityFn: Object.is, // Only re-run if array reference changes

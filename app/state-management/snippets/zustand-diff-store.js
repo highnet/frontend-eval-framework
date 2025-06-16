@@ -1,5 +1,5 @@
 export const zustandDiffStore = `const useTodoStore = create((set) => ({
-  todos: [],
+  zustandTodos: [],
   addTodo: (text) => set((state) => ({ 
-    todos: [{ id: Date.now(), text }, ...state.todos]
+    zustandTodos: [{ id: Date.now(), text }, ...state.zustandTodos]
   }))`;

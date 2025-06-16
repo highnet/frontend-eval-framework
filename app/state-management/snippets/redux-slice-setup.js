@@ -20,7 +20,7 @@ const initialState: TodoState = {
 }
 
 const todoSlice = createSlice({
-  name: 'todos',
+  name: 'reduxTodos',
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {

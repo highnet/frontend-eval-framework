@@ -4,10 +4,12 @@ import todoReducer from './todoSlice'
 
 export const store = configureStore({
   reducer: {
-    todos: todoReducer,
+    reduxTodos: todoReducer,
   },
-  // Redux DevTools are enabled by default in development
-  devTools: process.env.NODE_ENV !== 'production'
+  // Redux DevTools enabled with custom name
+  devTools: {
+    name: '⚡ Redux Toolkit Store'
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>

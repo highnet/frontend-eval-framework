@@ -1,5 +1,5 @@
 export const reduxDiffSetup = `const todoSlice = createSlice({
-  name: 'todos',
+  name: 'reduxTodos',
   initialState: { todos: [] },
   reducers: {
     addTodo: (state, action) => state.todos.unshift(action.payload)`;
